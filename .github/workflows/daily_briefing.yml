@@ -1,0 +1,89 @@
+name: Daily Cyber News Briefing
+
+on:
+  schedule:
+    # 17:30 UTC = 23:30 Asia/Dhaka (UTC+6). GitHub may delay scheduled runs by 10-30 min.
+    - cron: "30 17 * * *"
+  workflow_dispatch:
+    inputs:
+      test_mode:
+        description: "Test mode (process only a few articles)"
+        type: boolean
+        default: false
+
+permissions:
+  contents: write   # commit reports/ back to main
+  pages: write      # deploy to GitHub Pages
+  id-token: write   # required by deploy-pages
+
+concurrency:
+  group: daily-briefing
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5
+
+      - name: Setup Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Prepare folders
+        run: mkdir -p data logs reports
+
+      - name: Run daily pipeline
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
+          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+        run: python -m src.cli_daily ${{ inputs.test_mode && '--test-mode' || '' }}
+
+      - name: Check report was generated
+        run: test -f reports/index.html
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: reports
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+      - name: Commit reports back to main (keeps the archive growing)
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add reports
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: daily briefing $(date -u +%F)"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+
+      - name: Upload logs for debugging
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: run-logs
+          path: |
+            logs/
+            data/feed_status.json
+            data/run_history.json
+          retention-days: 7
+          if-no-files-found: ignore

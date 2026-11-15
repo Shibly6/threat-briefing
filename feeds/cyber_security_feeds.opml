@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<opml version="2.0">
+  <head>
+    <title>Cyber Security Live Feeds</title>
+  </head>
+  <body>
+    <outline text="Cyber Security Feeds" title="Cyber Security Feeds">
+      <outline type="rss" text="CISA Advisories" xmlUrl="https://www.cisa.gov/cybersecurity-advisories/all.xml"/>
+      <outline type="rss" text="The Hacker News" xmlUrl="https://feeds.feedburner.com/TheHackersNews"/>
+      <outline type="rss" text="BleepingComputer" xmlUrl="https://www.bleepingcomputer.com/feed/"/>
+      <outline type="rss" text="SecurityWeek" xmlUrl="https://www.securityweek.com/feed/"/>
+      <outline type="rss" text="KrebsOnSecurity" xmlUrl="https://krebsonsecurity.com/feed/"/>
+      <outline type="rss" text="Microsoft MSRC Updates" xmlUrl="https://api.msrc.microsoft.com/update-guide/rss"/>
+      <outline type="rss" text="Microsoft Security Blog" xmlUrl="https://www.microsoft.com/en-us/security/blog/feed/"/>
+      <outline type="rss" text="Google / Mandiant Threat Intel" xmlUrl="https://cloudblog.withgoogle.com/topics/threat-intelligence/rss/"/>
+      <outline type="rss" text="Cisco Talos" xmlUrl="https://blog.talosintelligence.com/rss/"/>
+      <outline type="rss" text="Palo Alto Unit 42" xmlUrl="https://unit42.paloaltonetworks.com/feed/"/>
+      <outline type="rss" text="SANS ISC" xmlUrl="https://isc.sans.edu/rssfeed_full.xml"/>
+      <outline type="rss" text="Fortinet PSIRT Advisories" xmlUrl="https://filestore.fortinet.com/fortiguard/rss/ir.xml"/>
+    </outline>
+  </body>
+</opml>

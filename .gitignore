@@ -1,0 +1,15 @@
+# secrets: never push
+.env
+
+# runtime data and logs (recreated on every run)
+data/
+logs/
+
+# python / local environment
+myenv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# NOTE: reports/ is committed on purpose (it is the site + archive)
