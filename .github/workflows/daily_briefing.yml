@@ -48,7 +48,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          ## NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
         run: python -m src.cli_daily ${{ inputs.test_mode && '--test-mode' || '' }}
 
       - name: Check report was generated
