@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity threat intelligence briefing for 19 Nov 2026.">
+    <meta name="author" content="Noor Elahi Ali Shibly">
+    <title>19 Nov 2026 Threat Briefing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --bg-primary: #090d16;
+            --bg-secondary: #0f1624;
+            --bg-card: #0f1624;
+            --bg-card-hover: #131c2e;
+            --border-color: #1e293b;
+            --border-soft: rgba(148, 163, 184, 0.14);
+            --border-strong: rgba(148, 163, 184, 0.28);
+            --text-primary: #eaf0fa;
+            --text-secondary: #98a7be;
+            --text-muted: #7b8aa1;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --severity-critical: #ff4d5e;
+            --severity-high: #ff9448;
+            --severity-medium: #fbbf24;
+            --severity-low: #34d399;
+            --kev-color: #f472b6;
+            --glow-critical: rgba(255, 77, 94, 0.35);
+            --glow-high: rgba(255, 148, 72, 0.32);
+            --glow-blue: rgba(56, 189, 248, 0.32);
+            --glow-kev: rgba(244, 114, 182, 0.30);
+            --ring: rgba(56, 189, 248, 0.55);
+            --radius-sm: 10px;
+            --radius-md: 15px;
+            --radius-lg: 18px;
+            --gap-md: 16px;
+            --gap-lg: 28px;
+            --ease-smooth: cubic-bezier(0.22, 0.68, 0.32, 1);
+            --shadow-card: 0 22px 50px -32px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(900px circle at 12% -8%, rgba(56, 189, 248, 0.10), transparent 60%),
+                radial-gradient(800px circle at 88% 0%, rgba(255, 77, 94, 0.08), transparent 55%),
+                radial-gradient(700px circle at 50% 110%, rgba(34, 211, 238, 0.06), transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.68;
+            padding: 32px 20px 48px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; }
+
+        ::selection { background: rgba(56, 189, 248, 0.30); color: #f8fbff; }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, rgba(19, 28, 46, 0.92), rgba(9, 13, 22, 0.94));
+            border: 1px solid var(--border-soft);
+            border-radius: 18px;
+            padding: 26px 30px;
+            margin-bottom: var(--gap-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), var(--severity-critical), transparent);
+            opacity: 0.85;
+        }
+
+        .brand-lockup { display: flex; align-items: center; gap: 16px; }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            background: linear-gradient(150deg, rgba(56, 189, 248, 0.20), rgba(255, 77, 94, 0.16));
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 22px -6px var(--glow-blue);
+        }
+
+        .header-title h1 {
+            font-size: 1.62rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: var(--text-primary);
+        }
+
+        .header-title h1 .accent { color: var(--accent-blue); }
+
+        .header-sub {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 7px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            letter-spacing: 0.04em;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.74rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 0 0 var(--gap-md) 2px;
+        }
+
+        .section-label::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), transparent);
+        }
+
+        footer {
+            margin-top: 48px;
+            padding: 22px 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: linear-gradient(170deg, rgba(19, 28, 46, 0.72), rgba(9, 13, 22, 0.9));
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .footer-credit {
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .footer-credit a {
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.18s ease, text-shadow 0.18s ease;
+        }
+
+        .footer-credit a:hover {
+            color: #7dd3fc;
+            text-shadow: 0 0 14px var(--glow-blue);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+
+        .nav-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.02em;
+            padding: 9px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.32);
+            background: rgba(56, 189, 248, 0.08);
+            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-home:hover {
+            background: rgba(56, 189, 248, 0.16);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 22px -6px var(--glow-blue);
+            transform: translateY(-1px);
+        }
+
+        .spotlight-box {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(155deg, rgba(19, 28, 46, 0.95), rgba(9, 13, 22, 0.97));
+            border: 1px solid rgba(56, 189, 248, 0.26);
+            border-radius: 18px;
+            padding: 22px 24px 24px;
+            margin-bottom: var(--gap-lg);
+            box-shadow: 0 26px 60px -34px rgba(56, 189, 248, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .spotlight-box::before {
+            content: "";
+            position: absolute;
+            top: -60%;
+            left: -10%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 65%);
+            pointer-events: none;
+        }
+
+        .spotlight-box h2 {
+            position: relative;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spotlight-box h2 .fire {
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 9px;
+            font-size: 0.9rem;
+            background: rgba(255, 148, 72, 0.14);
+            border: 1px solid rgba(255, 148, 72, 0.34);
+            box-shadow: 0 0 18px -6px var(--glow-high);
+        }
+
+        .spotlight-list { position: relative; display: flex; flex-direction: column; gap: 8px; }
+
+        .spotlight-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 11px 14px;
+            background: rgba(148, 163, 184, 0.05);
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease-smooth);
+        }
+
+        .spotlight-item:hover {
+            background: rgba(56, 189, 248, 0.07);
+            border-color: rgba(56, 189, 248, 0.26);
+            box-shadow: 0 0 24px -12px var(--glow-blue);
+            transform: translateX(2px);
+        }
+
+        .spotlight-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.94rem;
+            line-height: 1.45;
+            transition: color 0.18s ease;
+        }
+
+        .spotlight-item:hover a { color: var(--accent-blue); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: var(--gap-md);
+            margin-bottom: var(--gap-lg);
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(165deg, rgba(19, 28, 46, 0.94), rgba(11, 16, 26, 0.96));
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 20px 20px 18px;
+            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease, box-shadow 0.24s ease;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            opacity: 0.5;
+            transition: opacity 0.24s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.34);
+            box-shadow: 0 22px 46px -28px var(--glow-blue), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-card:hover::after { opacity: 1; }
+
+        .stat-card .stat-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card .number {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-card .icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            line-height: 1;
+            background: rgba(148, 163, 184, 0.08);
+            border: 1px solid var(--border-soft);
+            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease;
+        }
+
+        .stat-card:hover .icon { transform: scale(1.06); }
+
+        .stat-card .label {
+            color: var(--text-secondary);
+            font-size: 0.71rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            line-height: 1.35;
+        }
+
+        .stat-card.is-critical { border-color: rgba(255, 77, 94, 0.24); }
+        .stat-card.is-critical::after { background: linear-gradient(90deg, transparent, var(--severity-critical), transparent); opacity: 0.8; }
+        .stat-card.is-critical:hover { border-color: rgba(255, 77, 94, 0.5); box-shadow: 0 22px 46px -26px var(--glow-critical), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+        .stat-card.is-critical .number, .stat-card.is-critical .icon { color: var(--severity-critical); }
+        .stat-card.is-critical .icon { background: rgba(255, 77, 94, 0.1); border-color: rgba(255, 77, 94, 0.3); }
+
+        .stat-card.is-high { border-color: rgba(255, 148, 72, 0.22); }
+        .stat-card.is-high::after { background: linear-gradient(90deg, transparent, var(--severity-high), transparent); opacity: 0.8; }
+        .stat-card.is-high:hover { border-color: rgba(255, 148, 72, 0.48); box-shadow: 0 22px 46px -26px var(--glow-high), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+        .stat-card.is-high .number, .stat-card.is-high .icon { color: var(--severity-high); }
+        .stat-card.is-high .icon { background: rgba(255, 148, 72, 0.1); border-color: rgba(255, 148, 72, 0.3); }
+
+        .stat-card.is-kev { border-color: rgba(244, 114, 182, 0.22); }
+        .stat-card.is-kev::after { background: linear-gradient(90deg, transparent, var(--kev-color), transparent); opacity: 0.8; }
+        .stat-card.is-kev:hover { border-color: rgba(244, 114, 182, 0.48); box-shadow: 0 22px 46px -26px var(--glow-kev), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+        .stat-card.is-kev .number, .stat-card.is-kev .icon { color: var(--kev-color); }
+        .stat-card.is-kev .icon { background: rgba(244, 114, 182, 0.1); border-color: rgba(244, 114, 182, 0.3); }
+
+        .stat-card.is-total .icon { color: var(--accent-blue); background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); }
+
+        .articles-list { display: flex; flex-direction: column; gap: 18px; }
+
+        .article-card {
+            position: relative;
+            background: linear-gradient(168deg, rgba(17, 25, 41, 0.95), rgba(11, 16, 26, 0.97));
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+            box-shadow: var(--shadow-card);
+        }
+
+        .article-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            bottom: 18px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.65), rgba(56, 189, 248, 0));
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(168deg, rgba(21, 31, 49, 0.96), rgba(13, 19, 31, 0.98));
+            border-color: rgba(56, 189, 248, 0.28);
+            box-shadow: 0 26px 56px -34px rgba(56, 189, 248, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .article-card.sev-critical::before { background: linear-gradient(180deg, var(--severity-critical), rgba(255, 77, 94, 0)); }
+        .article-card.sev-critical:hover { border-color: rgba(255, 77, 94, 0.4); box-shadow: 0 26px 56px -32px var(--glow-critical), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+
+        .article-card.sev-high::before { background: linear-gradient(180deg, var(--severity-high), rgba(255, 148, 72, 0)); }
+        .article-card.sev-high:hover { border-color: rgba(255, 148, 72, 0.38); box-shadow: 0 26px 56px -32px var(--glow-high), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .article-title {
+            font-size: 1.07rem;
+            font-weight: 600;
+            line-height: 1.44;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: color 0.18s ease;
+        }
+
+        .article-title:hover { color: var(--accent-blue); }
+
+        .badge-group { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 11px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        .badge-critical {
+            color: #ffd7db;
+            background: linear-gradient(150deg, rgba(255, 77, 94, 0.24), rgba(255, 77, 94, 0.10));
+            border-color: rgba(255, 77, 94, 0.65);
+            box-shadow: 0 0 20px -6px var(--glow-critical), inset 0 0 14px -8px rgba(255, 77, 94, 0.9);
+            text-shadow: 0 0 12px rgba(255, 77, 94, 0.55);
+            animation: glow-critical 3s ease-in-out infinite;
+        }
+
+        .badge-high {
+            color: #ffe1c7;
+            background: linear-gradient(150deg, rgba(255, 148, 72, 0.22), rgba(255, 148, 72, 0.09));
+            border-color: rgba(255, 148, 72, 0.60);
+            box-shadow: 0 0 20px -6px var(--glow-high), inset 0 0 14px -8px rgba(255, 148, 72, 0.85);
+            text-shadow: 0 0 12px rgba(255, 148, 72, 0.5);
+            animation: glow-high 3.4s ease-in-out infinite;
+        }
+
+        .badge-medium {
+            color: #fde9a9;
+            background: linear-gradient(150deg, rgba(251, 191, 36, 0.17), rgba(251, 191, 36, 0.07));
+            border-color: rgba(251, 191, 36, 0.45);
+            box-shadow: inset 0 0 12px -8px rgba(251, 191, 36, 0.8);
+        }
+
+        .badge-low {
+            color: #c6f7e3;
+            background: linear-gradient(150deg, rgba(52, 211, 153, 0.15), rgba(52, 211, 153, 0.06));
+            border-color: rgba(52, 211, 153, 0.42);
+            box-shadow: inset 0 0 12px -8px rgba(52, 211, 153, 0.8);
+        }
+
+        .badge-kev {
+            color: #ffd9ee;
+            background: linear-gradient(150deg, rgba(244, 114, 182, 0.20), rgba(244, 114, 182, 0.08));
+            border-color: rgba(244, 114, 182, 0.52);
+            box-shadow: 0 0 18px -8px rgba(244, 114, 182, 0.75);
+        }
+
+        .badge-critical .badge-dot,
+        .badge-high .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+            flex-shrink: 0;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+
+        .article-card:hover .badge-critical,
+        .article-card:hover .badge-high,
+        .spotlight-item:hover .badge-critical,
+        .spotlight-item:hover .badge-high {
+            filter: brightness(1.15) saturate(1.08);
+        }
+
+        @keyframes glow-critical {
+            0%, 100% { box-shadow: 0 0 20px -6px var(--glow-critical), inset 0 0 14px -8px rgba(255, 77, 94, 0.9); }
+            50% { box-shadow: 0 0 30px -3px var(--glow-critical), inset 0 0 18px -6px rgba(255, 77, 94, 0.95); }
+        }
+
+        @keyframes glow-high {
+            0%, 100% { box-shadow: 0 0 20px -6px var(--glow-high), inset 0 0 14px -8px rgba(255, 148, 72, 0.85); }
+            50% { box-shadow: 0 0 28px -4px var(--glow-high), inset 0 0 18px -6px rgba(255, 148, 72, 0.92); }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+
+        .meta-bar {
+            display: flex;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 7px;
+            border: 1px solid var(--border-soft);
+            background: rgba(148, 163, 184, 0.06);
+            line-height: 1.5;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .meta-item:hover { border-color: var(--border-strong); background: rgba(148, 163, 184, 0.09); }
+
+        .meta-item strong { color: #dbe7f6; font-weight: 600; }
+
+        .meta-item .e { opacity: 0.78; font-size: 0.82rem; }
+
+        .summary-bn {
+            color: #ccd9ea;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
+            direction: ltr;
+            text-align: left;
+            border-left: 2px solid rgba(56, 189, 248, 0.22);
+            padding-left: 14px;
+            transition: border-color 0.22s ease;
+        }
+
+        .article-card:hover .summary-bn { border-left-color: rgba(56, 189, 248, 0.55); }
+
+        .tags-container { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(56, 189, 248, 0.07);
+            border: 1px solid rgba(56, 189, 248, 0.20);
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.02em;
+            color: #9ed8f5;
+            transition: background 0.18s ease, border-color 0.18s ease;
+        }
+
+        .tag:hover { background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.4); }
+
+        .cve-tag {
+            background: rgba(255, 77, 94, 0.09);
+            color: #ffb3bb;
+            border-color: rgba(255, 77, 94, 0.30);
+        }
+
+        .cve-tag:hover { background: rgba(255, 77, 94, 0.16); border-color: rgba(255, 77, 94, 0.5); }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            background: rgba(148, 163, 184, 0.03);
+        }
+
+        @media (max-width: 720px) {
+            body { padding: 18px 13px 32px; }
+            header { padding: 22px; margin-bottom: 22px; }
+            .header-title h1 { font-size: 1.3rem; }
+            .card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .badge-group { justify-content: flex-start; }
+            .stat-card .number { font-size: 1.7rem; }
+            .spotlight-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .article-card { padding: 18px; }
+            .summary-bn { padding-left: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            .stat-card:hover, .article-card:hover, .spotlight-item:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand-lockup">
+                <div class="brand-mark">🛡️</div>
+                <div class="header-title">
+                    <h1>19 Nov 2026 <span class="accent">Threat Briefing</span></h1>
+                    <div class="header-sub">
+                        <span>REPORT DATE // <strong>2026-11-19</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="../index.html" class="nav-home">← Archive Index</a>
+            </div>
+        </header>
+
+        <div class="section-label">Threat Telemetry</div>
+        <div class="stats-grid">
+            <div class="stat-card is-total">
+                <div class="stat-head">
+                    <div class="number">37</div>
+                    <div class="icon">📰</div>
+                </div>
+                <div class="label">Total Articles</div>
+            </div>
+            <div class="stat-card is-critical">
+                <div class="stat-head">
+                    <div class="number">22</div>
+                    <div class="icon">🚨</div>
+                </div>
+                <div class="label">Critical Threats</div>
+            </div>
+            <div class="stat-card is-high">
+                <div class="stat-head">
+                    <div class="number">9</div>
+                    <div class="icon">⚠️</div>
+                </div>
+                <div class="label">High Alerts</div>
+            </div>
+            <div class="stat-card is-kev">
+                <div class="stat-head">
+                    <div class="number">4</div>
+                    <div class="icon">🔥</div>
+                </div>
+                <div class="label">CISA KEV Exploited</div>
+            </div>
+        </div>
+
+        <div class="spotlight-box">
+            <h2><span class="fire">🔥</span> Top 5 Important News Today</h2>
+            <div class="spotlight-list">
+                <div class="spotlight-item"><a href="https://thehackernews.com/2026/11/f5-warns-6-critical-big-ip-flaws-can.html" target="_blank" rel="noopener noreferrer">F5 Warns 6 Critical BIG-IP Flaws Can Crash Traffic in Specific Setups, May Allow RCE</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://thehackernews.com/2026/11/critical-apache-roller-rce-flaw-under.html" target="_blank" rel="noopener noreferrer">Critical Apache Roller RCE Flaw Under Active Exploitation, No Authentication Required</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://www.bleepingcomputer.com/news/security/apache-warns-of-roller-rce-vulnerability-exploited-in-attacks/" target="_blank" rel="noopener noreferrer">Apache warns of Roller RCE vulnerability exploited in attacks</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://thehackernews.com/2026/11/10-year-old-nginx-http2-flaw-lets.html" target="_blank" rel="noopener noreferrer">10-Year-Old NGINX HTTP/2 Flaw Lets Unauthenticated Attackers Execute Code on Servers</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://www.bleepingcomputer.com/news/security/ukraine-fbi-arrest-ransomware-gang-members-tied-to-40m-in-ransoms/" target="_blank" rel="noopener noreferrer">Ukraine, FBI arrest ransomware gang members tied to $40M in ransoms</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+            </div>
+        </div>
+
+        <div class="section-label">Full Intelligence Feed</div>
+        <div class="articles-list">
+            
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/f5-warns-6-critical-big-ip-flaws-can.html" target="_blank" rel="noopener noreferrer" class="article-title">F5 Warns 6 Critical BIG-IP Flaws Can Crash Traffic in Specific Setups, May Allow RCE</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    F5 তাদের BIG-IP ডিভাইসে ছয়টি Critical Vulnerability শনাক্ত করেছে, যা মূলত stack-based buffer overflow জনিত সমস্যা। এই ত্রুটিগুলো কাজে লাগিয়ে একজন Threat Actor কোনো প্রকার Authentication ছাড়াই Traffic Management Microkernel (TMM) ক্র্যাশ করতে পারে অথবা Remote Code Execution (RCE) চালাতে পারে। এই Vulnerability গুলো BIG-IP এর iRules এবং APM মডিউলের নির্দিষ্ট কনফিগারেশনের ওপর নির্ভর করে। F5 এর পক্ষ থেকে কোনো Workaround দেওয়া হয়নি, তাই আক্রান্ত সিস্টেমগুলোকে সুরক্ষিত রাখতে দ্রুত Engineering Hotfix ইনস্টল করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-123637</span> <span class="tag cve-tag">CVE-2026-121805</span> <span class="tag cve-tag">CVE-2026-120292</span> <span class="tag cve-tag">CVE-2026-120285</span> <span class="tag cve-tag">CVE-2026-116953</span> <span class="tag cve-tag">CVE-2026-120722</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: F5</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/critical-apache-roller-rce-flaw-under.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical Apache Roller RCE Flaw Under Active Exploitation, No Authentication Required</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Apache Roller-এ একটি গুরুতর Remote Code Execution (RCE) Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-129448 হিসেবে ট্র্যাক করা হচ্ছে। এই Vulnerability-টি XML-RPC endpoint-এ unauthenticated deserialization-এর কারণে ঘটে, যা একজন আক্রমণকারীকে কোনো প্রকার Authentication ছাড়াই arbitrary code চালানোর সুযোগ দেয়। বর্তমানে এই Vulnerability-টি actively exploited হচ্ছে। Apache Software Foundation ব্যবহারকারীদের দ্রুত Apache Roller 6.1.6 বা তার পরবর্তী ভার্সনে আপডেট করার পরামর্শ দিয়েছে। যদি প্যাচ করা সম্ভব না হয়, তবে সাময়িকভাবে XML-RPC ফিচারটি নিষ্ক্রিয় করার জন্য কনফিগারেশন পরিবর্তনের নির্দেশনা দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-129448</span> <span class="tag cve-tag">CVE-2026-82384</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: Apache Software Foundation</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/apache-warns-of-roller-rce-vulnerability-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Apache warns of Roller RCE vulnerability exploited in attacks</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Apache Roller-এ একটি critical Deserialization of Untrusted Data vulnerability (CVE-2026-129448) শনাক্ত করা হয়েছে, যা বর্তমানে Threat Actor-রা Remote Code Execution (RCE) আক্রমণের জন্য ব্যবহার করছে। এই Vulnerability-টি XML-RPC endpoint-এর মাধ্যমে unauthenticated attacker-দের arbitrary code চালানোর সুযোগ দেয়। Apache কর্তৃপক্ষ ব্যবহারকারীদের দ্রুত Apache Roller 6.1.6 বা তার পরবর্তী ভার্সনে আপডেট করার পরামর্শ দিয়েছে। এছাড়া, সাময়িক Mitigation হিসেবে XML-RPC ফিচারটি বন্ধ রাখা বা servlet mapping সরিয়ে ফেলার নির্দেশনা দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-129448</span> <span class="tag cve-tag">CVE-2026-82384</span> <span class="tag cve-tag">CVE-2026-34197</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: Apache</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/10-year-old-nginx-http2-flaw-lets.html" target="_blank" rel="noopener noreferrer" class="article-title">10-Year-Old NGINX HTTP/2 Flaw Lets Unauthenticated Attackers Execute Code on Servers</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    NGINX-এ একটি দীর্ঘস্থায়ী HTTP/2 Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-123007 নামে পরিচিত। এই Vulnerability-টি Unauthenticated Attackers-দের সার্ভারে Remote Code Execution করার সুযোগ করে দিতে পারে, যদি ASLR বাইপাস করা সম্ভব হয়। এটি NGINX-এর ১.৯.৫ থেকে ১.৩১.৮ ভার্সন পর্যন্ত বিদ্যমান। যদিও এখন পর্যন্ত কোনো সক্রিয় Exploitation-এর খবর পাওয়া যায়নি, তবে Proof-of-concept কোড অনলাইনে উপলব্ধ থাকায় এটি অত্যন্ত ঝুঁকিপূর্ণ। F5 কর্তৃপক্ষ ইতিমধ্যে ১.৩১.৯ এবং ১.৩০.৭ ভার্সন রিলিজের মাধ্যমে এই ত্রুটি সংশোধন করেছে এবং ব্যবহারকারীদের দ্রুত প্যাচ আপডেট করার পরামর্শ দিয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-123007</span> <span class="tag cve-tag">CVE-2026-123633</span> <span class="tag">CVSS: 8.1</span> <span class="tag">Vendor: F5</span> <span class="tag">Vendor: NGINX</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/ukraine-fbi-arrest-ransomware-gang-members-tied-to-40m-in-ransoms/" target="_blank" rel="noopener noreferrer" class="article-title">Ukraine, FBI arrest ransomware gang members tied to $40M in ransoms</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Ransomware</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    ইউক্রেনীয় কর্তৃপক্ষ এবং FBI যৌথভাবে একটি আন্তর্জাতিক Ransomware গ্যাংয়ের চার সদস্যকে গ্রেপ্তার করেছে, যারা অন্তত ২৮টি কোম্পানির কাছ থেকে ৪০.৫ মিলিয়ন ডলারেরও বেশি মুক্তিপণ আদায় করেছে। এই অপরাধী চক্রটি মূলত Conti Ransomware গ্যাংয়ের প্রাক্তন সদস্যদের সাথে যুক্ত এবং তারা বিভিন্ন গুরুত্বপূর্ণ সেক্টরে যেমন oil and gas, pharmaceutical এবং manufacturing শিল্পে আক্রমণ চালিয়েছে। আক্রমণকারীরা ভিকটিমদের নেটওয়ার্কে প্রবেশের জন্য AI-চালিত ভয়েস মেসেজ ব্যবহার করে IT support হিসেবে ছদ্মবেশ ধারণ করত এবং পরবর্তীতে ডেটা চুরি ও সিস্টেম এনক্রিপ্ট করে মুক্তিপণ দাবি করত।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Warren Oil Company</span> <span class="tag">Vendor: Maxxis International-USA</span> <span class="tag">Vendor: Newpark Resources</span> <span class="tag">Vendor: Quantum Health</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/russian-cold-relic-hackers-use-stolen.html" target="_blank" rel="noopener noreferrer" class="article-title">Russian COLD RELIC Hackers Use Stolen Google Workspace Data to Breach Second U.S. Organization</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Espionage</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    রাশিয়া-ভিত্তিক Threat Actor &#x27;Cold Relic&#x27; (যা Callisto বা Star Blizzard নামেও পরিচিত) একটি সুপরিকল্পিত Cyber Espionage ক্যাম্পেইনের মাধ্যমে মার্কিন যুক্তরাষ্ট্রের একাধিক প্রতিষ্ঠানে অনুপ্রবেশ করেছে। তারা প্রথমে একটি প্রতিষ্ঠানের Google Workspace থেকে সংবেদনশীল তথ্য ও Super Admin credentials চুরি করে, যা পরবর্তীতে অন্য লক্ষ্যবস্তুতে Phishing এবং MFA fatigue আক্রমণের জন্য ব্যবহৃত হয়। এই Threat Actor অত্যন্ত কৌশলে MFA ডিভাইস ও passkeys রেজিস্টার করে দীর্ঘমেয়াদী persistence বজায় রাখে এবং Google Takeout ব্যবহার করে বিশাল পরিমাণ ডেটা exfiltration সম্পন্ন করে। এছাড়া, তারা forensic evidence মুছে ফেলার জন্য Admin Console-এর লগ এবং Alert Center ম্যানিপুলেট করেছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Google</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/russian-apt-poses-as-employee-of-hacked-firm-to-breach-another-us-organization/" target="_blank" rel="noopener noreferrer" class="article-title">Russian APT Poses as Employee of Hacked Firm to Breach Another US Organization</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Espionage</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    রাশিয়া-ভিত্তিক Threat Actor &#x27;Star Blizzard&#x27; (যা Cold Relic নামেও পরিচিত) একটি সফল Phishing এবং Social Engineering ক্যাম্পেইনের মাধ্যমে মার্কিন যুক্তরাষ্ট্রের একাধিক সংস্থাকে লক্ষ্যবস্তু করেছে। তারা পূর্ববর্তী একটি আক্রমণের মাধ্যমে প্রাপ্ত তথ্য ব্যবহার করে ভুক্তভোগী প্রতিষ্ঠানের কর্মীর ছদ্মবেশ ধারণ করে নতুন লক্ষ্যবস্তুর সাথে যোগাযোগ স্থাপন করে। এই আক্রমণে MFA fatigue, rogue MFA devices, এবং passkeys ব্যবহার করে তারা ক্লাউড স্টোরেজ থেকে তথ্য চুরি এবং দীর্ঘমেয়াদী Persistence বজায় রাখতে সক্ষম হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span> <span class="tag">Vendor: Google</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/oracle-patches-640-vulnerabilities-with-november-2026-cspu/" target="_blank" rel="noopener noreferrer" class="article-title">Oracle Patches 950 Vulnerabilities With November 2026 CSPU</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Oracle তাদের November 2026 Critical Security Patch Update (CSPU)-এর মাধ্যমে ৯৫০টি Vulnerability সমাধান করেছে। এই প্যাচগুলোর মধ্যে ৬২টি Critical-severity এবং ৬টি সর্বোচ্চ মাত্রার Vulnerability রয়েছে। বিশেষ করে Hyperion, Fusion Middleware, এবং Java SE-এর মতো গুরুত্বপূর্ণ প্রোডাক্টগুলোতে অনেকগুলো Remote Code Execution এবং unauthenticated exploitable ত্রুটি পাওয়া গেছে। Java SE-তে Java4Shell (CVE-2026-114938) নামক একটি Memory Corruption ইস্যু সমাধান করা হয়েছে। Threat Actor-দের হাত থেকে রক্ষা পেতে এবং সিস্টেমের নিরাপত্তা নিশ্চিত করতে সকল গ্রাহককে দ্রুত এই প্যাচগুলো প্রয়োগ করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">Vendor: Oracle</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/eggstreme-hackers-rebuild-malware-with.html" target="_blank" rel="noopener noreferrer" class="article-title">New EggStreme Malware Variant Goes Silent to Evade Security Tools in Government Attacks</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Malware</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    চীনের একটি সন্দেহভাজন APT গ্রুপ তাদের EggStreme Malware টুলকিটটি নতুন করে সাজিয়েছে, যা এখন সরকারি সংস্থাগুলোকে লক্ষ্য করে আরও গোপনে কাজ করছে। এই নতুন সংস্করণে DLL Sideloading ব্যবহার করা হচ্ছে এবং এটি এমন একটি Passive variant হিসেবে কাজ করে যা কোনো প্রকার Beaconing ছাড়াই সিস্টেমের তথ্য চুরি, Lateral movement এবং Data exfiltration করতে সক্ষম। Bitdefender-এর তথ্য অনুযায়ী, এই Malware-টি এখন Static signature এবং Heuristic detection এড়িয়ে চলতে পারে, কারণ তারা তাদের Cryptography, Network protocol এবং Command set-এ ব্যাপক পরিবর্তন এনেছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/microsofts-agent-framework-pypi-package-compromised-to-steal-credentials/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft’s Agent Framework PyPI package compromised to steal credentials</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Supply Chain</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Microsoft-এর অফিসিয়াল Agent Framework Python প্যাকেজটি PyPI-তে হ্যাকারদের দ্বারা compromised হয়েছে, যার মাধ্যমে ক্ষতিকারক ভার্সন (1.26.1 এবং 1.26.2) ছড়িয়ে দেওয়া হয়েছে। এই Malware-টি ডেভেলপারদের সিস্টেম থেকে Azure, AWS, GitHub এবং OpenAI-এর মতো বিভিন্ন ক্লাউড সার্ভিসের sensitive credentials এবং OIDC tokens চুরি করার জন্য ডিজাইন করা হয়েছে। এটি Python startup-এর সময় স্বয়ংক্রিয়ভাবে কার্যকর হয় এবং সংগৃহীত তথ্য একটি attacker-controlled endpoint-এ পাঠিয়ে দেয়। ডেভেলপারদের অবিলম্বে affected environment isolate করা এবং credentials rotate করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Agent Framework Releases Poisoned With Credential Stealer</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Supply Chain</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PyPI প্ল্যাটফর্মে Microsoft Agent Framework-এর দুটি malicious ভার্সন (1.26.1 এবং 1.26.2) আপলোড করার মাধ্যমে একটি Supply Chain Attack সংঘটিত হয়েছে। এই ম্যালওয়্যারটি Python startup mechanism ব্যবহার করে স্বয়ংক্রিয়ভাবে রান হয় এবং এনভায়রনমেন্ট ভেরিয়েবল, কনফিগারেশন ফাইল, Azure managed identity tokens এবং GitHub Actions-এর মতো সংবেদনশীল ক্রেডেনশিয়াল চুরি করার চেষ্টা করে। আক্রান্ত ডেভেলপারদের দ্রুত তাদের এনভায়রনমেন্ট চেক করা, compromised প্যাকেজগুলো সরিয়ে ফেলা এবং সম্ভাব্য এক্সপোজড ক্রেডেনশিয়ালগুলো রোটেশন করার পরামর্শ দেওয়া হচ্ছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/java4shell-vulnerability-puts-many-enterprise-applications-at-risk-of-takeover/" target="_blank" rel="noopener noreferrer" class="article-title">Java4Shell Vulnerability Puts Enterprise Applications at Risk of Takeover</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Oracle এবং OpenJDK-এর একটি গুরুতর memory safety Vulnerability, যা CVE-2026-114938 হিসেবে চিহ্নিত, Enterprise application-গুলোকে Remote Code Execution (RCE) ঝুঁকির মুখে ফেলেছে। এই ত্রুটিটি OpenJDK-এর Base64 decoding রুটিনে বিদ্যমান, যা AVX-512 VBMI সাপোর্ট করে এমন x86-64 CPU-তে heap data corruption ঘটাতে পারে। এর ফলে আক্রমণকারীরা সংবেদনশীল তথ্য চুরি বা প্রমাণীকরণ ছাড়াই অ্যাপ্লিকেশন নিয়ন্ত্রণ করতে পারে। Keycloak, Atlassian Jira, Confluence, Jenkins এবং Apache Kafka-এর মতো জনপ্রিয় সফটওয়্যারগুলো এই Vulnerability-র কারণে সরাসরি ক্ষতিগ্রস্ত হতে পারে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: OpenJDK</span> <span class="tag">Vendor: Atlassian</span> <span class="tag">Vendor: JFrog</span> <span class="tag">Vendor: Jenkins</span> <span class="tag">Vendor: Ping Identity</span> <span class="tag">Vendor: Apache Software Foundation</span> <span class="tag">Vendor: Elasticsearch</span> <span class="tag">Vendor: Spinnaker</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/java4shell-cve-2026-114938-enables-pre.html" target="_blank" rel="noopener noreferrer" class="article-title">Java4Shell Flaw (CVE-2026-114938) Enables Pre-Auth RCE in Jira, Jenkins, Keycloak and More</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Java4Shell (CVE-2026-114938) একটি গুরুতর Vulnerability যা Java 17.0.6 এবং পরবর্তী ভার্সনগুলোতে বিদ্যমান। এটি মূলত x86-64 Intel এবং AMD প্রসেসরের AVX-512 VBMI ফিচারের সাথে সম্পর্কিত একটি Base64 decoder ত্রুটি। এই Vulnerability ব্যবহার করে Threat Actor-রা কোনো প্রকার Authentication ছাড়াই Jira, Jenkins, Keycloak-এর মতো জনপ্রিয় অ্যাপ্লিকেশনে Remote Code Execution (RCE) করতে সক্ষম হতে পারে। যদিও এটি একটি জটিল Exploit, তবে এটি Memory corruption এবং JavaBleed কৌশলের মাধ্যমে সংবেদনশীল তথ্য চুরি বা সিস্টেমের ওপর নিয়ন্ত্রণ নিতে পারে। Oracle এবং OpenJDK ইতিমধ্যে এর জন্য প্যাচ প্রকাশ করেছে, তাই দ্রুত আপডেট করা জরুরি।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: OpenJDK</span> <span class="tag">Vendor: Amazon</span> <span class="tag">Vendor: Red Hat</span> <span class="tag">Vendor: Atlassian</span> <span class="tag">Vendor: JFrog</span> <span class="tag">Vendor: Jenkins</span> <span class="tag">Vendor: Ping Identity</span> <span class="tag">Vendor: Apache Software Foundation</span> <span class="tag">Vendor: Elastic</span> <span class="tag">Vendor: Gerrit</span> <span class="tag">Vendor: Spinnaker</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/hackers-exploiting-critical-puppet-rce.html" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Exploiting Critical Puppet RCE Flaw Affecting Enterprise Management Servers</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Perforce Puppet Enterprise এবং Puppet Core-এ একটি critical deserialization of untrusted data Vulnerability (CVE-2026-115731) শনাক্ত করা হয়েছে, যা Remote Code Execution (RCE) ঘটাতে সক্ষম। CISA এই Vulnerability-টিকে তাদের KEV ক্যাটালগে যুক্ত করেছে কারণ এটি বর্তমানে সক্রিয়ভাবে Exploited হচ্ছে। একজন Attacker CA-signed agent certificate ব্যবহার করে Puppet Server-এ arbitrary code execute করতে পারে, যা পরবর্তীতে Ransomware আক্রমণ বা lateral movement-এর ঝুঁকি তৈরি করে। এছাড়া CVE-2026-115732 নামে একটি certificate-name authorization bypass Vulnerability-ও পাওয়া গেছে। ব্যবহারকারীদের দ্রুত প্যাচ আপডেট করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-115731</span> <span class="tag cve-tag">CVE-2026-115732</span> <span class="tag">Vendor: Perforce</span> <span class="tag">Vendor: OpenVox</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/from-deepfakes-to-helpdesk-impersonation-why-stronger-verification-matters/" target="_blank" rel="noopener noreferrer" class="article-title">From Deepfakes to Helpdesk Impersonation: Why Stronger Verification Matters</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Social Engineering</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    সাম্প্রতিক সময়ে সাইবার অপরাধীরা Deepfake প্রযুক্তি, Social Engineering এবং IT support হিসেবে ছদ্মবেশ ধারণ করে বিভিন্ন প্রতিষ্ঠানে বড় ধরনের আক্রমণ চালাচ্ছে। Arup-এর ক্ষেত্রে Deepfake ভিডিও কনফারেন্স ব্যবহার করে ২৫ মিলিয়ন ডলার হাতিয়ে নেওয়া হয়েছে, আবার Marks &amp; Spencer-এর ক্ষেত্রে থার্ড-পার্টি হেল্পডেস্ককে প্রতারিত করে নেটওয়ার্ক অ্যাক্সেস নেওয়া হয়েছে। এছাড়া Microsoft Teams-এর মাধ্যমে IT সাপোর্ট সেজে রিমোট অ্যাক্সেস নিয়ে PowerShell-এর সাহায্যে ম্যালওয়্যার ইনস্টল করার ঘটনাও বৃদ্ধি পেয়েছে। এই ধরনের আক্রমণগুলো মূলত মানুষের বিশ্বাসকে পুঁজি করে পরিচালিত হচ্ছে, যা প্রতিষ্ঠানের নিরাপত্তার জন্য বড় হুমকি হয়ে দাঁড়িয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span> <span class="tag">Vendor: Arup</span> <span class="tag">Vendor: Marks &amp; Spencer</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/data-breach-impacts-40-irish-credit-unions-in-reported-it-provider-hack/" target="_blank" rel="noopener noreferrer" class="article-title">Data breach impacts 40 Irish credit unions in reported IT provider hack</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Data Breach</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Wellington IT-এর সিস্টেমে একটি সাইবার অ্যাটাকের ফলে আয়ারল্যান্ডের ৪০টি ক্রেডিট ইউনিয়নের গ্রাহকদের সংবেদনশীল তথ্য ফাঁস হয়েছে। আক্রমণকারীরা একটি authorization flaw ব্যবহার করে এবং valid credentials-এর মাধ্যমে এই Data Breach ঘটিয়েছে। যদিও গ্রাহকদের পাসওয়ার্ড বা পিন সুরক্ষিত আছে, তবে Payee information, IBAN, এবং BIC-এর মতো তথ্য উন্মুক্ত হওয়ায় ভুক্তভোগীদের Phishing এবং আর্থিক প্রতারণার ঝুঁকি তৈরি হয়েছে। Wellington IT-এর পক্ষ থেকে সময়মতো নোটিফিকেশন না দেওয়ায় এবং পর্যাপ্ত activity logs না থাকায় প্রকৃত ক্ষতির পরিমাণ নির্ণয় করা কঠিন হয়ে পড়েছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Wellington IT</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/critical-perforce-puppet-rce-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Critical Perforce Puppet RCE Exploited in Attacks</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Perforce Puppet-এর একটি critical-severity Vulnerability (CVE-2026-115731) বর্তমানে Threat Actor-দের দ্বারা সক্রিয়ভাবে Exploited হচ্ছে। এই Deserialization of untrusted data ত্রুটিটি Puppet Enterprise এবং Puppet Core-এ Remote Code Execution (RCE) ঘটাতে সক্ষম, যা সার্ভারের certificate-signing key চুরি এবং সিস্টেমের ওপর পূর্ণ নিয়ন্ত্রণ নেওয়ার ঝুঁকি তৈরি করে। CISA এই Vulnerability-টিকে তাদের KEV ক্যাটালগে অন্তর্ভুক্ত করেছে এবং দ্রুত Patch করার পরামর্শ দিয়েছে। এছাড়া, একই সাথে CVE-2026-115732 নামক আরেকটি critical ত্রুটিও শনাক্ত করা হয়েছে, যা Authorization Bypass-এর সুযোগ দেয়।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-115731</span> <span class="tag cve-tag">CVE-2026-115732</span> <span class="tag">Vendor: Perforce</span> <span class="tag">Vendor: OpenVox</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/coinbase-blocks-47-million-in-transfers-to-elon-musk-deepfake-scam/" target="_blank" rel="noopener noreferrer" class="article-title">Coinbase blocks $4.7 million in transfers to Elon Musk deepfake scam</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Fraud</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Coinbase সম্প্রতি একটি বড় ধরনের Cryptocurrency স্ক্যাম প্রতিরোধ করেছে, যেখানে প্রতারকরা Elon Musk-এর একটি AI-generated Deepfake ব্যবহার করে Tesla-এর একটি লাইভস্ট্রিমের ছদ্মবেশে ব্যবহারকারীদের কাছ থেকে অর্থ হাতিয়ে নেওয়ার চেষ্টা করছিল। প্রতারকরা ভুয়া গিভঅ্যাওয়ে এবং ক্রিপ্টো দ্বিগুণ করার প্রলোভন দেখিয়ে প্রায় ৪.৭ মিলিয়ন ডলারের লেনদেন করার চেষ্টা চালায়। Coinbase-এর AI-powered fraud-prevention সিস্টেম রিয়েল-টাইমে এই সন্দেহজনক লেনদেনগুলো শনাক্ত করে এবং প্রায় ৯১% ট্রান্সফার ব্লক করতে সক্ষম হয়। এই ঘটনাটি প্রমাণ করে যে, ব্যবহারকারীরা স্বেচ্ছায় লেনদেন অনুমোদন করলেও আধুনিক Machine Learning মডেলের মাধ্যমে কীভাবে জটিল Social Engineering এবং Deepfake ভিত্তিক প্রতারণা প্রতিরোধ করা সম্ভব।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Coinbase</span> <span class="tag">Vendor: Tesla</span> <span class="tag">Vendor: YouTube</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/chrome-158-patches-204-vulnerabilities/" target="_blank" rel="noopener noreferrer" class="article-title">Chrome 158 Patches 204 Vulnerabilities</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Google তাদের Chrome ব্রাউজারের নতুন ভার্সন Chrome 158 রিলিজ করেছে, যেখানে মোট ২০৪টি Vulnerability প্যাচ করা হয়েছে। এর মধ্যে ৬টি Critical-severity বাগ রয়েছে, যার মধ্যে Use-after-free, Out-of-bounds write এবং Buffer overflow-এর মতো গুরুতর সমস্যা অন্তর্ভুক্ত। যদিও বর্তমানে কোনো Exploitation-এর প্রমাণ পাওয়া যায়নি, তবুও ব্যবহারকারীদের দ্রুত ব্রাউজার আপডেট করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Google</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://blog.talosintelligence.com/java4shell/" target="_blank" rel="noopener noreferrer" class="article-title">CVE-2026-114938: Critical vulnerability in OpenJDK Java</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>Cisco Talos</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    OpenJDK Java-তে একটি critical Vulnerability (CVE-2026-114938) শনাক্ত করা হয়েছে, যা &#x27;Java4Shell&#x27; নামে পরিচিত। এই Vulnerability-টি AVX-512 VBMI সাপোর্ট করে এমন x86-64 প্রসেসরে চালিত JVM-এর ক্ষেত্রে unauthenticated Remote Code Execution (RCE) ঘটাতে সক্ষম। আক্রমণকারীরা malformed Base64 ইনপুট ব্যবহার করে এই Exploit চালাতে পারে। Cisco Talos এই ঝুঁকির বিষয়ে সতর্ক করেছে এবং সাময়িক সমাধান হিসেবে JVM-এ AVX-512 সাপোর্ট নিষ্ক্রিয় করার পরামর্শ দিয়েছে। যদিও এখন পর্যন্ত কোনো in-the-wild exploitation দেখা যায়নি, তবে দ্রুত প্যাচ আপডেট করার জন্য সুপারিশ করা হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">Vendor: OpenJDK</span> <span class="tag">Vendor: Cisco</span> <span class="tag">Vendor: Intel</span> <span class="tag">Vendor: AMD</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/cisa-urges-immediate-patching-of.html" target="_blank" rel="noopener noreferrer" class="article-title">CISA Urges Immediate Patching of Java4Shell Flaw That Could Allow Remote Code Execution</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Oracle Java-এর x86-64 HotSpot JVM-এ একটি গুরুতর memory-corruption Vulnerability শনাক্ত করা হয়েছে, যা &#x27;Java4Shell&#x27; নামে পরিচিত। CVE-2026-114938 চিহ্নিত এই Vulnerability-টি Base64 decoder-এর একটি out-of-bounds write ত্রুটির কারণে ঘটে, যা একজন Threat Actor-কে unauthenticated Remote Code Execution বা Denial-of-Service (DoS) আক্রমণের সুযোগ করে দিতে পারে। CISA এই ত্রুটির ভয়াবহতা বিবেচনা করে দ্রুত Patch করার পরামর্শ দিয়েছে। এটি বিশেষ করে সেইসব সিস্টেমে ঝুঁকিপূর্ণ যেখানে AVX-512 VBMI CPU ফিচার সক্রিয় রয়েছে এবং unpatched OpenJDK build ব্যবহৃত হচ্ছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: OpenJDK</span> <span class="tag">Vendor: Keycloak</span> <span class="tag">Vendor: Atlassian</span> <span class="tag">Vendor: JFrog</span> <span class="tag">Vendor: Jenkins</span> <span class="tag">Vendor: PingFederate</span> <span class="tag">Vendor: Apache</span> <span class="tag">Vendor: Elasticsearch</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.cisa.gov/news-events/alerts/2026/11/18/cisa-adds-four-known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="article-title">CISA Adds Four Known Exploited Vulnerabilities to Catalog | CISA</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>CISA Advisories</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    CISA তাদের Known Exploited Vulnerabilities (KEV) ক্যাটালগে নতুন চারটি Vulnerability যুক্ত করেছে, যা বর্তমানে Threat Actor-দের দ্বারা সক্রিয়ভাবে Exploit করা হচ্ছে। এই Vulnerability-গুলোর মধ্যে রয়েছে Synology DiskStation Manager, BerriAI LiteLLM, Apache Axis এবং Vanderbilt University-এর REDCap-এর ত্রুটি। BOD 26-04 নির্দেশিকা অনুযায়ী, ফেডারেল এজেন্সিগুলোকে এই Vulnerability-গুলোর দ্রুত Remediation নিশ্চিত করতে বলা হয়েছে এবং সকল সংস্থাকে তাদের সিস্টেমে এই ঝুঁকিগুলো প্রশমিত করার জন্য জরুরি ভিত্তিতে Patch আপডেট করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2024-10441</span> <span class="tag cve-tag">CVE-2026-40217</span> <span class="tag cve-tag">CVE-2026-90436</span> <span class="tag cve-tag">CVE-2026-90817</span> <span class="tag">Vendor: Synology</span> <span class="tag">Vendor: BerriAI</span> <span class="tag">Vendor: Apache</span> <span class="tag">Vendor: Vanderbilt University</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://krebsonsecurity.com/2026/11/attackers-used-optimizely-to-a-b-test-malware-on-top-websites/" target="_blank" rel="noopener noreferrer" class="article-title">Attackers Used Optimizely to A/B Test Malware on Top Websites – Krebs on Security</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>KrebsOnSecurity</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Supply Chain</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Optimizely প্ল্যাটফর্মে একটি Vulnerability-এর সুযোগ নিয়ে Threat Actor-রা ১৭৮টি জনপ্রিয় ওয়েবসাইটে ক্ষতিকারক JavaScript ইনজেক্ট করেছে। এই Supply Chain আক্রমণের মাধ্যমে ব্যবহারকারীদের ব্রাউজারে Data-stealing Malware এবং Zero-click exploit kit (যেমন DarkSword ও Coruna) পৌঁছে দেওয়া হয়েছে, যা পেমেন্ট কার্ডের তথ্য, কুকিজ এবং ক্রিপ্টোকারেন্সি ওয়ালেট চুরি করতে সক্ষম। Optimizely কর্তৃপক্ষ জানিয়েছে যে তারা এই Vulnerability শনাক্ত করে তা সমাধান করেছে এবং অতিরিক্ত নিরাপত্তা ব্যবস্থা গ্রহণ করেছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Optimizely</span> <span class="tag">Vendor: BBC</span> <span class="tag">Vendor: CNN</span> <span class="tag">Vendor: Equifax</span> <span class="tag">Vendor: Ledger</span> <span class="tag">Vendor: Zoom</span> <span class="tag">Vendor: Apple</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html" target="_blank" rel="noopener noreferrer" class="article-title">Attackers Compromise Microsoft&#x27;s Agent Framework PyPI Package to Steal Cloud Credentials</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Supply Chain</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Threat actors Microsoft-এর open-source &#x27;agent-framework&#x27; PyPI package-এর দুটি malicious version (1.26.1 এবং 1.26.2) প্রকাশ করে একটি sophisticated credential stealer ছড়িয়েছে। এই package-গুলো ইনস্টল করার পর একটি .pth ফাইল তৈরি করে, যা Python interpreter চালু হওয়ার সাথে সাথেই স্বয়ংক্রিয়ভাবে রান করে। এটি ব্যবহারকারীর environment variables, Azure CLI credentials, OIDC tokens এবং বিভিন্ন cloud identity tokens চুরি করে একটি remote webhook-এ exfiltrate করে। এই Supply Chain আক্রমণের মাধ্যমে attackers অত্যন্ত সংবেদনশীল cloud credentials হাতিয়ে নিতে সক্ষম হয়েছে, যা Azure এবং GitHub Actions-এর মতো প্ল্যাটফর্মের নিরাপত্তার জন্য বড় হুমকি।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://blog.talosintelligence.com/uat-12643-suspected-north-korea-aligned-actor-blends-blockchain-resilience-with-targeted-infostealing/" target="_blank" rel="noopener noreferrer" class="article-title">UAT-12643: Suspected North Korea-aligned actor blends blockchain resilience with targeted infostealing</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>Cisco Talos</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Malware</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Cisco Talos সম্প্রতি UAT-12643 নামক একটি Threat Actor-এর কার্যক্রম শনাক্ত করেছে, যারা মূলত আর্থিক লাভের উদ্দেশ্যে বিভিন্ন Malware ব্যবহার করছে। এই Threat Actor-টি Overlord RAT, &#x27;Good Game&#x27; নামক Python-based Infostealer এবং একটি Cryptocurrency clipboard hijacker ব্যবহার করে Cryptocurrency holder, গেমিং প্ল্যাটফর্ম এবং VoIP ব্যবহারকারীদের লক্ষ্যবস্তু করছে। তাদের আক্রমণের একটি উল্লেখযোগ্য দিক হলো Solana blockchain-এর transaction memo ব্যবহার করে C2 resilience নিশ্চিত করা, যা উত্তর কোরিয়ার সাথে সম্পৃক্ত APT গ্রুপগুলোর TTP-এর সাথে সামঞ্জস্যপূর্ণ। এই ক্যাম্পেইনটি মূলত ইউরোপের ব্যবহারকারীদের লক্ষ্য করে পরিচালিত হচ্ছে এবং এতে বিভিন্ন ধরনের trojanized installer ও lure ফাইল ব্যবহার করা হচ্ছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Viber</span> <span class="tag">Vendor: MicroSIP</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://blog.talosintelligence.com/the-challenge-of-defending-against-bulletproof-dead-drops-on-public-blockchains/" target="_blank" rel="noopener noreferrer" class="article-title">The challenge of defending against bulletproof dead drops on public blockchains</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>Cisco Talos</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Malware</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Threat actors বর্তমানে তাদের Malware Command-and-Control (C2) অবকাঠামোকে আরও resilient করার জন্য পাবলিক Blockchain নেটওয়ার্ক ব্যবহার করছে। EtherHiding, Bitcoin ট্রানজ্যাকশন এবং Solana মেমো প্রোগ্রামের মতো কৌশল ব্যবহার করে তারা প্রথাগত perimeter ডিফেন্স এবং domain seizure এড়িয়ে সরাসরি endpoint memory-তে encrypted C2 কনফিগারেশন লোড করছে। এই ধরনের decentralized C2 চ্যানেলগুলো সনাক্ত করা কঠিন, তাই নিরাপত্তার জন্য এখন static domain blocklist-এর পরিবর্তে anomalous JSON-RPC ট্রাফিক মনিটরিং এবং endpoint memory বিশ্লেষণের ওপর জোর দেওয়া প্রয়োজন।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Bitcoin</span> <span class="tag">Vendor: Ethereum</span> <span class="tag">Vendor: TRON</span> <span class="tag">Vendor: Solana</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://fortiguard.fortinet.com/psirt/FG-IR-26-278" target="_blank" rel="noopener noreferrer" class="article-title">PSIRT | FortiGuard Labs</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>Fortinet PSIRT Advisories</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Oracle Java SE এবং সংশ্লিষ্ট GraalVM প্রোডাক্টগুলোতে একটি গুরুতর Vulnerability (CVE-2026-114938) শনাক্ত করা হয়েছে, যা Compiler কম্পোনেন্টকে প্রভাবিত করে। একজন unauthenticated attacker নেটওয়ার্ক প্রোটোকল ব্যবহার করে দূর থেকে এই Vulnerability-এর মাধ্যমে সিস্টেমের নিয়ন্ত্রণ নিতে পারে। যদিও এটি exploit করা কিছুটা কঠিন, তবুও এটি সফলভাবে সম্পন্ন হলে আক্রান্ত সিস্টেমের সম্পূর্ণ নিয়ন্ত্রণ চলে যেতে পারে। Fortinet বর্তমানে তাদের বিভিন্ন প্রোডাক্টে এই CVE-এর প্রভাব যাচাই করছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: Fortinet</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/flash-chip-attack-bypasses-tpm-lockout.html" target="_blank" rel="noopener noreferrer" class="article-title">New Attack Bypasses TPM Lockout to Crack Windows Hello and BitLocker PINs in Days, Not Years</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Technische Universität Berlin-এর গবেষকরা একটি নতুন Vulnerability শনাক্ত করেছেন যা AMD এবং কিছু Intel প্রসেসরের Firmware TPM-এর Lockout মেকানিজমকে বাইপাস করতে সক্ষম। এই Attack-এর মাধ্যমে একজন Threat Actor ফিজিক্যাল অ্যাক্সেস ব্যবহার করে Windows Hello এবং BitLocker PIN-এর ওপর চালানো Brute-force Attack-এর সীমাবদ্ধতা দূর করতে পারে। গবেষকরা দেখিয়েছেন যে, Voltage glitch এবং Flash chip ম্যানিপুলেশনের মাধ্যমে TPM-এর কাউন্টার রিসেট করে খুব দ্রুত PIN ক্র্যাক করা সম্ভব, যা BitLocker এবং Windows Hello-এর সিকিউরিটিকে মারাত্মকভাবে ঝুঁকির মুখে ফেলেছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: AMD</span> <span class="tag">Vendor: Intel</span> <span class="tag">Vendor: Microsoft</span> <span class="tag">Vendor: HP</span> <span class="tag">Vendor: Framework</span> <span class="tag">Vendor: Winbond</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/last-of-five-defendants-sentenced-in-us-scattered-spider-hacking-case/" target="_blank" rel="noopener noreferrer" class="article-title">Last of Five Defendants Sentenced in US Scattered Spider Hacking Case</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Threat Actor</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Scattered Spider নামক Threat Actor গ্রুপের সদস্য Tyler Robert Buchanan-কে মার্কিন যুক্তরাষ্ট্রে ছয় বছরের কারাদণ্ড দেওয়া হয়েছে। এই গ্রুপটি মূলত Phishing এবং SIM swapping কৌশল ব্যবহার করে বিভিন্ন টেলিকম ও টেকনোলজি কোম্পানির কর্মীদের Credentials চুরি করত। পরবর্তীতে এই তথ্য ব্যবহার করে তারা ভুক্তভোগীদের cryptocurrency অ্যাকাউন্ট থেকে প্রায় ১১.৬ মিলিয়ন ডলার হাতিয়ে নেয়। এটি ছিল একটি সুসংগঠিত সাইবার অপরাধের ঘটনা, যেখানে অভিযুক্তরা Two-factor authentication বাইপাস করার জন্য অবৈধভাবে ফোন নম্বর নিয়ন্ত্রণ করত।
+                </div>
+                
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/british-scattered-spider-hacker-sentenced-to-6-years-in-prison/" target="_blank" rel="noopener noreferrer" class="article-title">British Scattered Spider hacker sentenced to 6 years in prison</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Threat Actor</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Scattered Spider নামক একটি কুখ্যাত সাইবার অপরাধী চক্রের অন্যতম সদস্য Tyler Robert Buchanan-কে Phishing এবং SIM swapping আক্রমণের মাধ্যমে ১১.৬ মিলিয়ন ডলারের বেশি ক্রিপ্টোকারেন্সি চুরির দায়ে মার্কিন যুক্তরাষ্ট্রে ৬ বছরের কারাদণ্ড দেওয়া হয়েছে। এই Threat Actor গ্রুপটি মূলত Social Engineering, MFA fatigue এবং Phishing ব্যবহার করে বিভিন্ন বড় কোম্পানির নেটওয়ার্কে অননুমোদিত প্রবেশাধিকার অর্জন করত। তারা BlackCat/AlphV, Qilin এবং RansomHub-এর মতো Ransomware অপারেশনগুলোর সাথেও যুক্ত ছিল, যা তাদের সাইবার অপরাধের ব্যাপকতাকে নির্দেশ করে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Caesars</span> <span class="tag">Vendor: Riot Games</span> <span class="tag">Vendor: MailChimp</span> <span class="tag">Vendor: Twilio</span> <span class="tag">Vendor: DoorDash</span> <span class="tag">Vendor: Reddit</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/ai-pentesting-checklist-for-web-apps-15.html" target="_blank" rel="noopener noreferrer" class="article-title">AI Pentesting Checklist for Web Apps: 15 Questions to Ask Before Choosing a Vendor</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    এই নিবন্ধটি AI-চালিত Pentesting টুল নির্বাচনের ক্ষেত্রে একটি সতর্কতামূলক নির্দেশিকা প্রদান করে। বর্তমানে Threat Actor-রা AI ব্যবহার করে Zero-Day exploit তৈরি করছে, যার ফলে Vulnerability প্রকাশের আগেই আক্রমণের ঝুঁকি বাড়ছে। নিবন্ধটিতে বলা হয়েছে যে, অধিকাংশ AI Pentesting ভেন্ডর ডেমোতে ভালো পারফর্ম করলেও বাস্তব অ্যাপ্লিকেশনে তাদের কার্যকারিতা ভিন্ন হতে পারে। বিশেষ করে Apache Airflow-এর মতো প্ল্যাটফর্মে CVE-2026-68982-এর মতো RCE Vulnerability শনাক্ত করার জন্য AI-এর Contextual reasoning এবং সঠিক Validation ক্ষমতার গুরুত্ব তুলে ধরা হয়েছে। তাই ভেন্ডর নির্বাচনের সময় তাদের Reconnaissance পদ্ধতি, Guardrails এবং Findings যাচাই করার সক্ষমতা পরীক্ষা করা জরুরি।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-68982</span> <span class="tag">Vendor: Apache</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/quality-isnt-main-worry-about-ai.html" target="_blank" rel="noopener noreferrer" class="article-title">Quality Isn’t The Main Worry About AI Pentesting — Data Privacy and Production Safety Are</a>
+                    <div class="badge-group">
+                        <span class="badge badge-medium">MEDIUM (90/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    আধুনিক সফটওয়্যার ডেভেলপমেন্টে AI-এর দ্রুত ব্যবহারের ফলে কোড পরিবর্তনের হার বেড়েছে, যা Vulnerability তৈরির ঝুঁকি বাড়িয়ে দিচ্ছে। Intruder-এর একটি জরিপ অনুযায়ী, অধিকাংশ প্রতিষ্ঠান নিয়মিত Pentesting করতে হিমশিম খাচ্ছে এবং প্রায় ৪২% প্রতিষ্ঠান কোনো অতিরিক্ত Security check ছাড়াই কোড Production-এ পাঠাচ্ছে। যদিও AI Pentesting-এর জনপ্রিয়তা দ্রুত বাড়ছে, তবে Security leaders-রা মূলত Data privacy, Production safety এবং অডিট কমপ্লায়েন্স নিয়ে বেশি চিন্তিত।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Intruder</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/verosecurity-raises-11-million-for-ai-security-engineering-platform/" target="_blank" rel="noopener noreferrer" class="article-title">VeroSecurity Raises $11 Million for AI Security Engineering Platform</a>
+                    <div class="badge-group">
+                        <span class="badge badge-low">LOW (78/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    VeroSecurity নামক একটি নতুন স্টার্টআপ AI Security Engineering (ASE) প্ল্যাটফর্ম তৈরির জন্য ১১ মিলিয়ন ডলারের ফান্ডিং সংগ্রহ করেছে। এই প্ল্যাটফর্মটি মূলত এন্টারপ্রাইজ পর্যায়ে ব্যবহৃত AI টুল এবং এজেন্টদের নিরাপত্তা নিশ্চিত করার জন্য ডিজাইন করা হয়েছে। VeroSecurity-এর মূল প্রযুক্তি হলো &#x27;AI Runtime Governor&#x27;, যা রিয়েল-টাইমে AI-এর কার্যক্রম পর্যবেক্ষণ করে এবং অনুমোদিত পলিসি অনুযায়ী স্বয়ংক্রিয়ভাবে নিরাপত্তা নিয়ন্ত্রণ ও ঝুঁকি মোকাবিলা করে। এছাড়া, কোম্পানিটি AISecurityEngineering.org নামে একটি ওপেন কমিউনিটি তৈরি করছে যাতে এই নতুন নিরাপত্তা ডিসিপ্লিন সম্পর্কে জ্ঞান ও দক্ষতা বৃদ্ধি করা যায়।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: VeroSecurity</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-announces-windows-server-2028-with-hardened-security/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft announces Windows Server 2028 with hardened security</a>
+                    <div class="badge-group">
+                        <span class="badge badge-low">LOW (73/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Microsoft তাদের নতুন Windows Server 2028 ঘোষণা করেছে, যা ডিফল্টভাবে একটি hardened Server Core কনফিগারেশন এবং উন্নত security baseline নিয়ে এসেছে। এই ভার্সনে Identity, Network exposure, Cryptography, এবং Platform integrity-র ওপর বিশেষ গুরুত্ব দেওয়া হয়েছে। এছাড়া Trusted Launch, Confidential VM সাপোর্ট এবং AI accelerators যুক্ত করার মাধ্যমে এটি এন্টারপ্রাইজ লেভেলে আরও শক্তিশালী ও নিরাপদ অবকাঠামো নিশ্চিত করার লক্ষ্য নিয়ে কাজ করছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/microsoft-takes-perception-agentic-security-platform-out-of-preview/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft Takes Perception Agentic Security Platform Out of Preview</a>
+                    <div class="badge-group">
+                        <span class="badge badge-low">LOW (73/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Microsoft তাদের Ignite 2026 কনফারেন্সে Perception নামক একটি Agentic Security Platform-এর General Availability ঘোষণা করেছে। এই সিস্টেমটি AI agents ব্যবহার করে Red, Blue এবং Green টিমের সমন্বয়ে নিরাপত্তা সংক্রান্ত কাজ যেমন- Alert Triage, Attack Investigation এবং Vulnerability Shielding পরিচালনা করে। এটি Microsoft Defender, AWS এবং Google Cloud-এর সাথে কাজ করতে সক্ষম। এছাড়া, Microsoft স্থানীয় AI agents-এর ঝুঁকি মোকাবিলায় Agent 365 এবং Entra Suite-এর মাধ্যমে নতুন নিরাপত্তা ফিচার ও পলিসি যুক্ত করেছে, যা Rogue AI agents শনাক্ত করতে সাহায্য করবে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span> <span class="tag">Vendor: AWS</span> <span class="tag">Vendor: Google</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/dizigom-illegal-streaming-service-with-21m-monthly-visits-shuts-down/" target="_blank" rel="noopener noreferrer" class="article-title">Dizigom illegal streaming service with 21M monthly visits shuts down</a>
+                    <div class="badge-group">
+                        <span class="badge badge-low">LOW (73/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Alliance for Creativity and Entertainment (ACE) তুরস্কের অন্যতম বৃহত্তম পাইরেসি ওয়েবসাইট Dizigom-কে স্থায়ীভাবে বন্ধ করতে সক্ষম হয়েছে। প্রায় ২১ মিলিয়ন মাসিক ভিজিটর থাকা এই অবৈধ স্ট্রিমিং সার্ভিসটি ACE এবং তুর্কি আইন প্রয়োগকারী সংস্থার যৌথ প্রচেষ্টায় বন্ধ করা হয়েছে। এই অভিযানের অংশ হিসেবে অপারেটররা ১৬টি ডোমেইন ACE-এর কাছে হস্তান্তর করেছে এবং তাদের সমস্ত কার্যক্রম বন্ধ করতে সম্মত হয়েছে। এটি মূলত কপিরাইট লঙ্ঘন এবং ডিজিটাল পাইরেসির বিরুদ্ধে একটি বড় ধরনের Enforcement Action।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Dizigom</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/ciso-conversations-patti-degnan-part-of-the-job-is-deciding-what-not-to-do/" target="_blank" rel="noopener noreferrer" class="article-title">CISO Conversations: Patti Degnan – Part of the Job Is Deciding What Not to Do</a>
+                    <div class="badge-group">
+                        <span class="badge badge-low">LOW (21/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    এই নিবন্ধটি Patti Degnan-এর ক্যারিয়ারের বিবর্তন এবং একজন CISO হিসেবে তার অভিজ্ঞতার ওপর আলোকপাত করে। ২০০৬ সালে নিজের Identity Theft-এর শিকার হওয়ার পর থেকে শুরু করে Symantec, Informatica, Looker এবং বর্তমানে Glow-এর মতো প্রতিষ্ঠানে কাজ করার মাধ্যমে তিনি কীভাবে Cybersecurity এবং Data Privacy-তে দক্ষ হয়ে উঠেছেন, তা এখানে বর্ণিত হয়েছে। নিবন্ধটি মূলত একজন সফল Cybersecurity Leader হওয়ার জন্য প্রয়োজনীয় মানসিকতা এবং নেতৃত্বের গুণাবলি অর্জনের ওপর গুরুত্বারোপ করে, যেখানে প্রযুক্তিগত দক্ষতার পাশাপাশি ব্যক্তিগত ইচ্ছাশক্তিকে মূল চালিকাশক্তি হিসেবে চিহ্নিত করা হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Symantec</span> <span class="tag">Vendor: LendingClub</span> <span class="tag">Vendor: Informatica</span> <span class="tag">Vendor: Google</span> <span class="tag">Vendor: Notion</span> <span class="tag">Vendor: Glow</span></div>
+            </div>
+            
+        </div>
+
+        <footer>
+            <div class="footer-credit">
+                Created by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
