@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity threat intelligence briefing for {{REPORT_DATE_PRETTY}}. Automated vulnerability triage, CISA KEV exploitation tracking, and Bengali summaries.">
+    <meta name="author" content="Noor Elahi Ali Shibly">
+    <title>{{REPORT_DATE_PRETTY}} — Cyber Threat Intelligence Briefing</title>
+
+    <!-- Typography: Inter (UI), JetBrains Mono (Code/CVEs), Hind Siliguri (Bengali Intelligence) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+{{SHARED_CSS}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Site Header -->
+        <header class="site-header">
+            <div class="brand-section">
+                <div class="brand-icon-wrapper" aria-hidden="true">
+                    <!-- Shield SVG Icon -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v4"/>
+                        <path d="M12 16h.01"/>
+                    </svg>
+                </div>
+                <div class="brand-title-group">
+                    <h1>{{REPORT_DATE_PRETTY}} <span class="accent-text">Threat Briefing</span></h1>
+                    <div class="header-meta">
+                        <span>INTELLIGENCE CYCLE &bull; {{REPORT_DATE_ISO}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Universal Global Search Bar (Searches all briefings) -->
+            <div class="global-search-container">
+                <div class="global-search-input-wrapper">
+                    <span class="global-search-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="text" id="global-search-input" class="global-search-input" placeholder="Search all briefings (CVE, vendor, threat, keyword)... [/]" autocomplete="off" aria-label="Global threat search">
+                    <button id="global-search-clear-btn" class="global-search-clear" style="display:none;" title="Clear search">&times;</button>
+                </div>
+                <div id="global-search-results" class="global-search-results" style="display: none;"></div>
+            </div>
+
+            <div class="header-actions">
+                <a href="../index.html" class="btn" title="Back to Archive Index">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Archive Index</span>
+                </a>
+                
+                <button id="theme-toggle-btn" class="btn theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Interactive Telemetry Grid -->
+        <section class="telemetry-grid" aria-label="Threat Telemetry Statistics">
+            <div class="telemetry-card" data-telemetry-filter="all" title="Click to show all articles">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">Total Articles</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                            <path d="M18 14h-8"/>
+                            <path d="M15 18h-5"/>
+                            <path d="M10 6h8v4h-8V6Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">{{TOTAL_COUNT}}</div>
+                <div class="telemetry-subtext">Aggregated &amp; analyzed</div>
+            </div>
+
+            <div class="telemetry-card metric-critical" data-telemetry-filter="critical" title="Click to filter critical threats">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">Critical Threats</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">{{CRITICAL_COUNT}}</div>
+                <div class="telemetry-subtext">Immediate action advised</div>
+            </div>
+
+            <div class="telemetry-card metric-high" data-telemetry-filter="high" title="Click to filter high alerts">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">High Alerts</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">{{HIGH_COUNT}}</div>
+                <div class="telemetry-subtext">High priority vulnerabilities</div>
+            </div>
+
+            <div class="telemetry-card metric-kev" data-telemetry-filter="kev" title="Click to filter CISA KEV exploited threats">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">CISA KEV Exploited</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">{{KEV_COUNT}}</div>
+                <div class="telemetry-subtext">Actively exploited in wild</div>
+            </div>
+        </section>
+
+        <!-- Executive Spotlight Section (Top 5 Priority News) -->
+        <section class="spotlight-panel" aria-label="Executive Priority Briefing">
+            <div class="spotlight-header">
+                <div class="spotlight-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sev-high)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Executive Priority Briefing &bull; Top 5 Surfaced Threats</span>
+                </div>
+                <span class="spotlight-badge">TOP IMPACT</span>
+            </div>
+            <div class="spotlight-grid">
+{{SPOTLIGHT_ITEMS}}
+            </div>
+        </section>
+
+        <!-- Dynamic Severity & Category Filter Toolbar -->
+        <section class="toolbar-section">
+            <div class="filter-bar">
+                <div class="filter-pills">
+                    <button class="filter-pill is-active" data-filter="all">All ({{TOTAL_COUNT}})</button>
+                    <button class="filter-pill" data-filter="critical">Critical ({{CRITICAL_COUNT}})</button>
+                    <button class="filter-pill" data-filter="high">High ({{HIGH_COUNT}})</button>
+                    <button class="filter-pill" data-filter="medium">Medium</button>
+                    <button class="filter-pill" data-filter="low">Low</button>
+                    <button class="filter-pill" data-filter="kev">CISA KEV ({{KEV_COUNT}})</button>
+                    <button class="filter-pill" data-filter="cve">Has CVEs</button>
+                </div>
+                <div id="results-stats" class="results-stats">Showing {{TOTAL_COUNT}} of {{TOTAL_COUNT}} threats</div>
+            </div>
+        </section>
+
+        <!-- Main Intelligence Feed -->
+        <main>
+            <div class="section-heading">
+                <div class="section-title">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Full Intelligence Triage Feed</span>
+                </div>
+            </div>
+
+            <div class="articles-stack">
+{{ARTICLE_CARDS}}
+            </div>
+
+            <!-- Zero Results State -->
+            <div id="no-results-state" class="empty-state" style="display: none;">
+                <p>No threat intelligence items match your active search or filter criteria.</p>
+            </div>
+        </main>
+
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div class="footer-text">
+                Daily Threat Intelligence Briefing &bull; Authored &amp; Maintained by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client-Side Search Index & Interactivity -->
+    <script src="../assets/search_index.js"></script>
+    <script>
+{{INTERACTIVE_JS}}
+    </script>
+</body>
+</html>

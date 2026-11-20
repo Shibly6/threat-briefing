@@ -1,13 +1,74 @@
 import html
 import json
 import os
+import re
 from datetime import datetime, timezone
+from pathlib import Path
 from typing import Any, Dict, List
 
 from src.config import AppConfig
 from src.utils import format_iso_utc
 
 SEVERITY_LEVELS = ("critical", "high", "medium", "low")
+
+# Standard Lucide-style SVG vector icons (crisp, lightweight, zero external runtime dependency)
+SVG_ICONS = {
+    "external_link": (
+        '<svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" '
+        'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>'
+        '<polyline points="15 3 21 3 21 9"></polyline>'
+        '<line x1="10" y1="14" x2="21" y2="3"></line></svg>'
+    ),
+    "newspaper": (
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>'
+        '<path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg>'
+    ),
+    "tag": (
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>'
+        '<line x1="7" y1="7" x2="7.01" y2="7"></line></svg>'
+    ),
+    "bot": (
+        '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<rect x="3" y="11" width="18" height="10" rx="2"></rect>'
+        '<circle cx="12" cy="5" r="2"></circle>'
+        '<path d="M12 7v4"></path>'
+        '<line x1="8" y1="16" x2="8" y2="16"></line>'
+        '<line x1="16" y1="16" x2="16" y2="16"></line></svg>'
+    ),
+    "copy": (
+        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>'
+        '<path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>'
+    ),
+    "flame": (
+        '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 '
+        '.5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/>'
+        '</svg>'
+    ),
+    "calendar": (
+        '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" '
+        'stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>'
+        '<line x1="16" y1="2" x2="16" y2="6"></line>'
+        '<line x1="8" y1="2" x2="8" y2="6"></line>'
+        '<line x1="3" y1="10" x2="21" y2="10"></line></svg>'
+    ),
+    "arrow_right": (
+        '<svg class="archive-arrow-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" '
+        'stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">'
+        '<line x1="5" y1="12" x2="19" y2="12"></line>'
+        '<polyline points="12 5 19 12 12 19"></polyline></svg>'
+    ),
+}
 
 
 def _normalize_severity(value: Any) -> str:
@@ -33,937 +94,30 @@ def _format_pretty_date(date_str: str) -> str:
         return date_str
 
 
-SHARED_BASE_CSS = """
-        :root {
-            --bg-primary: #090d16;
-            --bg-secondary: #0f1624;
-            --bg-card: #0f1624;
-            --bg-card-hover: #131c2e;
-            --border-color: #1e293b;
-            --border-soft: rgba(148, 163, 184, 0.14);
-            --border-strong: rgba(148, 163, 184, 0.28);
-            --text-primary: #eaf0fa;
-            --text-secondary: #98a7be;
-            --text-muted: #7b8aa1;
-            --accent-blue: #38bdf8;
-            --accent-cyan: #22d3ee;
-            --severity-critical: #ff4d5e;
-            --severity-high: #ff9448;
-            --severity-medium: #fbbf24;
-            --severity-low: #34d399;
-            --kev-color: #f472b6;
-            --glow-critical: rgba(255, 77, 94, 0.35);
-            --glow-high: rgba(255, 148, 72, 0.32);
-            --glow-blue: rgba(56, 189, 248, 0.32);
-            --glow-kev: rgba(244, 114, 182, 0.30);
-            --ring: rgba(56, 189, 248, 0.55);
-            --radius-sm: 10px;
-            --radius-md: 15px;
-            --radius-lg: 18px;
-            --gap-md: 16px;
-            --gap-lg: 28px;
-            --ease-smooth: cubic-bezier(0.22, 0.68, 0.32, 1);
-            --shadow-card: 0 22px 50px -32px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
-        }
-
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-
-        html { scroll-behavior: smooth; }
-
-        body {
-            font-family: var(--font-sans);
-            background-color: var(--bg-primary);
-            background-image:
-                radial-gradient(900px circle at 12% -8%, rgba(56, 189, 248, 0.10), transparent 60%),
-                radial-gradient(800px circle at 88% 0%, rgba(255, 77, 94, 0.08), transparent 55%),
-                radial-gradient(700px circle at 50% 110%, rgba(34, 211, 238, 0.06), transparent 60%);
-            background-attachment: fixed;
-            color: var(--text-primary);
-            line-height: 1.68;
-            padding: 32px 20px 48px;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-
-        .container { max-width: 1180px; margin: 0 auto; }
-
-        ::selection { background: rgba(56, 189, 248, 0.30); color: #f8fbff; }
-
-        a:focus-visible,
-        button:focus-visible {
-            outline: 2px solid var(--ring);
-            outline-offset: 3px;
-            border-radius: 6px;
-        }
-
-        header {
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(160deg, rgba(19, 28, 46, 0.92), rgba(9, 13, 22, 0.94));
-            border: 1px solid var(--border-soft);
-            border-radius: 18px;
-            padding: 26px 30px;
-            margin-bottom: var(--gap-lg);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 18px;
-            box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        }
-
-        header::before {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-blue), var(--severity-critical), transparent);
-            opacity: 0.85;
-        }
-
-        .brand-lockup { display: flex; align-items: center; gap: 16px; }
-
-        .brand-mark {
-            width: 48px;
-            height: 48px;
-            flex-shrink: 0;
-            border-radius: 13px;
-            display: grid;
-            place-items: center;
-            font-size: 1.4rem;
-            background: linear-gradient(150deg, rgba(56, 189, 248, 0.20), rgba(255, 77, 94, 0.16));
-            border: 1px solid rgba(56, 189, 248, 0.35);
-            box-shadow: 0 0 22px -6px var(--glow-blue);
-        }
-
-        .header-title h1 {
-            font-size: 1.62rem;
-            font-weight: 700;
-            letter-spacing: -0.02em;
-            line-height: 1.25;
-            color: var(--text-primary);
-        }
-
-        .header-title h1 .accent { color: var(--accent-blue); }
-
-        .header-sub {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 7px;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            font-family: var(--font-mono);
-            letter-spacing: 0.04em;
-        }
-
-        .section-label {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.74rem;
-            font-family: var(--font-mono);
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-            color: var(--text-muted);
-            margin: 0 0 var(--gap-md) 2px;
-        }
-
-        .section-label::after {
-            content: "";
-            flex: 1;
-            height: 1px;
-            background: linear-gradient(90deg, var(--border-color), transparent);
-        }
-
-        footer {
-            margin-top: 48px;
-            padding: 22px 24px;
-            border-radius: var(--radius-lg);
-            border: 1px solid var(--border-soft);
-            background: linear-gradient(170deg, rgba(19, 28, 46, 0.72), rgba(9, 13, 22, 0.9));
-            text-align: center;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
-        }
-
-        .footer-credit {
-            font-size: 0.84rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-        }
-
-        .footer-credit a {
-            color: var(--accent-blue);
-            font-weight: 600;
-            text-decoration: none;
-            transition: color 0.18s ease, text-shadow 0.18s ease;
-        }
-
-        .footer-credit a:hover {
-            color: #7dd3fc;
-            text-shadow: 0 0 14px var(--glow-blue);
-            text-decoration: underline;
-            text-underline-offset: 4px;
-        }
-"""
-
-
-HTML_TEMPLATE = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Cybersecurity threat intelligence briefing for {report_date_pretty}.">
-    <meta name="author" content="Noor Elahi Ali Shibly">
-    <title>{report_date_pretty} Threat Briefing</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-{shared_css}
-
-        .nav-home {{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            color: var(--accent-blue);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.82rem;
-            letter-spacing: 0.02em;
-            padding: 9px 16px;
-            border-radius: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.32);
-            background: rgba(56, 189, 248, 0.08);
-            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-        }}
-
-        .nav-home:hover {{
-            background: rgba(56, 189, 248, 0.16);
-            border-color: rgba(56, 189, 248, 0.6);
-            box-shadow: 0 0 22px -6px var(--glow-blue);
-            transform: translateY(-1px);
-        }}
-
-        .spotlight-box {{
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(155deg, rgba(19, 28, 46, 0.95), rgba(9, 13, 22, 0.97));
-            border: 1px solid rgba(56, 189, 248, 0.26);
-            border-radius: 18px;
-            padding: 22px 24px 24px;
-            margin-bottom: var(--gap-lg);
-            box-shadow: 0 26px 60px -34px rgba(56, 189, 248, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-        }}
-
-        .spotlight-box::before {{
-            content: "";
-            position: absolute;
-            top: -60%;
-            left: -10%;
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 65%);
-            pointer-events: none;
-        }}
-
-        .spotlight-box h2 {{
-            position: relative;
-            font-size: 1.05rem;
-            font-weight: 600;
-            letter-spacing: -0.01em;
-            color: var(--text-primary);
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }}
-
-        .spotlight-box h2 .fire {{
-            display: grid;
-            place-items: center;
-            width: 28px;
-            height: 28px;
-            border-radius: 9px;
-            font-size: 0.9rem;
-            background: rgba(255, 148, 72, 0.14);
-            border: 1px solid rgba(255, 148, 72, 0.34);
-            box-shadow: 0 0 18px -6px var(--glow-high);
-        }}
-
-        .spotlight-list {{ position: relative; display: flex; flex-direction: column; gap: 8px; }}
-
-        .spotlight-item {{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 14px;
-            padding: 11px 14px;
-            background: rgba(148, 163, 184, 0.05);
-            border: 1px solid transparent;
-            border-radius: var(--radius-sm);
-            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease-smooth);
-        }}
-
-        .spotlight-item:hover {{
-            background: rgba(56, 189, 248, 0.07);
-            border-color: rgba(56, 189, 248, 0.26);
-            box-shadow: 0 0 24px -12px var(--glow-blue);
-            transform: translateX(2px);
-        }}
-
-        .spotlight-item a {{
-            color: var(--text-primary);
-            text-decoration: none;
-            font-weight: 500;
-            font-size: 0.94rem;
-            line-height: 1.45;
-            transition: color 0.18s ease;
-        }}
-
-        .spotlight-item:hover a {{ color: var(--accent-blue); }}
-
-        .stats-grid {{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-            gap: var(--gap-md);
-            margin-bottom: var(--gap-lg);
-        }}
-
-        .stat-card {{
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(165deg, rgba(19, 28, 46, 0.94), rgba(11, 16, 26, 0.96));
-            border: 1px solid var(--border-soft);
-            border-radius: var(--radius-md);
-            padding: 20px 20px 18px;
-            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease, box-shadow 0.24s ease;
-            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
-        }}
-
-        .stat-card::after {{
-            content: "";
-            position: absolute;
-            inset: auto 0 0 0;
-            height: 2px;
-            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
-            opacity: 0.5;
-            transition: opacity 0.24s ease;
-        }}
-
-        .stat-card:hover {{
-            transform: translateY(-3px);
-            border-color: rgba(56, 189, 248, 0.34);
-            box-shadow: 0 22px 46px -28px var(--glow-blue), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }}
-
-        .stat-card:hover::after {{ opacity: 1; }}
-
-        .stat-card .stat-head {{
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 12px;
-            margin-bottom: 12px;
-        }}
-
-        .stat-card .number {{
-            font-family: var(--font-mono);
-            font-size: 2rem;
-            font-weight: 700;
-            letter-spacing: -0.03em;
-            line-height: 1.05;
-            color: var(--text-primary);
-            font-variant-numeric: tabular-nums;
-        }}
-
-        .stat-card .icon {{
-            display: grid;
-            place-items: center;
-            flex-shrink: 0;
-            width: 34px;
-            height: 34px;
-            border-radius: var(--radius-sm);
-            font-size: 0.92rem;
-            line-height: 1;
-            background: rgba(148, 163, 184, 0.08);
-            border: 1px solid var(--border-soft);
-            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease;
-        }}
-
-        .stat-card:hover .icon {{ transform: scale(1.06); }}
-
-        .stat-card .label {{
-            color: var(--text-secondary);
-            font-size: 0.71rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            line-height: 1.35;
-        }}
-
-        .stat-card.is-critical {{ border-color: rgba(255, 77, 94, 0.24); }}
-        .stat-card.is-critical::after {{ background: linear-gradient(90deg, transparent, var(--severity-critical), transparent); opacity: 0.8; }}
-        .stat-card.is-critical:hover {{ border-color: rgba(255, 77, 94, 0.5); box-shadow: 0 22px 46px -26px var(--glow-critical), inset 0 1px 0 rgba(255, 255, 255, 0.05); }}
-        .stat-card.is-critical .number, .stat-card.is-critical .icon {{ color: var(--severity-critical); }}
-        .stat-card.is-critical .icon {{ background: rgba(255, 77, 94, 0.1); border-color: rgba(255, 77, 94, 0.3); }}
-
-        .stat-card.is-high {{ border-color: rgba(255, 148, 72, 0.22); }}
-        .stat-card.is-high::after {{ background: linear-gradient(90deg, transparent, var(--severity-high), transparent); opacity: 0.8; }}
-        .stat-card.is-high:hover {{ border-color: rgba(255, 148, 72, 0.48); box-shadow: 0 22px 46px -26px var(--glow-high), inset 0 1px 0 rgba(255, 255, 255, 0.05); }}
-        .stat-card.is-high .number, .stat-card.is-high .icon {{ color: var(--severity-high); }}
-        .stat-card.is-high .icon {{ background: rgba(255, 148, 72, 0.1); border-color: rgba(255, 148, 72, 0.3); }}
-
-        .stat-card.is-kev {{ border-color: rgba(244, 114, 182, 0.22); }}
-        .stat-card.is-kev::after {{ background: linear-gradient(90deg, transparent, var(--kev-color), transparent); opacity: 0.8; }}
-        .stat-card.is-kev:hover {{ border-color: rgba(244, 114, 182, 0.48); box-shadow: 0 22px 46px -26px var(--glow-kev), inset 0 1px 0 rgba(255, 255, 255, 0.05); }}
-        .stat-card.is-kev .number, .stat-card.is-kev .icon {{ color: var(--kev-color); }}
-        .stat-card.is-kev .icon {{ background: rgba(244, 114, 182, 0.1); border-color: rgba(244, 114, 182, 0.3); }}
-
-        .stat-card.is-total .icon {{ color: var(--accent-blue); background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); }}
-
-        .articles-list {{ display: flex; flex-direction: column; gap: 18px; }}
-
-        .article-card {{
-            position: relative;
-            background: linear-gradient(168deg, rgba(17, 25, 41, 0.95), rgba(11, 16, 26, 0.97));
-            border: 1px solid var(--border-soft);
-            border-radius: var(--radius-md);
-            padding: 22px 24px;
-            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
-            box-shadow: var(--shadow-card);
-        }}
-
-        .article-card::before {{
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 18px;
-            bottom: 18px;
-            width: 3px;
-            border-radius: 0 3px 3px 0;
-            background: linear-gradient(180deg, rgba(56, 189, 248, 0.65), rgba(56, 189, 248, 0));
-        }}
-
-        .article-card:hover {{
-            transform: translateY(-2px);
-            background: linear-gradient(168deg, rgba(21, 31, 49, 0.96), rgba(13, 19, 31, 0.98));
-            border-color: rgba(56, 189, 248, 0.28);
-            box-shadow: 0 26px 56px -34px rgba(56, 189, 248, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }}
-
-        .article-card.sev-critical::before {{ background: linear-gradient(180deg, var(--severity-critical), rgba(255, 77, 94, 0)); }}
-        .article-card.sev-critical:hover {{ border-color: rgba(255, 77, 94, 0.4); box-shadow: 0 26px 56px -32px var(--glow-critical), inset 0 1px 0 rgba(255, 255, 255, 0.05); }}
-
-        .article-card.sev-high::before {{ background: linear-gradient(180deg, var(--severity-high), rgba(255, 148, 72, 0)); }}
-        .article-card.sev-high:hover {{ border-color: rgba(255, 148, 72, 0.38); box-shadow: 0 26px 56px -32px var(--glow-high), inset 0 1px 0 rgba(255, 255, 255, 0.05); }}
-
-        .card-header {{
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            gap: 16px;
-            margin-bottom: 12px;
-        }}
-
-        .article-title {{
-            font-size: 1.07rem;
-            font-weight: 600;
-            line-height: 1.44;
-            letter-spacing: -0.01em;
-            text-decoration: none;
-            color: var(--text-primary);
-            transition: color 0.18s ease;
-        }}
-
-        .article-title:hover {{ color: var(--accent-blue); }}
-
-        .badge-group {{ display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0; }}
-
-        .badge {{
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 11px;
-            border-radius: 8px;
-            font-family: var(--font-mono);
-            font-size: 0.68rem;
-            font-weight: 700;
-            letter-spacing: 0.07em;
-            text-transform: uppercase;
-            white-space: nowrap;
-            border: 1px solid transparent;
-        }}
-
-        .badge-critical {{
-            color: #ffd7db;
-            background: linear-gradient(150deg, rgba(255, 77, 94, 0.24), rgba(255, 77, 94, 0.10));
-            border-color: rgba(255, 77, 94, 0.65);
-            box-shadow: 0 0 20px -6px var(--glow-critical), inset 0 0 14px -8px rgba(255, 77, 94, 0.9);
-            text-shadow: 0 0 12px rgba(255, 77, 94, 0.55);
-            animation: glow-critical 3s ease-in-out infinite;
-        }}
-
-        .badge-high {{
-            color: #ffe1c7;
-            background: linear-gradient(150deg, rgba(255, 148, 72, 0.22), rgba(255, 148, 72, 0.09));
-            border-color: rgba(255, 148, 72, 0.60);
-            box-shadow: 0 0 20px -6px var(--glow-high), inset 0 0 14px -8px rgba(255, 148, 72, 0.85);
-            text-shadow: 0 0 12px rgba(255, 148, 72, 0.5);
-            animation: glow-high 3.4s ease-in-out infinite;
-        }}
-
-        .badge-medium {{
-            color: #fde9a9;
-            background: linear-gradient(150deg, rgba(251, 191, 36, 0.17), rgba(251, 191, 36, 0.07));
-            border-color: rgba(251, 191, 36, 0.45);
-            box-shadow: inset 0 0 12px -8px rgba(251, 191, 36, 0.8);
-        }}
-
-        .badge-low {{
-            color: #c6f7e3;
-            background: linear-gradient(150deg, rgba(52, 211, 153, 0.15), rgba(52, 211, 153, 0.06));
-            border-color: rgba(52, 211, 153, 0.42);
-            box-shadow: inset 0 0 12px -8px rgba(52, 211, 153, 0.8);
-        }}
-
-        .badge-kev {{
-            color: #ffd9ee;
-            background: linear-gradient(150deg, rgba(244, 114, 182, 0.20), rgba(244, 114, 182, 0.08));
-            border-color: rgba(244, 114, 182, 0.52);
-            box-shadow: 0 0 18px -8px rgba(244, 114, 182, 0.75);
-        }}
-
-        .badge-critical .badge-dot,
-        .badge-high .badge-dot {{
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: currentColor;
-            box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
-            flex-shrink: 0;
-            animation: pulse-dot 1.8s ease-in-out infinite;
-        }}
-
-        .article-card:hover .badge-critical,
-        .article-card:hover .badge-high,
-        .spotlight-item:hover .badge-critical,
-        .spotlight-item:hover .badge-high {{
-            filter: brightness(1.15) saturate(1.08);
-        }}
-
-        @keyframes glow-critical {{
-            0%, 100% {{ box-shadow: 0 0 20px -6px var(--glow-critical), inset 0 0 14px -8px rgba(255, 77, 94, 0.9); }}
-            50% {{ box-shadow: 0 0 30px -3px var(--glow-critical), inset 0 0 18px -6px rgba(255, 77, 94, 0.95); }}
-        }}
-
-        @keyframes glow-high {{
-            0%, 100% {{ box-shadow: 0 0 20px -6px var(--glow-high), inset 0 0 14px -8px rgba(255, 148, 72, 0.85); }}
-            50% {{ box-shadow: 0 0 28px -4px var(--glow-high), inset 0 0 18px -6px rgba(255, 148, 72, 0.92); }}
-        }}
-
-        @keyframes pulse-dot {{
-            0%, 100% {{ opacity: 1; }}
-            50% {{ opacity: 0.35; }}
-        }}
-
-        .meta-bar {{
-            display: flex;
-            gap: 8px;
-            font-size: 0.78rem;
-            color: var(--text-secondary);
-            margin-bottom: 14px;
-            flex-wrap: wrap;
-        }}
-
-        .meta-item {{
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 3px 10px;
-            border-radius: 7px;
-            border: 1px solid var(--border-soft);
-            background: rgba(148, 163, 184, 0.06);
-            line-height: 1.5;
-            transition: border-color 0.2s ease, background 0.2s ease;
-        }}
-
-        .meta-item:hover {{ border-color: var(--border-strong); background: rgba(148, 163, 184, 0.09); }}
-
-        .meta-item strong {{ color: #dbe7f6; font-weight: 600; }}
-
-        .meta-item .e {{ opacity: 0.78; font-size: 0.82rem; }}
-
-        .summary-bn {{
-            color: #ccd9ea;
-            font-size: 0.95rem;
-            line-height: 1.75;
-            margin-bottom: 16px;
-            direction: ltr;
-            text-align: left;
-            border-left: 2px solid rgba(56, 189, 248, 0.22);
-            padding-left: 14px;
-            transition: border-color 0.22s ease;
-        }}
-
-        .article-card:hover .summary-bn {{ border-left-color: rgba(56, 189, 248, 0.55); }}
-
-        .tags-container {{ display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }}
-
-        .tag {{
-            display: inline-flex;
-            align-items: center;
-            background: rgba(56, 189, 248, 0.07);
-            border: 1px solid rgba(56, 189, 248, 0.20);
-            padding: 3px 9px;
-            border-radius: 6px;
-            font-family: var(--font-mono);
-            font-size: 0.72rem;
-            letter-spacing: 0.02em;
-            color: #9ed8f5;
-            transition: background 0.18s ease, border-color 0.18s ease;
-        }}
-
-        .tag:hover {{ background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.4); }}
-
-        .cve-tag {{
-            background: rgba(255, 77, 94, 0.09);
-            color: #ffb3bb;
-            border-color: rgba(255, 77, 94, 0.30);
-        }}
-
-        .cve-tag:hover {{ background: rgba(255, 77, 94, 0.16); border-color: rgba(255, 77, 94, 0.5); }}
-
-        .empty-state {{
-            text-align: center;
-            padding: 48px 24px;
-            border: 1px dashed var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            background: rgba(148, 163, 184, 0.03);
-        }}
-
-        @media (max-width: 720px) {{
-            body {{ padding: 18px 13px 32px; }}
-            header {{ padding: 22px; margin-bottom: 22px; }}
-            .header-title h1 {{ font-size: 1.3rem; }}
-            .card-header {{ flex-direction: column; align-items: flex-start; gap: 10px; }}
-            .badge-group {{ justify-content: flex-start; }}
-            .stat-card .number {{ font-size: 1.7rem; }}
-            .spotlight-item {{ flex-direction: column; align-items: flex-start; gap: 8px; }}
-            .article-card {{ padding: 18px; }}
-            .summary-bn {{ padding-left: 12px; }}
-        }}
-
-        @media (prefers-reduced-motion: reduce) {{
-            * {{ animation: none !important; transition: none !important; }}
-            .stat-card:hover, .article-card:hover, .spotlight-item:hover {{ transform: none; }}
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="brand-lockup">
-                <div class="brand-mark">🛡️</div>
-                <div class="header-title">
-                    <h1>{report_date_pretty} <span class="accent">Threat Briefing</span></h1>
-                    <div class="header-sub">
-                        <span>REPORT DATE // <strong>{report_date_str}</strong></span>
-                    </div>
-                </div>
-            </div>
-            <div>
-                <a href="../index.html" class="nav-home">← Archive Index</a>
-            </div>
-        </header>
-
-        <div class="section-label">Threat Telemetry</div>
-        <div class="stats-grid">
-            <div class="stat-card is-total">
-                <div class="stat-head">
-                    <div class="number">{total_count}</div>
-                    <div class="icon">📰</div>
-                </div>
-                <div class="label">Total Articles</div>
-            </div>
-            <div class="stat-card is-critical">
-                <div class="stat-head">
-                    <div class="number">{critical_count}</div>
-                    <div class="icon">🚨</div>
-                </div>
-                <div class="label">Critical Threats</div>
-            </div>
-            <div class="stat-card is-high">
-                <div class="stat-head">
-                    <div class="number">{high_count}</div>
-                    <div class="icon">⚠️</div>
-                </div>
-                <div class="label">High Alerts</div>
-            </div>
-            <div class="stat-card is-kev">
-                <div class="stat-head">
-                    <div class="number">{kev_match_count}</div>
-                    <div class="icon">🔥</div>
-                </div>
-                <div class="label">CISA KEV Exploited</div>
-            </div>
-        </div>
-
-        <div class="spotlight-box">
-            <h2><span class="fire">🔥</span> Top 5 Important News Today</h2>
-            <div class="spotlight-list">
-                {spotlight_html}
-            </div>
-        </div>
-
-        <div class="section-label">Full Intelligence Feed</div>
-        <div class="articles-list">
-            {articles_cards_html}
-        </div>
-
-        <footer>
-            <div class="footer-credit">
-                Created by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
-"""
-
-
-ARCHIVE_TEMPLATE = """<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Daily Briefing Repository of Cybersecurity Threat Intelligence Briefings.">
-    <meta name="author" content="Noor Elahi Ali Shibly">
-    <title>Threat Briefing Archive</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
-    <style>
-{shared_css}
-
-        .archive-count-pill {{
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 15px;
-            border-radius: 10px;
-            border: 1px solid rgba(56, 189, 248, 0.28);
-            background: rgba(56, 189, 248, 0.08);
-            color: var(--accent-blue);
-            font-family: var(--font-mono);
-            font-size: 0.78rem;
-            font-weight: 600;
-            letter-spacing: 0.04em;
-        }}
-
-        .archive-panel {{
-            position: relative;
-            overflow: hidden;
-            background: linear-gradient(155deg, rgba(19, 28, 46, 0.95), rgba(9, 13, 22, 0.97));
-            border: 1px solid rgba(56, 189, 248, 0.22);
-            border-radius: var(--radius-lg);
-            padding: 22px 24px 24px;
-            box-shadow: var(--shadow-card);
-        }}
-
-        .archive-panel::before {{
-            content: "";
-            position: absolute;
-            top: -55%;
-            left: -8%;
-            width: 320px;
-            height: 320px;
-            background: radial-gradient(circle, rgba(56, 189, 248, 0.14), transparent 65%);
-            pointer-events: none;
-        }}
-
-        .archive-list {{
-            position: relative;
-            list-style: none;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
-            gap: 14px;
-        }}
-
-        .archive-list li a {{
-            position: relative;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            padding: 16px 18px;
-            border-radius: var(--radius-md);
-            border: 1px solid var(--border-soft);
-            background: linear-gradient(168deg, rgba(17, 25, 41, 0.92), rgba(11, 16, 26, 0.95));
-            color: var(--text-primary);
-            text-decoration: none;
-            transition: transform 0.22s var(--ease-smooth), background 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
-        }}
-
-        .archive-list li a::before {{
-            content: "";
-            position: absolute;
-            left: 0;
-            top: 14px;
-            bottom: 14px;
-            width: 3px;
-            border-radius: 0 3px 3px 0;
-            background: linear-gradient(180deg, rgba(56, 189, 248, 0.7), rgba(56, 189, 248, 0));
-            opacity: 0.65;
-            transition: opacity 0.22s ease;
-        }}
-
-        .archive-list li a:hover {{
-            transform: translateY(-2px);
-            background: linear-gradient(168deg, rgba(21, 31, 49, 0.96), rgba(13, 19, 31, 0.98));
-            border-color: rgba(56, 189, 248, 0.38);
-            box-shadow: 0 22px 44px -26px var(--glow-blue), inset 0 1px 0 rgba(255, 255, 255, 0.05);
-        }}
-
-        .archive-list li a:hover::before {{ opacity: 1; }}
-
-        .arc-icon {{
-            display: grid;
-            place-items: center;
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0;
-            border-radius: 11px;
-            font-size: 1.05rem;
-            background: rgba(56, 189, 248, 0.12);
-            border: 1px solid rgba(56, 189, 248, 0.32);
-            box-shadow: 0 0 18px -8px var(--glow-blue);
-            transition: transform 0.22s var(--ease-smooth);
-        }}
-
-        .archive-list li a:hover .arc-icon {{ transform: scale(1.06); }}
-
-        .arc-text {{
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
-            min-width: 0;
-        }}
-
-        .arc-pretty-date {{
-            font-size: 1.08rem;
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            line-height: 1.3;
-            color: var(--text-primary);
-            transition: color 0.18s ease;
-        }}
-
-        .archive-list li a:hover .arc-pretty-date {{ color: var(--accent-blue); }}
-
-        .arc-date {{
-            font-family: var(--font-mono);
-            font-size: 0.74rem;
-            font-weight: 400;
-            letter-spacing: 0.05em;
-            color: var(--text-secondary);
-        }}
-
-        .arc-arrow {{
-            margin-left: auto;
-            display: grid;
-            place-items: center;
-            width: 30px;
-            height: 30px;
-            flex-shrink: 0;
-            border-radius: 8px;
-            border: 1px solid var(--border-soft);
-            background: rgba(148, 163, 184, 0.05);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            transition: color 0.22s ease, border-color 0.22s ease, background 0.22s ease, transform 0.22s var(--ease-smooth);
-        }}
-
-        .archive-list li a:hover .arc-arrow {{
-            color: var(--accent-blue);
-            border-color: rgba(56, 189, 248, 0.35);
-            background: rgba(56, 189, 248, 0.12);
-            transform: translateX(3px);
-        }}
-
-        .arc-empty {{
-            grid-column: 1 / -1;
-            padding: 40px 24px;
-            text-align: center;
-            border: 1px dashed var(--border-color);
-            border-radius: var(--radius-md);
-            color: var(--text-muted);
-            font-size: 0.92rem;
-            background: rgba(148, 163, 184, 0.03);
-        }}
-
-        @media (max-width: 720px) {{
-            body {{ padding: 18px 13px 32px; }}
-            header {{ padding: 22px; margin-bottom: 22px; }}
-            .header-title h1 {{ font-size: 1.3rem; }}
-            .archive-panel {{ padding: 16px; }}
-            .archive-list {{ grid-template-columns: 1fr; }}
-        }}
-
-        @media (prefers-reduced-motion: reduce) {{
-            * {{ animation: none !important; transition: none !important; }}
-            .archive-list li a:hover {{ transform: none; }}
-        }}
-    </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <div class="brand-lockup">
-                <div class="brand-mark">🛡️</div>
-                <div class="header-title">
-                    <h1>Threat <span class="accent">Briefing Archive</span></h1>
-                    <div class="header-sub">
-                        <span>DAILY BRIEFING REPOSITORY</span>
-                    </div>
-                </div>
-            </div>
-            <div class="archive-count-pill">
-                <span>{briefing_count} BRIEFINGS</span>
-            </div>
-        </header>
-
-        <div class="section-label">Briefing History</div>
-        <div class="archive-panel">
-            <ul class="archive-list">
-                {archive_items_html}
-            </ul>
-        </div>
-
-        <footer>
-            <div class="footer-credit">
-                Created by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
-            </div>
-        </footer>
-    </div>
-</body>
-</html>
-"""
-
-
 class ReportGenerator:
+    """Generates modern, user-friendly, responsive HTML Threat Intelligence Reports."""
+
     def __init__(self, config: AppConfig):
         self.config = config
+        self.templates_dir = Path(__file__).parent / "templates"
+
+    def _load_asset_or_template(self, filename: str) -> str:
+        """Load CSS, JS or HTML template file from src/templates/."""
+        filepath = self.templates_dir / filename
+        if filepath.exists():
+            return filepath.read_text(encoding="utf-8")
+        raise FileNotFoundError(f"Template asset not found: {filepath}")
 
     def generate_html_report(self, analyzed_articles_path: str, output_path: str = None) -> str:
-        """Backward compatible helper method for test suites."""
+        """Backward compatible helper method for test suites and scripts."""
         return self.generate_daily_and_archive_reports(analyzed_articles_path)
 
     def generate_daily_and_archive_reports(self, final_articles_path: str) -> str:
+        """
+        Reads analyzed/final articles, computes metrics, updates the universal search index,
+        and generates both the dated daily report (reports/YYYY-MM-DD/index.html) and
+        updates the archive homepage (reports/index.html).
+        """
         if not os.path.exists(final_articles_path):
             raise FileNotFoundError(f"Final articles file not found: {final_articles_path}")
 
@@ -975,36 +129,71 @@ class ReportGenerator:
         today_date_pretty = _format_pretty_date(today_date_str)
         _ = format_iso_utc(now_utc)
 
-        date_dir = os.path.join(self.config.reports_dir, today_date_str)
+        reports_dir = self.config.reports_dir
+        date_dir = os.path.join(reports_dir, today_date_str)
         os.makedirs(date_dir, exist_ok=True)
         date_report_path = os.path.join(date_dir, "index.html")
 
-        # Sort articles by score
+        # Ensure assets directory in reports/ for standalone or static hosting
+        assets_dir = os.path.join(reports_dir, "assets")
+        os.makedirs(assets_dir, exist_ok=True)
+
+        # Load externalized modular assets
+        shared_css = self._load_asset_or_template("styles.css")
+        interactive_js = self._load_asset_or_template("report.js")
+        report_template = self._load_asset_or_template("report_template.html")
+
+        # Copy assets to reports/assets/ for direct linking
+        with open(os.path.join(assets_dir, "styles.css"), "w", encoding="utf-8") as f:
+            f.write(shared_css)
+        with open(os.path.join(assets_dir, "report.js"), "w", encoding="utf-8") as f:
+            f.write(interactive_js)
+
+        # Sort articles by importance score descending
         sorted_articles = sorted(
             articles,
             key=lambda x: int(x.get("final_importance_score") or x.get("importance_score") or 0),
             reverse=True,
         )
 
+        # Maintain & write universal cross-report search index
+        self._update_search_index(sorted_articles, today_date_str, today_date_pretty)
+
+        # 1. Executive Spotlight (Top 5 Priority News)
         spotlight_items = sorted_articles[:5]
         spotlight_html_list = []
-        for item in spotlight_items:
+        for idx, item in enumerate(spotlight_items, start=1):
             title = html.escape(item.get("title") or "Untitled")
             url = html.escape(item.get("source_url") or "#")
             score = int(item.get("final_importance_score") or item.get("importance_score") or 50)
             sev = _normalize_severity(item.get("severity"))
+            rank_str = f"#{idx:02d}"
 
-            dot = '<span class="badge-dot"></span>' if sev in ("critical", "high") else ""
+            kev_badge = (
+                f'<span class="badge badge-kev">{SVG_ICONS["flame"]} KEV</span>'
+                if item.get("has_kev_match")
+                else ""
+            )
+
             spotlight_html_list.append(
-                f'<div class="spotlight-item">'
-                f'<a href="{url}" target="_blank" rel="noopener noreferrer">{title}</a>'
-                f'<span class="badge badge-{sev}">{dot}{sev.upper()} ({score}/100)</span>'
+                f'<div class="spotlight-row">'
+                f'  <div class="spotlight-left">'
+                f'    <span class="spotlight-rank">{rank_str}</span>'
+                f'    <a href="{url}" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="{title}">'
+                f'      {title} {SVG_ICONS["external_link"]}'
+                f'    </a>'
+                f'  </div>'
+                f'  <div class="spotlight-right">'
+                f'    <span class="badge badge-{sev}"><span class="badge-dot"></span>{sev.upper()} ({score}/100)</span>'
+                f'    {kev_badge}'
+                f'  </div>'
                 f'</div>'
             )
         spotlight_html = "\n".join(spotlight_html_list) or (
-            '<div class="empty-state">No high-priority items surfaced in this cycle.</div>'
+            '<div class="empty-state">No priority intelligence items surfaced in this cycle.</div>'
         )
 
+        # 2. Telemetry Counts
         total_count = len(sorted_articles)
         severity_counts = {level: 0 for level in SEVERITY_LEVELS}
         for article in sorted_articles:
@@ -1013,8 +202,9 @@ class ReportGenerator:
         high_count = severity_counts["high"]
         kev_match_count = sum(1 for a in sorted_articles if a.get("has_kev_match", False))
 
+        # 3. Main Intelligence Feed (Article Cards)
         cards_html_list = []
-        for art in sorted_articles:
+        for idx, art in enumerate(sorted_articles, start=1):
             sev = _normalize_severity(art.get("severity"))
             title = html.escape(art.get("title") or "Untitled")
             source_url = html.escape(art.get("source_url") or "#")
@@ -1025,45 +215,77 @@ class ReportGenerator:
             max_cvss = float(art.get("max_cvss_score") or 0.0)
             ai_provider = html.escape(art.get("ai_provider") or "Gemini")
 
-            kev_badge = '<span class="badge badge-kev">🔥 KEV EXPLOITED</span>' if art.get("has_kev_match") else ""
-            dot = '<span class="badge-dot"></span>' if sev in ("critical", "high") else ""
-            card_sev_class = f" sev-{sev}" if sev in ("critical", "high") else ""
+            has_kev = bool(art.get("has_kev_match"))
+            kev_badge = (
+                f'<span class="badge badge-kev">{SVG_ICONS["flame"]} CISA KEV EXPLOITED</span>'
+                if has_kev
+                else ""
+            )
 
+            cves_list = art.get("cves_mentioned") or []
+            vendors_list = art.get("affected_vendors") or []
+
+            # Technical Tags (Clickable NVD CVE Links, CVSS meter, Vendors)
             tags_html = []
-            for cve in art.get("cves_mentioned") or []:
-                tags_html.append(f'<span class="tag cve-tag">{html.escape(str(cve))}</span>')
+            for cve in cves_list:
+                cve_clean = str(cve).strip()
+                cve_safe = html.escape(cve_clean)
+                nvd_url = f"https://nvd.nist.gov/vuln/detail/{cve_safe}"
+                tags_html.append(
+                    f'<a href="{nvd_url}" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View {cve_safe} on NIST NVD">'
+                    f'{cve_safe} {SVG_ICONS["external_link"]}</a>'
+                )
 
             if max_cvss > 0:
-                tags_html.append(f'<span class="tag">CVSS: {max_cvss:.1f}</span>')
+                tags_html.append(f'<span class="tag-cvss">CVSS {max_cvss:.1f}</span>')
 
-            for vendor in art.get("affected_vendors") or []:
-                tags_html.append(f'<span class="tag">Vendor: {html.escape(str(vendor))}</span>')
+            for vendor in vendors_list:
+                vendor_safe = html.escape(str(vendor).strip())
+                tags_html.append(f'<span class="tag-vendor">Vendor: {vendor_safe}</span>')
 
             tags_block = (
-                f'<div class="tags-container">{" ".join(tags_html)}</div>'
+                f'<div class="technical-tags">{" ".join(tags_html)}</div>'
                 if tags_html
                 else ""
             )
 
+            card_id = f"art-{idx}"
+            summary_id = f"summary-{idx}"
+
             card = f"""
-            <div class="article-card{card_sev_class}">
-                <div class="card-header">
-                    <a href="{source_url}" target="_blank" rel="noopener noreferrer" class="article-title">{title}</a>
+            <article class="article-card" id="{card_id}" data-severity="{sev}" data-has-kev="{'true' if has_kev else 'false'}" data-cves-count="{len(cves_list)}">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="{source_url}" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            {title}
+                            {SVG_ICONS["external_link"]}
+                        </a>
+                    </h2>
                     <div class="badge-group">
-                        <span class="badge badge-{sev}">{dot}{sev.upper()} ({final_score}/100)</span>
+                        <span class="badge badge-{sev}"><span class="badge-dot"></span>{sev.upper()} ({final_score}/100)</span>
                         {kev_badge}
                     </div>
                 </div>
-                <div class="meta-bar">
-                    <span class="meta-item"><span class="e">📰</span><strong>{source_name}</strong></span>
-                    <span class="meta-item"><span class="e">🏷️</span>{category}</span>
-                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>{ai_provider}</strong></span>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill">{SVG_ICONS["newspaper"]} <strong>{source_name}</strong></span>
+                        <span class="meta-pill">{SVG_ICONS["tag"]} {category}</span>
+                        <span class="meta-pill">{SVG_ICONS["bot"]} AI: <strong>{ai_provider}</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="{summary_id}" title="Copy Bengali intelligence summary to clipboard">
+                            {SVG_ICONS["copy"]} <span>Copy Summary</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="summary-bn">
+
+                <div class="article-summary-bn" id="{summary_id}">
                     {summary_bn}
                 </div>
+
                 {tags_block}
-            </div>
+            </article>
             """
             cards_html_list.append(card)
 
@@ -1071,17 +293,22 @@ class ReportGenerator:
             '<div class="empty-state">No threat intelligence articles available in this briefing cycle.</div>'
         )
 
-        final_html = HTML_TEMPLATE.format(
-            shared_css=SHARED_BASE_CSS,
-            report_date_str=today_date_str,
-            report_date_pretty=today_date_pretty,
-            total_count=total_count,
-            critical_count=critical_count,
-            high_count=high_count,
-            kev_match_count=kev_match_count,
-            spotlight_html=spotlight_html,
-            articles_cards_html=articles_cards_html,
-        )
+        # Assemble full HTML document using clean template replacements
+        final_html = report_template
+        replacements = {
+            "{{SHARED_CSS}}": shared_css,
+            "{{INTERACTIVE_JS}}": interactive_js,
+            "{{REPORT_DATE_ISO}}": today_date_str,
+            "{{REPORT_DATE_PRETTY}}": today_date_pretty,
+            "{{TOTAL_COUNT}}": str(total_count),
+            "{{CRITICAL_COUNT}}": str(critical_count),
+            "{{HIGH_COUNT}}": str(high_count),
+            "{{KEV_COUNT}}": str(kev_match_count),
+            "{{SPOTLIGHT_ITEMS}}": spotlight_html,
+            "{{ARTICLE_CARDS}}": articles_cards_html,
+        }
+        for placeholder, value in replacements.items():
+            final_html = final_html.replace(placeholder, value)
 
         with open(date_report_path, "w", encoding="utf-8") as f:
             f.write(final_html)
@@ -1089,7 +316,144 @@ class ReportGenerator:
         self._generate_archive_homepage()
         return date_report_path
 
+    def _update_search_index(
+        self,
+        today_articles: List[Dict[str, Any]],
+        today_date_str: str,
+        today_date_pretty: str,
+    ):
+        """
+        Maintains reports/search_index.json and reports/assets/search_index.js
+        containing metadata for all articles across past and present briefings.
+        """
+        reports_dir = self.config.reports_dir
+        index_file = os.path.join(reports_dir, "search_index.json")
+        assets_dir = os.path.join(reports_dir, "assets")
+        os.makedirs(assets_dir, exist_ok=True)
+
+        existing_index: List[Dict[str, Any]] = []
+        if os.path.exists(index_file):
+            try:
+                with open(index_file, "r", encoding="utf-8") as f:
+                    existing_index = json.load(f)
+            except Exception:
+                existing_index = []
+
+        # If index is empty or has fewer dates than existing folders, backfill from past reports
+        indexed_dates = {item.get("date") for item in existing_index if item.get("date")}
+        past_dirs = [
+            d for d in os.listdir(reports_dir)
+            if os.path.isdir(os.path.join(reports_dir, d))
+            and d != "assets"
+            and d != today_date_str
+            and d not in indexed_dates
+        ]
+        if past_dirs:
+            for d in past_dirs:
+                p = os.path.join(reports_dir, d, "index.html")
+                if os.path.exists(p):
+                    existing_index.extend(self._extract_articles_from_html(p, d))
+
+        # Remove any existing entries for today_date_str to avoid duplicates on re-run
+        filtered_index = [item for item in existing_index if item.get("date") != today_date_str]
+
+        # Convert today's articles into search index items
+        for idx, item in enumerate(today_articles, start=1):
+            cves = [str(c).strip() for c in (item.get("cves_mentioned") or [])]
+            vendors = [str(v).strip() for v in (item.get("affected_vendors") or [])]
+            summary_raw = item.get("summary_bn") or item.get("summary") or ""
+            filtered_index.append({
+                "id": f"{today_date_str}_art-{idx}",
+                "date": today_date_str,
+                "date_pretty": today_date_pretty,
+                "title": item.get("title") or "Untitled",
+                "source_url": item.get("source_url") or "#",
+                "report_url": f"{today_date_str}/index.html#art-{idx}",
+                "source_name": item.get("source_name") or "Unknown Source",
+                "category": item.get("category") or "Security",
+                "summary_bn": summary_raw[:220],
+                "severity": _normalize_severity(item.get("severity")),
+                "score": int(item.get("final_importance_score") or item.get("importance_score") or 50),
+                "has_kev": bool(item.get("has_kev_match")),
+                "cves": cves,
+                "vendors": vendors,
+            })
+
+        # Sort index descending by date, then score
+        filtered_index.sort(key=lambda x: (x.get("date", ""), x.get("score", 0)), reverse=True)
+
+        json_content = json.dumps(filtered_index, indent=2, ensure_ascii=False)
+        with open(index_file, "w", encoding="utf-8") as f:
+            f.write(json_content)
+        with open(os.path.join(assets_dir, "search_index.json"), "w", encoding="utf-8") as f:
+            f.write(json_content)
+
+        js_content = f"window.__THREAT_SEARCH_INDEX__ = {json_content};\n"
+        with open(os.path.join(assets_dir, "search_index.js"), "w", encoding="utf-8") as f:
+            f.write(js_content)
+
+    def _extract_articles_from_html(self, html_path: str, date_str: str) -> List[Dict[str, Any]]:
+        """Fallback backfill helper to extract articles from legacy or existing HTML files."""
+        records = []
+        try:
+            from bs4 import BeautifulSoup
+            soup = BeautifulSoup(open(html_path, encoding="utf-8"), "html.parser")
+            cards = soup.find_all("article", class_="article-card")
+            if not cards:
+                cards = soup.find_all("div", class_="article-card")
+
+            date_pretty = _format_pretty_date(date_str)
+            for idx, c in enumerate(cards, start=1):
+                title_a = c.find("a", class_=re.compile(r"article-title"))
+                title = title_a.get_text(strip=True) if title_a else "Untitled"
+                source_url = title_a["href"] if title_a and title_a.has_attr("href") else "#"
+
+                badge = c.find("span", class_=re.compile(r"badge-(critical|high|medium|low)"))
+                sev = "medium"
+                score = 50
+                if badge:
+                    txt = badge.get_text(strip=True)
+                    m = re.search(r"(CRITICAL|HIGH|MEDIUM|LOW)\s*\((\d+)/100\)", txt)
+                    if m:
+                        sev = m.group(1).lower()
+                        score = int(m.group(2))
+
+                has_kev = bool(c.find("span", class_="badge-kev"))
+                summary_div = c.find("div", class_=re.compile(r"summary-bn"))
+                summary = summary_div.get_text(strip=True) if summary_div else ""
+
+                tags = c.find_all(["span", "a"], class_=re.compile(r"(tag|tag-cve|tag-vendor)"))
+                cves = []
+                vendors = []
+                for t in tags:
+                    tt = t.get_text(strip=True)
+                    if "cve" in t.get("class", []) or "tag-cve" in t.get("class", []):
+                        cves.append(tt.replace("External", "").strip().split()[0])
+                    elif "Vendor:" in tt:
+                        vendors.append(tt.replace("Vendor:", "").strip())
+
+                records.append({
+                    "id": f"{date_str}_art-{idx}",
+                    "date": date_str,
+                    "date_pretty": date_pretty,
+                    "title": title,
+                    "source_url": source_url,
+                    "report_url": f"{date_str}/index.html#art-{idx}",
+                    "source_name": "Historical Report",
+                    "category": "Security",
+                    "summary_bn": summary[:220],
+                    "severity": _normalize_severity(sev),
+                    "score": score,
+                    "has_kev": has_kev,
+                    "cves": cves,
+                    "vendors": vendors,
+                })
+        except Exception:
+            pass
+        return records
+
     def _generate_archive_homepage(self):
+        """Generates the main index.html archive repository landing page grouped by month."""
         reports_dir = self.config.reports_dir
         subdirs = [
             d for d in os.listdir(reports_dir)
@@ -1097,29 +461,72 @@ class ReportGenerator:
         ]
         subdirs.sort(reverse=True)
 
-        links_html = []
+        from collections import defaultdict
+        month_groups = defaultdict(list)
         for date_str in subdirs:
-            safe_date = html.escape(date_str)
-            safe_pretty_date = html.escape(_format_pretty_date(date_str))
-            links_html.append(
-                f'<li><a href="{safe_date}/index.html">'
-                f'<span class="arc-icon">📅</span>'
-                f'<span class="arc-text">'
-                f'<span class="arc-pretty-date">{safe_pretty_date}</span>'
-                f'<span class="arc-date">{safe_date}</span>'
-                f'</span>'
-                f'<span class="arc-arrow">→</span></a></li>'
+            try:
+                dt = datetime.strptime(date_str, "%Y-%m-%d")
+                month_key = (dt.year, dt.month)
+                month_title = dt.strftime("%B %Y")
+            except ValueError:
+                month_key = (9999, 99)
+                month_title = "Other Briefings"
+            month_groups[(month_key, month_title)].append(date_str)
+
+        month_sections_html = []
+        for (month_key, month_title), dates in month_groups.items():
+            links_html = []
+            for date_str in dates:
+                safe_date = html.escape(date_str)
+                safe_pretty_date = html.escape(_format_pretty_date(date_str))
+                links_html.append(
+                    f'<li><a href="{safe_date}/index.html" class="archive-card-link">'
+                    f'  <div class="archive-card-left">'
+                    f'    <div class="archive-date-icon">{SVG_ICONS["calendar"]}</div>'
+                    f'    <div class="archive-date-info">'
+                    f'      <span class="archive-pretty-date">{safe_pretty_date}</span>'
+                    f'      <span class="archive-iso-date">{safe_date}</span>'
+                    f'    </div>'
+                    f'  </div>'
+                    f'  {SVG_ICONS["arrow_right"]}'
+                    f'</a></li>'
+                )
+
+            cards_html = "\n                ".join(links_html)
+            count_str = f"{len(dates)} {'Briefing' if len(dates) == 1 else 'Briefings'}"
+            month_sections_html.append(
+                f'<section class="archive-month-section">'
+                f'  <div class="archive-month-header">'
+                f'    <h2 class="archive-month-title">'
+                f'      {SVG_ICONS["calendar"]}'
+                f'      <span>{month_title}</span>'
+                f'    </h2>'
+                f'    <span class="archive-month-badge">{count_str}</span>'
+                f'  </div>'
+                f'  <ul class="archive-grid">'
+                f'    {cards_html}'
+                f'  </ul>'
+                f'</section>'
             )
-        if not links_html:
-            links_html.append('<li class="arc-empty">No daily briefings generated yet.</li>')
 
-        archive_items_html = "\n                ".join(links_html)
+        if not month_sections_html:
+            archive_month_sections = '<div class="empty-state">No daily briefings generated yet.</div>'
+        else:
+            archive_month_sections = "\n\n".join(month_sections_html)
 
-        archive_html = ARCHIVE_TEMPLATE.format(
-            shared_css=SHARED_BASE_CSS,
-            briefing_count=len(subdirs),
-            archive_items_html=archive_items_html,
-        )
+        shared_css = self._load_asset_or_template("styles.css")
+        interactive_js = self._load_asset_or_template("report.js")
+        archive_template = self._load_asset_or_template("archive_template.html")
+
+        archive_html = archive_template
+        replacements = {
+            "{{SHARED_CSS}}": shared_css,
+            "{{INTERACTIVE_JS}}": interactive_js,
+            "{{BRIEFING_COUNT}}": str(len(subdirs)),
+            "{{ARCHIVE_MONTH_SECTIONS}}": archive_month_sections,
+        }
+        for placeholder, value in replacements.items():
+            archive_html = archive_html.replace(placeholder, value)
 
         homepage_path = os.path.join(reports_dir, "index.html")
         with open(homepage_path, "w", encoding="utf-8") as f:
