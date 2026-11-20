@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity threat intelligence briefing for 20 Nov 2026.">
+    <meta name="author" content="Noor Elahi Ali Shibly">
+    <title>20 Nov 2026 Threat Briefing</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+
+        :root {
+            --bg-primary: #090d16;
+            --bg-secondary: #0f1624;
+            --bg-card: #0f1624;
+            --bg-card-hover: #131c2e;
+            --border-color: #1e293b;
+            --border-soft: rgba(148, 163, 184, 0.14);
+            --border-strong: rgba(148, 163, 184, 0.28);
+            --text-primary: #eaf0fa;
+            --text-secondary: #98a7be;
+            --text-muted: #7b8aa1;
+            --accent-blue: #38bdf8;
+            --accent-cyan: #22d3ee;
+            --severity-critical: #ff4d5e;
+            --severity-high: #ff9448;
+            --severity-medium: #fbbf24;
+            --severity-low: #34d399;
+            --kev-color: #f472b6;
+            --glow-critical: rgba(255, 77, 94, 0.35);
+            --glow-high: rgba(255, 148, 72, 0.32);
+            --glow-blue: rgba(56, 189, 248, 0.32);
+            --glow-kev: rgba(244, 114, 182, 0.30);
+            --ring: rgba(56, 189, 248, 0.55);
+            --radius-sm: 10px;
+            --radius-md: 15px;
+            --radius-lg: 18px;
+            --gap-md: 16px;
+            --gap-lg: 28px;
+            --ease-smooth: cubic-bezier(0.22, 0.68, 0.32, 1);
+            --shadow-card: 0 22px 50px -32px rgba(0, 0, 0, 0.95), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+            --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --font-mono: "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg-primary);
+            background-image:
+                radial-gradient(900px circle at 12% -8%, rgba(56, 189, 248, 0.10), transparent 60%),
+                radial-gradient(800px circle at 88% 0%, rgba(255, 77, 94, 0.08), transparent 55%),
+                radial-gradient(700px circle at 50% 110%, rgba(34, 211, 238, 0.06), transparent 60%);
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.68;
+            padding: 32px 20px 48px;
+            -webkit-font-smoothing: antialiased;
+            text-rendering: optimizeLegibility;
+        }
+
+        .container { max-width: 1180px; margin: 0 auto; }
+
+        ::selection { background: rgba(56, 189, 248, 0.30); color: #f8fbff; }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--ring);
+            outline-offset: 3px;
+            border-radius: 6px;
+        }
+
+        header {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, rgba(19, 28, 46, 0.92), rgba(9, 13, 22, 0.94));
+            border: 1px solid var(--border-soft);
+            border-radius: 18px;
+            padding: 26px 30px;
+            margin-bottom: var(--gap-lg);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 18px;
+            box-shadow: 0 24px 60px -32px rgba(0, 0, 0, 0.9), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        header::before {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), var(--severity-critical), transparent);
+            opacity: 0.85;
+        }
+
+        .brand-lockup { display: flex; align-items: center; gap: 16px; }
+
+        .brand-mark {
+            width: 48px;
+            height: 48px;
+            flex-shrink: 0;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            font-size: 1.4rem;
+            background: linear-gradient(150deg, rgba(56, 189, 248, 0.20), rgba(255, 77, 94, 0.16));
+            border: 1px solid rgba(56, 189, 248, 0.35);
+            box-shadow: 0 0 22px -6px var(--glow-blue);
+        }
+
+        .header-title h1 {
+            font-size: 1.62rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            line-height: 1.25;
+            color: var(--text-primary);
+        }
+
+        .header-title h1 .accent { color: var(--accent-blue); }
+
+        .header-sub {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 7px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            letter-spacing: 0.04em;
+        }
+
+        .section-label {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.74rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin: 0 0 var(--gap-md) 2px;
+        }
+
+        .section-label::after {
+            content: "";
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-color), transparent);
+        }
+
+        footer {
+            margin-top: 48px;
+            padding: 22px 24px;
+            border-radius: var(--radius-lg);
+            border: 1px solid var(--border-soft);
+            background: linear-gradient(170deg, rgba(19, 28, 46, 0.72), rgba(9, 13, 22, 0.9));
+            text-align: center;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+
+        .footer-credit {
+            font-size: 0.84rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .footer-credit a {
+            color: var(--accent-blue);
+            font-weight: 600;
+            text-decoration: none;
+            transition: color 0.18s ease, text-shadow 0.18s ease;
+        }
+
+        .footer-credit a:hover {
+            color: #7dd3fc;
+            text-shadow: 0 0 14px var(--glow-blue);
+            text-decoration: underline;
+            text-underline-offset: 4px;
+        }
+
+
+        .nav-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-blue);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.82rem;
+            letter-spacing: 0.02em;
+            padding: 9px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(56, 189, 248, 0.32);
+            background: rgba(56, 189, 248, 0.08);
+            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+        }
+
+        .nav-home:hover {
+            background: rgba(56, 189, 248, 0.16);
+            border-color: rgba(56, 189, 248, 0.6);
+            box-shadow: 0 0 22px -6px var(--glow-blue);
+            transform: translateY(-1px);
+        }
+
+        .spotlight-box {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(155deg, rgba(19, 28, 46, 0.95), rgba(9, 13, 22, 0.97));
+            border: 1px solid rgba(56, 189, 248, 0.26);
+            border-radius: 18px;
+            padding: 22px 24px 24px;
+            margin-bottom: var(--gap-lg);
+            box-shadow: 0 26px 60px -34px rgba(56, 189, 248, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.04);
+        }
+
+        .spotlight-box::before {
+            content: "";
+            position: absolute;
+            top: -60%;
+            left: -10%;
+            width: 320px;
+            height: 320px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.16), transparent 65%);
+            pointer-events: none;
+        }
+
+        .spotlight-box h2 {
+            position: relative;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: -0.01em;
+            color: var(--text-primary);
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .spotlight-box h2 .fire {
+            display: grid;
+            place-items: center;
+            width: 28px;
+            height: 28px;
+            border-radius: 9px;
+            font-size: 0.9rem;
+            background: rgba(255, 148, 72, 0.14);
+            border: 1px solid rgba(255, 148, 72, 0.34);
+            box-shadow: 0 0 18px -6px var(--glow-high);
+        }
+
+        .spotlight-list { position: relative; display: flex; flex-direction: column; gap: 8px; }
+
+        .spotlight-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 14px;
+            padding: 11px 14px;
+            background: rgba(148, 163, 184, 0.05);
+            border: 1px solid transparent;
+            border-radius: var(--radius-sm);
+            transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s var(--ease-smooth);
+        }
+
+        .spotlight-item:hover {
+            background: rgba(56, 189, 248, 0.07);
+            border-color: rgba(56, 189, 248, 0.26);
+            box-shadow: 0 0 24px -12px var(--glow-blue);
+            transform: translateX(2px);
+        }
+
+        .spotlight-item a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.94rem;
+            line-height: 1.45;
+            transition: color 0.18s ease;
+        }
+
+        .spotlight-item:hover a { color: var(--accent-blue); }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: var(--gap-md);
+            margin-bottom: var(--gap-lg);
+        }
+
+        .stat-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(165deg, rgba(19, 28, 46, 0.94), rgba(11, 16, 26, 0.96));
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 20px 20px 18px;
+            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease, box-shadow 0.24s ease;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+        }
+
+        .stat-card::after {
+            content: "";
+            position: absolute;
+            inset: auto 0 0 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-blue), transparent);
+            opacity: 0.5;
+            transition: opacity 0.24s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            border-color: rgba(56, 189, 248, 0.34);
+            box-shadow: 0 22px 46px -28px var(--glow-blue), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .stat-card:hover::after { opacity: 1; }
+
+        .stat-card .stat-head {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .stat-card .number {
+            font-family: var(--font-mono);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            line-height: 1.05;
+            color: var(--text-primary);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stat-card .icon {
+            display: grid;
+            place-items: center;
+            flex-shrink: 0;
+            width: 34px;
+            height: 34px;
+            border-radius: var(--radius-sm);
+            font-size: 0.92rem;
+            line-height: 1;
+            background: rgba(148, 163, 184, 0.08);
+            border: 1px solid var(--border-soft);
+            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease;
+        }
+
+        .stat-card:hover .icon { transform: scale(1.06); }
+
+        .stat-card .label {
+            color: var(--text-secondary);
+            font-size: 0.71rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            line-height: 1.35;
+        }
+
+        .stat-card.is-critical { border-color: rgba(255, 77, 94, 0.24); }
+        .stat-card.is-critical::after { background: linear-gradient(90deg, transparent, var(--severity-critical), transparent); opacity: 0.8; }
+        .stat-card.is-critical:hover { border-color: rgba(255, 77, 94, 0.5); box-shadow: 0 22px 46px -26px var(--glow-critical), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+        .stat-card.is-critical .number, .stat-card.is-critical .icon { color: var(--severity-critical); }
+        .stat-card.is-critical .icon { background: rgba(255, 77, 94, 0.1); border-color: rgba(255, 77, 94, 0.3); }
+
+        .stat-card.is-high { border-color: rgba(255, 148, 72, 0.22); }
+        .stat-card.is-high::after { background: linear-gradient(90deg, transparent, var(--severity-high), transparent); opacity: 0.8; }
+        .stat-card.is-high:hover { border-color: rgba(255, 148, 72, 0.48); box-shadow: 0 22px 46px -26px var(--glow-high), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+        .stat-card.is-high .number, .stat-card.is-high .icon { color: var(--severity-high); }
+        .stat-card.is-high .icon { background: rgba(255, 148, 72, 0.1); border-color: rgba(255, 148, 72, 0.3); }
+
+        .stat-card.is-kev { border-color: rgba(244, 114, 182, 0.22); }
+        .stat-card.is-kev::after { background: linear-gradient(90deg, transparent, var(--kev-color), transparent); opacity: 0.8; }
+        .stat-card.is-kev:hover { border-color: rgba(244, 114, 182, 0.48); box-shadow: 0 22px 46px -26px var(--glow-kev), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+        .stat-card.is-kev .number, .stat-card.is-kev .icon { color: var(--kev-color); }
+        .stat-card.is-kev .icon { background: rgba(244, 114, 182, 0.1); border-color: rgba(244, 114, 182, 0.3); }
+
+        .stat-card.is-total .icon { color: var(--accent-blue); background: rgba(56, 189, 248, 0.1); border-color: rgba(56, 189, 248, 0.3); }
+
+        .articles-list { display: flex; flex-direction: column; gap: 18px; }
+
+        .article-card {
+            position: relative;
+            background: linear-gradient(168deg, rgba(17, 25, 41, 0.95), rgba(11, 16, 26, 0.97));
+            border: 1px solid var(--border-soft);
+            border-radius: var(--radius-md);
+            padding: 22px 24px;
+            transition: transform 0.24s var(--ease-smooth), border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
+            box-shadow: var(--shadow-card);
+        }
+
+        .article-card::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 18px;
+            bottom: 18px;
+            width: 3px;
+            border-radius: 0 3px 3px 0;
+            background: linear-gradient(180deg, rgba(56, 189, 248, 0.65), rgba(56, 189, 248, 0));
+        }
+
+        .article-card:hover {
+            transform: translateY(-2px);
+            background: linear-gradient(168deg, rgba(21, 31, 49, 0.96), rgba(13, 19, 31, 0.98));
+            border-color: rgba(56, 189, 248, 0.28);
+            box-shadow: 0 26px 56px -34px rgba(56, 189, 248, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .article-card.sev-critical::before { background: linear-gradient(180deg, var(--severity-critical), rgba(255, 77, 94, 0)); }
+        .article-card.sev-critical:hover { border-color: rgba(255, 77, 94, 0.4); box-shadow: 0 26px 56px -32px var(--glow-critical), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+
+        .article-card.sev-high::before { background: linear-gradient(180deg, var(--severity-high), rgba(255, 148, 72, 0)); }
+        .article-card.sev-high:hover { border-color: rgba(255, 148, 72, 0.38); box-shadow: 0 26px 56px -32px var(--glow-high), inset 0 1px 0 rgba(255, 255, 255, 0.05); }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 12px;
+        }
+
+        .article-title {
+            font-size: 1.07rem;
+            font-weight: 600;
+            line-height: 1.44;
+            letter-spacing: -0.01em;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: color 0.18s ease;
+        }
+
+        .article-title:hover { color: var(--accent-blue); }
+
+        .badge-group { display: flex; align-items: center; gap: 7px; flex-wrap: wrap; justify-content: flex-end; flex-shrink: 0; }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 11px;
+            border-radius: 8px;
+            font-family: var(--font-mono);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            white-space: nowrap;
+            border: 1px solid transparent;
+        }
+
+        .badge-critical {
+            color: #ffd7db;
+            background: linear-gradient(150deg, rgba(255, 77, 94, 0.24), rgba(255, 77, 94, 0.10));
+            border-color: rgba(255, 77, 94, 0.65);
+            box-shadow: 0 0 20px -6px var(--glow-critical), inset 0 0 14px -8px rgba(255, 77, 94, 0.9);
+            text-shadow: 0 0 12px rgba(255, 77, 94, 0.55);
+            animation: glow-critical 3s ease-in-out infinite;
+        }
+
+        .badge-high {
+            color: #ffe1c7;
+            background: linear-gradient(150deg, rgba(255, 148, 72, 0.22), rgba(255, 148, 72, 0.09));
+            border-color: rgba(255, 148, 72, 0.60);
+            box-shadow: 0 0 20px -6px var(--glow-high), inset 0 0 14px -8px rgba(255, 148, 72, 0.85);
+            text-shadow: 0 0 12px rgba(255, 148, 72, 0.5);
+            animation: glow-high 3.4s ease-in-out infinite;
+        }
+
+        .badge-medium {
+            color: #fde9a9;
+            background: linear-gradient(150deg, rgba(251, 191, 36, 0.17), rgba(251, 191, 36, 0.07));
+            border-color: rgba(251, 191, 36, 0.45);
+            box-shadow: inset 0 0 12px -8px rgba(251, 191, 36, 0.8);
+        }
+
+        .badge-low {
+            color: #c6f7e3;
+            background: linear-gradient(150deg, rgba(52, 211, 153, 0.15), rgba(52, 211, 153, 0.06));
+            border-color: rgba(52, 211, 153, 0.42);
+            box-shadow: inset 0 0 12px -8px rgba(52, 211, 153, 0.8);
+        }
+
+        .badge-kev {
+            color: #ffd9ee;
+            background: linear-gradient(150deg, rgba(244, 114, 182, 0.20), rgba(244, 114, 182, 0.08));
+            border-color: rgba(244, 114, 182, 0.52);
+            box-shadow: 0 0 18px -8px rgba(244, 114, 182, 0.75);
+        }
+
+        .badge-critical .badge-dot,
+        .badge-high .badge-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            box-shadow: 0 0 8px currentColor, 0 0 16px currentColor;
+            flex-shrink: 0;
+            animation: pulse-dot 1.8s ease-in-out infinite;
+        }
+
+        .article-card:hover .badge-critical,
+        .article-card:hover .badge-high,
+        .spotlight-item:hover .badge-critical,
+        .spotlight-item:hover .badge-high {
+            filter: brightness(1.15) saturate(1.08);
+        }
+
+        @keyframes glow-critical {
+            0%, 100% { box-shadow: 0 0 20px -6px var(--glow-critical), inset 0 0 14px -8px rgba(255, 77, 94, 0.9); }
+            50% { box-shadow: 0 0 30px -3px var(--glow-critical), inset 0 0 18px -6px rgba(255, 77, 94, 0.95); }
+        }
+
+        @keyframes glow-high {
+            0%, 100% { box-shadow: 0 0 20px -6px var(--glow-high), inset 0 0 14px -8px rgba(255, 148, 72, 0.85); }
+            50% { box-shadow: 0 0 28px -4px var(--glow-high), inset 0 0 18px -6px rgba(255, 148, 72, 0.92); }
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.35; }
+        }
+
+        .meta-bar {
+            display: flex;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-secondary);
+            margin-bottom: 14px;
+            flex-wrap: wrap;
+        }
+
+        .meta-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 3px 10px;
+            border-radius: 7px;
+            border: 1px solid var(--border-soft);
+            background: rgba(148, 163, 184, 0.06);
+            line-height: 1.5;
+            transition: border-color 0.2s ease, background 0.2s ease;
+        }
+
+        .meta-item:hover { border-color: var(--border-strong); background: rgba(148, 163, 184, 0.09); }
+
+        .meta-item strong { color: #dbe7f6; font-weight: 600; }
+
+        .meta-item .e { opacity: 0.78; font-size: 0.82rem; }
+
+        .summary-bn {
+            color: #ccd9ea;
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
+            direction: ltr;
+            text-align: left;
+            border-left: 2px solid rgba(56, 189, 248, 0.22);
+            padding-left: 14px;
+            transition: border-color 0.22s ease;
+        }
+
+        .article-card:hover .summary-bn { border-left-color: rgba(56, 189, 248, 0.55); }
+
+        .tags-container { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+
+        .tag {
+            display: inline-flex;
+            align-items: center;
+            background: rgba(56, 189, 248, 0.07);
+            border: 1px solid rgba(56, 189, 248, 0.20);
+            padding: 3px 9px;
+            border-radius: 6px;
+            font-family: var(--font-mono);
+            font-size: 0.72rem;
+            letter-spacing: 0.02em;
+            color: #9ed8f5;
+            transition: background 0.18s ease, border-color 0.18s ease;
+        }
+
+        .tag:hover { background: rgba(56, 189, 248, 0.14); border-color: rgba(56, 189, 248, 0.4); }
+
+        .cve-tag {
+            background: rgba(255, 77, 94, 0.09);
+            color: #ffb3bb;
+            border-color: rgba(255, 77, 94, 0.30);
+        }
+
+        .cve-tag:hover { background: rgba(255, 77, 94, 0.16); border-color: rgba(255, 77, 94, 0.5); }
+
+        .empty-state {
+            text-align: center;
+            padding: 48px 24px;
+            border: 1px dashed var(--border-color);
+            border-radius: var(--radius-md);
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            background: rgba(148, 163, 184, 0.03);
+        }
+
+        @media (max-width: 720px) {
+            body { padding: 18px 13px 32px; }
+            header { padding: 22px; margin-bottom: 22px; }
+            .header-title h1 { font-size: 1.3rem; }
+            .card-header { flex-direction: column; align-items: flex-start; gap: 10px; }
+            .badge-group { justify-content: flex-start; }
+            .stat-card .number { font-size: 1.7rem; }
+            .spotlight-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .article-card { padding: 18px; }
+            .summary-bn { padding-left: 12px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * { animation: none !important; transition: none !important; }
+            .stat-card:hover, .article-card:hover, .spotlight-item:hover { transform: none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="brand-lockup">
+                <div class="brand-mark">🛡️</div>
+                <div class="header-title">
+                    <h1>20 Nov 2026 <span class="accent">Threat Briefing</span></h1>
+                    <div class="header-sub">
+                        <span>REPORT DATE // <strong>2026-11-20</strong></span>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <a href="../index.html" class="nav-home">← Archive Index</a>
+            </div>
+        </header>
+
+        <div class="section-label">Threat Telemetry</div>
+        <div class="stats-grid">
+            <div class="stat-card is-total">
+                <div class="stat-head">
+                    <div class="number">33</div>
+                    <div class="icon">📰</div>
+                </div>
+                <div class="label">Total Articles</div>
+            </div>
+            <div class="stat-card is-critical">
+                <div class="stat-head">
+                    <div class="number">23</div>
+                    <div class="icon">🚨</div>
+                </div>
+                <div class="label">Critical Threats</div>
+            </div>
+            <div class="stat-card is-high">
+                <div class="stat-head">
+                    <div class="number">6</div>
+                    <div class="icon">⚠️</div>
+                </div>
+                <div class="label">High Alerts</div>
+            </div>
+            <div class="stat-card is-kev">
+                <div class="stat-head">
+                    <div class="number">10</div>
+                    <div class="icon">🔥</div>
+                </div>
+                <div class="label">CISA KEV Exploited</div>
+            </div>
+        </div>
+
+        <div class="spotlight-box">
+            <h2><span class="fire">🔥</span> Top 5 Important News Today</h2>
+            <div class="spotlight-list">
+                <div class="spotlight-item"><a href="https://www.bleepingcomputer.com/news/security/vmware-patches-vcenter-zero-day-exploited-in-attacks-since-september/" target="_blank" rel="noopener noreferrer">VMware patches vCenter zero-day exploited in attacks since September</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://www.securityweek.com/newly-patched-vmware-vcenter-flaw-exploited-as-zero-day-by-chinese-apt/" target="_blank" rel="noopener noreferrer">Newly Patched VMware vCenter Flaw Exploited as Zero-Day by Chinese APT</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html" target="_blank" rel="noopener noreferrer">Critical VMware vCenter Flaw (CVSS 9.8) Lets Network Attackers Bypass Authentication</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/" target="_blank" rel="noopener noreferrer">ARMORY CASTLE Exploits vSphere | Google Cloud Blog</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+<div class="spotlight-item"><a href="https://blog.talosintelligence.com/the-internet-needs-a-nap-and-you-do-too/" target="_blank" rel="noopener noreferrer">The internet needs a nap (and you do, too)</a><span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span></div>
+            </div>
+        </div>
+
+        <div class="section-label">Full Intelligence Feed</div>
+        <div class="articles-list">
+            
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/vmware-patches-vcenter-zero-day-exploited-in-attacks-since-september/" target="_blank" rel="noopener noreferrer" class="article-title">VMware patches vCenter zero-day exploited in attacks since September</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Broadcom সম্প্রতি VMware vCenter Server-এ একটি critical authentication bypass vulnerability (CVE-2026-123890) শনাক্ত করেছে, যা সেপ্টেম্বর ২০২৬ থেকে Armory Castle নামক একটি Chinese state-sponsored Threat Actor সক্রিয়ভাবে Zero-Day হিসেবে exploit করছে। এই Vulnerability-এর মাধ্যমে একজন unauthenticated attacker নেটওয়ার্ক অ্যাক্সেস ব্যবহার করে vCenter-এ administrative access অর্জন করতে পারে এবং arbitrary commands এক্সিকিউট করতে পারে। Mandiant-এর তথ্য অনুযায়ী, আক্রমণকারীরা BeyondTrust Remote Support-এর মাধ্যমে নেটওয়ার্কে প্রবেশ করে পরবর্তীতে VMware infrastructure-এ lateral movement সম্পন্ন করেছে। Broadcom এই ত্রুটি সংশোধনের জন্য জরুরি Security Update প্রকাশ করেছে এবং ব্যবহারকারীদের দ্রুত প্যাচ করার পরামর্শ দিয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-123890</span> <span class="tag cve-tag">CVE-2026-102764</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: Broadcom</span> <span class="tag">Vendor: VMware</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/newly-patched-vmware-vcenter-flaw-exploited-as-zero-day-by-chinese-apt/" target="_blank" rel="noopener noreferrer" class="article-title">Newly Patched VMware vCenter Flaw Exploited as Zero-Day by Chinese APT</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    চীন-ভিত্তিক Threat Actor &#x27;Armory Castle&#x27; (UNC5221) VMware vCenter-এর একটি Zero-Day Vulnerability (CVE-2026-123890) ব্যবহার করে সাইবার আক্রমণ চালিয়েছে। এই Critical Vulnerability-টি ব্যবহার করে হ্যাকাররা unauthenticated অবস্থায় administrator privileges অর্জন করতে সক্ষম হয়। তারা &#x27;Bonesaw&#x27; নামক একটি custom tool ব্যবহার করে SAML signing material চুরি করে এবং backdoors ইনস্টল করে। Broadcom ইতিমধ্যে এই Vulnerability-এর জন্য patch প্রকাশ করেছে, তবে vCenter 7.x ভার্সনের জন্য কোনো patch নেই, যা ব্যবহারকারীদের জন্য বড় ঝুঁকি তৈরি করেছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-123890</span> <span class="tag cve-tag">CVE-2026-102764</span> <span class="tag cve-tag">CVE-2026-59309</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: Broadcom</span> <span class="tag">Vendor: VMware</span> <span class="tag">Vendor: BeyondTrust</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/critical-vmware-vcenter-flaw-cvss-98.html" target="_blank" rel="noopener noreferrer" class="article-title">Critical VMware vCenter Flaw (CVSS 9.8) Lets Network Attackers Bypass Authentication</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Broadcom VMware vCenter-এ একটি critical Authentication Bypass Vulnerability (CVE-2026-123890) শনাক্ত করেছে, যার CVSS স্কোর ৯.৮। এই Vulnerability-টি VMware Directory Service-এ বিদ্যমান, যা একজন Network Attacker-কে কোনো প্রকার Authentication ছাড়াই সিস্টেমে অননুমোদিত প্রবেশাধিকার দিতে পারে। বর্তমানে কোনো Workaround উপলব্ধ নেই, তাই Broadcom সংশ্লিষ্ট প্রতিষ্ঠানগুলোকে দ্রুত Patch আপডেট করার পরামর্শ দিয়েছে। এই সমস্যাটি vCenter 8.0, 9.0, 9.1 এবং VMware Cloud Foundation-সহ বিভিন্ন সংস্করণে প্রভাব ফেলছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-123890</span> <span class="tag cve-tag">CVE-2026-59309</span> <span class="tag cve-tag">CVE-2026-59310</span> <span class="tag cve-tag">CVE-2026-123891</span> <span class="tag cve-tag">CVE-2026-123892</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: Broadcom</span> <span class="tag">Vendor: VMware</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://cloud.google.com/blog/topics/threat-intelligence/armory-castle-exploits-vsphere/" target="_blank" rel="noopener noreferrer" class="article-title">ARMORY CASTLE Exploits vSphere | Google Cloud Blog</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>Google / Mandiant Threat Intel</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PRC-nexus Threat Actor ARMORY CASTLE (UNC5221) VMware vCenter Server-এ একটি Zero-Day Vulnerability (CVE-2026-123890) ব্যবহার করে সফলভাবে Authentication Bypass করেছে। এই Vulnerability-টি কাজে লাগিয়ে তারা BONESAW নামক একটি Golang-ভিত্তিক Malware ব্যবহার করে SAML Security Token Service (STS) হাইজ্যাক করেছে এবং SSO Administrator অ্যাকাউন্ট তৈরি করেছে। এছাড়া, তারা BeyondTrust Remote Support-এর একটি Zero-Day Vulnerability ব্যবহার করে প্রাথমিক অ্যাক্সেস লাভ করে এবং পরবর্তীতে vCenter এনভায়রনমেন্টে Lateral Movement ও Data Exfiltration সম্পন্ন করে। Broadcom-এর পক্ষ থেকে এই Vulnerability-র জন্য প্যাচ রিলিজ করা হয়েছে এবং দ্রুত তা প্রয়োগ করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-102764</span> <span class="tag cve-tag">CVE-2026-123890</span> <span class="tag">CVSS: 9.8</span> <span class="tag">Vendor: Broadcom</span> <span class="tag">Vendor: VMware</span> <span class="tag">Vendor: BeyondTrust</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://blog.talosintelligence.com/the-internet-needs-a-nap-and-you-do-too/" target="_blank" rel="noopener noreferrer" class="article-title">The internet needs a nap (and you do, too)</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>Cisco Talos</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Cisco Talos সম্প্রতি OpenJDK-এ একটি critical Vulnerability শনাক্ত করেছে, যা CVE-2026-114938 হিসেবে চিহ্নিত। এই Vulnerability-টি CVSS 4.0 স্কোর ৯.২ এবং এটি নির্দিষ্ট x86-64 প্রসেসর (AVX-512 VBMI সাপোর্টসহ) চালিত Java Virtual Machines-এ unauthenticated Remote Code Execution (RCE) ঘটাতে সক্ষম। যদিও বর্তমানে কোনো in-the-wild exploitation পরিলক্ষিত হয়নি, তবে Intel এবং AMD প্রসেসর ব্যবহারের কারণে এর বিশাল attack surface রয়েছে। নিরাপত্তা নিশ্চিত করতে সিস্টেমের পরিবেশ সম্পর্কে সচেতন থাকা এবং নিয়মিত Patching ও Telemetry পর্যবেক্ষণের ওপর গুরুত্ব দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">CVSS: 8.1</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: Intel</span> <span class="tag">Vendor: AMD</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/php-warns-of-critical-security-flaws.html" target="_blank" rel="noopener noreferrer" class="article-title">PHP Warns of Critical Security Flaws Affecting All Supported Versions, Fixes Coming November 19</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PHP মেইনটেইনাররা একটি আসন্ন সিকিউরিটি রিলিজের ঘোষণা দিয়েছেন যা সমস্ত সমর্থিত PHP ভার্সনে বিদ্যমান Critical Vulnerability সমাধান করবে। এই আপডেটে মূলত CVE-2026-115560 নামক একটি Remote Code Execution (RCE) ফ্ল-কে অ্যাড্রেস করা হবে, যা নির্দিষ্ট কনফিগারেশনে সক্রিয় হতে পারে। ব্যবহারকারীদের পরামর্শ দেওয়া হয়েছে যে, প্যাচ রিলিজ না হওয়া পর্যন্ত session.upload_progress.enabled=0 কনফিগার করে ঝুঁকি কমানোর জন্য। এছাড়া, সাম্প্রতিক সময়ে PHP2Shell এবং Node2Shell-এর মতো ক্রিটিক্যাল ইস্যুগুলো সক্রিয়ভাবে এক্সপ্লয়েট হওয়ার প্রেক্ষাপটে এই আপডেটটি অত্যন্ত গুরুত্বপূর্ণ।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-115560</span> <span class="tag cve-tag">CVE-2026-109618</span> <span class="tag cve-tag">CVE-2026-109619</span> <span class="tag cve-tag">CVE-2026-111497</span> <span class="tag">CVSS: 8.1</span> <span class="tag">Vendor: PHP</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/php-patches-seven-critical-rce-vulnerabilities/" target="_blank" rel="noopener noreferrer" class="article-title">PHP Patches Seven Critical RCE Vulnerabilities</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PHP সম্প্রতি সাতটি critical-severity Remote Code Execution (RCE) Vulnerability সমাধানের জন্য নিরাপত্তা প্যাচ প্রকাশ করেছে। এই Vulnerability গুলোর মধ্যে রয়েছে Use-after-free, deserialization issues এবং PHP-FPM request smuggling, যা একজন Threat Actor-কে সার্ভারে arbitrary code execution করার সুযোগ দিতে পারে। PHP তাদের সর্বশেষ ভার্সনগুলোতে (যেমন PHP 8.6.0, 8.5.13, 8.4.28, 8.3.37 এবং 8.2.36) এই ত্রুটিগুলো সংশোধন করেছে, তাই ব্যবহারকারীদের দ্রুত তাদের সিস্টেম আপডেট করার পরামর্শ দেওয়া হচ্ছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-115560</span> <span class="tag cve-tag">CVE-2026-129481</span> <span class="tag cve-tag">CVE-2026-109619</span> <span class="tag cve-tag">CVE-2026-129182</span> <span class="tag cve-tag">CVE-2026-129474</span> <span class="tag cve-tag">CVE-2026-126714</span> <span class="tag cve-tag">CVE-2026-129289</span> <span class="tag cve-tag">CVE-2026-129496</span> <span class="tag">CVSS: 8.1</span> <span class="tag">Vendor: PHP</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/java4shell-exploitation-attempts-begin-as-vendors-rush-out-advisories/" target="_blank" rel="noopener noreferrer" class="article-title">Java4Shell Exploitation Attempts Begin as Vendors Rush Out Advisories</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    OpenJDK 17.0.6 এবং তার পরবর্তী ভার্সনগুলোতে একটি নতুন Memory Corruption Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-114938 নামে পরিচিত। এই Java4Shell ত্রুটিটি মূলত x86-64 প্রসেসরে AVX-512 VBMI ফিচারের মাধ্যমে Remote Code Execution (RCE) ঘটাতে সক্ষম। Threat Actors ইতিমধ্যে ইন্টারনেট জুড়ে এই Vulnerability-এর জন্য Scanning শুরু করেছে এবং বিভিন্ন Enterprise Application যেমন Jira, Confluence, Jenkins, এবং Cisco-এর বিভিন্ন প্রোডাক্টকে লক্ষ্যবস্তু করছে। যদিও এখন পর্যন্ত কোনো বড় ধরনের সফল আক্রমণের খবর পাওয়া যায়নি, তবে গবেষকরা সতর্ক করেছেন যে Attackers দ্রুত তাদের Exploit-এর কার্যকারিতা বাড়ানোর চেষ্টা করছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114938</span> <span class="tag">CVSS: 8.1</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: OpenJDK</span> <span class="tag">Vendor: Atlassian</span> <span class="tag">Vendor: Jenkins</span> <span class="tag">Vendor: Keycloak</span> <span class="tag">Vendor: Cisco</span> <span class="tag">Vendor: Siemens</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/everything-is-web-application-including.html" target="_blank" rel="noopener noreferrer" class="article-title">Everything Is a Web Application, Including Your Firewall</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Palo Alto Networks-এর PAN-OS ম্যানেজমেন্ট ইন্টারফেসে দুটি গুরুতর PHP Vulnerability (CVE-2026-109618 এবং CVE-2026-109619) শনাক্ত করা হয়েছে, যা Threat Actor-দের Authentication ছাড়াই Remote Code Execution করার সুযোগ দেয়। আক্রমণকারীরা এই Vulnerability-গুলো এবং Fragnesia (CVE-2026-46300) নামক একটি Linux kernel flaw ব্যবহার করে বিভিন্ন দেশের ফায়ারওয়াল ডিভাইসে Root access অর্জন করেছে। যেহেতু এই ধরনের Appliances-এ একই ধরনের Software এবং predictable memory layout থাকে, তাই আক্রমণকারীরা সহজেই ASLR-এর মতো সুরক্ষা ব্যবস্থা বাইপাস করতে সক্ষম হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-109618</span> <span class="tag cve-tag">CVE-2026-109619</span> <span class="tag cve-tag">CVE-2026-46300</span> <span class="tag">CVSS: 8.1</span> <span class="tag">Vendor: Palo Alto Networks</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/phpaftershell-explained-how-hackers.html" target="_blank" rel="noopener noreferrer" class="article-title">phpAfterShell Explained: How Hackers Could Turn a PHP Session Flaw Into Code Execution</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PHP-তে একটি নতুন Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-126714 নামে পরিচিত এবং এটি phpAfterShell নামে পরিচিত। এই ত্রুটিটি PHP-এর ডিফল্ট file-based session storage হ্যান্ডলারের মাধ্যমে কাজ করে, যেখানে একজন Attacker সেশন রাইট প্রসেস বাধাগ্রস্ত করে ক্ষতিকারক অবজেক্ট ইনজেক্ট করতে পারে। যদি অ্যাপ্লিকেশনটিতে উপযুক্ত gadget chain থাকে, তবে এটি Remote Code Execution-এর সুযোগ তৈরি করে। এই সমস্যাটি সমাধানের জন্য PHP-এর লেটেস্ট ভার্সনে আপডেট করা এবং প্রয়োজনে session.upload_progress.enabled সেটিংসটি বন্ধ রাখার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-126714</span> <span class="tag">Vendor: PHP</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/transport-for-london-breach-exposes-265-000-oyster-card-users-data/" target="_blank" rel="noopener noreferrer" class="article-title">Transport for London breach exposes 265,000 Oyster card users&#x27; data</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Data Breach</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Transport for London (TfL) একটি বড় ধরনের Data Breach-এর শিকার হয়েছে, যার ফলে প্রায় ২৬৫,০০০ Oyster photocard গ্রাহকের ব্যক্তিগত তথ্য ফাঁস হওয়ার ঝুঁকি তৈরি হয়েছে। Threat Actor-রা TfL-এর mail system ব্যবহার করে গ্রাহকদের কাছে বিভ্রান্তিকর ইমেইল পাঠিয়েছে, যার মাধ্যমে তারা Security questions এবং answers-এর মতো সংবেদনশীল তথ্য হাতিয়ে নিয়েছে। যদিও TfL জানিয়েছে যে কোনো Payment card বা Password ফাঁস হয়নি, তবুও এই ধরনের তথ্য চুরির ফলে ভবিষ্যতে Phishing বা Account takeover-এর মতো ঝুঁকির সম্ভাবনা রয়েছে। TfL বর্তমানে ঘটনাটি নিয়ন্ত্রণে এনেছে এবং সংশ্লিষ্ট কর্তৃপক্ষকে বিষয়টি অবহিত করেছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Transport for London</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/threatsday-gpt-62-jailbreak-flaws.html" target="_blank" rel="noopener noreferrer" class="article-title">ThreatsDay: GPT-6.2 Jailbreak Flaws, BubbleLoader PNG Malware, $500M Ransom Demands + 17 More Stories</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    এই প্রতিবেদনে AI প্রযুক্তির দ্রুত বিবর্তন এবং সাইবার নিরাপত্তার ক্ষেত্রে এর প্রভাব নিয়ে আলোচনা করা হয়েছে। Google তাদের নতুন Gemini 4 Neon মডেল উন্মোচন করেছে যা কোড হার্ডেনিং এবং Vulnerability শনাক্তকরণে দক্ষ। অন্যদিকে, OpenAI তাদের GPT-6.2 Astra এবং GPT-6.2 Sol মডেল নিয়ে এসেছে, যা সাইবার সক্ষমতা বৃদ্ধিতে সহায়ক। তবে, U.K. AI Security Institute (AISI) OpenAI-এর এই মডেলগুলোতে একটি universal jailbreak শনাক্ত করেছে, যা AI সিস্টেমের নিরাপত্তা ঝুঁকি এবং Threat Actor-দের নতুন কৌশলের দিকে আলোকপাত করে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Google</span> <span class="tag">Vendor: OpenAI</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/splunk-patches-nearly-140-flaws-across-three-core-products/" target="_blank" rel="noopener noreferrer" class="article-title">Splunk Patches Nearly 140 Flaws Across Three Core Products</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Splunk তাদের Enterprise, Enterprise Security এবং SOAR প্রোডাক্টগুলোতে প্রায় ১৪০টি Vulnerability সমাধানের জন্য প্যাচ রিলিজ করেছে। এর মধ্যে বেশ কয়েকটি Critical এবং High-severity ত্রুটি রয়েছে, যা Remote Code Execution (RCE), Authentication Bypass, এবং Denial-of-Service (DoS) আক্রমণের সুযোগ তৈরি করতে পারে। CVE-2026-76536, CVE-2026-76535, CVE-2026-131202, CVE-2026-131253 এবং CVE-2026-131287 এর মতো গুরুত্বপূর্ণ ত্রুটিগুলো সমাধানের জন্য ব্যবহারকারীদের দ্রুত সংশ্লিষ্ট ভার্সনে আপডেট করার পরামর্শ দেওয়া হচ্ছে। বর্তমানে এই Vulnerability গুলো Exploited হওয়ার কোনো প্রমাণ পাওয়া যায়নি।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-76536</span> <span class="tag cve-tag">CVE-2026-76535</span> <span class="tag cve-tag">CVE-2026-131202</span> <span class="tag cve-tag">CVE-2026-131253</span> <span class="tag cve-tag">CVE-2026-131287</span> <span class="tag">Vendor: Splunk</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/ruby-releases-fixes-for-7-regex-and.html" target="_blank" rel="noopener noreferrer" class="article-title">Ruby Releases Fixes for 7 Regex and String Flaws, Warns 5 Have Proof-of-Concept RCE</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Ruby-তে সাতটি মেমোরি-সেফটি Vulnerability শনাক্ত করা হয়েছে, যার মধ্যে পাঁচটি Remote Code Execution (RCE) ঘটাতে সক্ষম বলে Proof-of-Concept (PoC) পাওয়া গেছে। এই ত্রুটিগুলো মূলত Ruby-এর regular expression engine এবং string case-conversion কোডের সাথে সম্পর্কিত। এর ফলে Heap Overflow, Double Free এবং Out-of-bounds read-এর মতো সমস্যা তৈরি হতে পারে। এই ঝুঁকি মোকাবিলায় Ruby maintainers ইতিমধ্যে Ruby 4.0.10, 3.4.13 এবং 3.3.14 ভার্সনগুলো রিলিজ করেছে। ব্যবহারকারীদের দ্রুত তাদের অ্যাপ্লিকেশন আপডেট করার পরামর্শ দেওয়া হচ্ছে, বিশেষ করে যদি অ্যাপ্লিকেশনটি বাইরের ইনপুট থেকে regular expression বা string manipulation করে থাকে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Ruby</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/researcher-demonstrates-database-rce.html" target="_blank" rel="noopener noreferrer" class="article-title">Researcher Demonstrates Database RCE Exploits Affecting PostgreSQL, MySQL and Oracle</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    গবেষক Zheng Yu সম্প্রতি PostgreSQL, MySQL, Oracle এবং ClickHouse-এর মতো জনপ্রিয় database সিস্টেমে গুরুতর Memory-corruption Vulnerability শনাক্ত করেছেন। এই Vulnerability-গুলো ব্যবহার করে একজন Low-privilege ব্যবহারকারী বা কোনো Authentication ছাড়াই Remote Code Execution (RCE) সম্পন্ন করতে সক্ষম। এই আক্রমণগুলো মূলত database ইঞ্জিনের C এবং C++ কোডের ত্রুটিকে কাজে লাগিয়ে সার্ভারের নিয়ন্ত্রণ নিতে পারে। যদিও এখন পর্যন্ত কোনো বাস্তব আক্রমণের প্রমাণ পাওয়া যায়নি, তবে সংশ্লিষ্ট ভেন্ডররা ইতিমধ্যে Security Patch প্রকাশ করেছে। ব্যবহারকারীদের দ্রুত আপডেট ইনস্টল করার এবং অপ্রয়োজনীয় TEMPORARY privilege বা টেবিল তৈরির অনুমতি সীমিত করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-116331</span> <span class="tag cve-tag">CVE-2026-101786</span> <span class="tag cve-tag">CVE-2026-114819</span> <span class="tag cve-tag">CVE-2026-91609</span> <span class="tag">Vendor: PostgreSQL</span> <span class="tag">Vendor: MySQL</span> <span class="tag">Vendor: Oracle</span> <span class="tag">Vendor: ClickHouse</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/php-security-updates-fix-18-flaws-including-critical-rce-bugs/" target="_blank" rel="noopener noreferrer" class="article-title">PHP security updates fix 18 flaws, including critical RCE bugs</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PHP ডেভেলপমেন্ট টিম ১৮টি নতুন Vulnerability সমাধানের জন্য সিকিউরিটি আপডেট প্রকাশ করেছে, যার মধ্যে বেশ কিছু Critical RCE বা Remote Code Execution ত্রুটি রয়েছে। বিশেষ করে CVE-2026-129289 নামক একটি PHP-FPM রিকোয়েস্ট স্মাগলিং ত্রুটির CVSS স্কোর ৯.২, যা unauthenticated অ্যাটাকারদের সার্ভারে কোড এক্সিকিউট করার সুযোগ করে দিতে পারে। এছাড়া Use-after-free, সেশন সিরিয়ালাইজার মিসম্যাচ এবং অন্যান্য মেমোরি করাপশন ইস্যু সমাধানের জন্য PHP 8.5.13, 8.4.28, 8.3.37 এবং 8.2.36 ভার্সনগুলো আপডেট করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-129289</span> <span class="tag cve-tag">CVE-2026-129474</span> <span class="tag cve-tag">CVE-2026-129496</span> <span class="tag cve-tag">CVE-2026-126714</span> <span class="tag cve-tag">CVE-2026-115560</span> <span class="tag cve-tag">CVE-2026-129291</span> <span class="tag cve-tag">CVE-2026-128090</span> <span class="tag">Vendor: PHP</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/php-fixes-7-critical-flaws-including.html" target="_blank" rel="noopener noreferrer" class="article-title">PHP Fixes 7 Critical Flaws, Including Bugs That Could Allow Remote Code Execution</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    PHP Foundation তাদের সমর্থিত PHP ভার্সনগুলোর জন্য গুরুত্বপূর্ণ সিকিউরিটি আপডেট প্রকাশ করেছে, যা মূলত সাতটি Critical Vulnerability সমাধান করে। এই ত্রুটিগুলোর মধ্যে রয়েছে Remote Code Execution, Memory Corruption, Denial-of-Service এবং Local Privilege Escalation-এর মতো ঝুঁকি। CVE-2026-115560 সহ অন্যান্য Vulnerability-গুলো Improper Input Validation, Use-After-Free এবং TOCTOU-এর মতো টেকনিকের মাধ্যমে Exploitation হতে পারে। ব্যবহারকারীদের দ্রুত তাদের PHP এনভায়রনমেন্ট লেটেস্ট ভার্সনে আপডেট করার পরামর্শ দেওয়া হচ্ছে যাতে সম্ভাব্য সাইবার আক্রমণ থেকে সিস্টেম সুরক্ষিত থাকে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-115560</span> <span class="tag cve-tag">CVE-2026-129182</span> <span class="tag cve-tag">CVE-2026-126714</span> <span class="tag cve-tag">CVE-2026-129289</span> <span class="tag cve-tag">CVE-2026-129474</span> <span class="tag cve-tag">CVE-2026-129481</span> <span class="tag cve-tag">CVE-2026-129496</span> <span class="tag cve-tag">CVE-2026-129291</span> <span class="tag">Vendor: PHP Foundation</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/hackers-steal-data-of-16-million-sbc-medical-group-customers/" target="_blank" rel="noopener noreferrer" class="article-title">Hackers steal data of 1.6 million SBC Medical Group customers</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Data Breach</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    SBC Medical Group সম্প্রতি দুটি পৃথক cybersecurity incident-এর শিকার হয়েছে, যার ফলে প্রায় ১.৬ মিলিয়ন গ্রাহক এবং কর্মচারীর ব্যক্তিগত তথ্য ফাঁস হয়েছে। প্রথম ঘটনায় তাদের নিজস্ব ডাটাবেস থেকে গ্রাহকদের তথ্য চুরি হয়েছে এবং দ্বিতীয় ঘটনায় Tribeau নামক একটি third-party booking platform-এর administrator account compromise হয়েছে। এই Data Breach-এর ফলে রোগীদের ব্যক্তিগত তথ্য, reservation request, এবং কর্মচারীদের account credentials সহ সংবেদনশীল তথ্য exposed হয়েছে। বর্তমানে কোম্পানিটি এই ঘটনার তদন্ত করছে এবং কোনো Data misuse-এর প্রমাণ এখনো পাওয়া যায়নি।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: SBC Medical Group</span> <span class="tag">Vendor: Tribeau</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/hackers-exploit-cisco-expressway-vulnerability-soon-after-poc-release/" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Exploit Cisco Expressway Vulnerability Soon After PoC Release</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Cisco Expressway-এর একটি critical Vulnerability (CVE-2026-76466) ব্যবহার করে হ্যাকাররা একটি প্রতিষ্ঠানে সফলভাবে সাইবার আক্রমণ চালিয়েছে। PoC কোড GitHub-এ প্রকাশের পরপরই Threat Actor-রা এই Zero-Day Exploitation শুরু করে, যা মূলত Expressway Core এবং Expressway Edge-এর clustered ডিভাইসে root-level Remote Code Execution-এর সুযোগ তৈরি করে। আক্রমণকারীরা এই Vulnerability ব্যবহার করে সিস্টেমের নিয়ন্ত্রণ নিয়ে Lateral Movement-এর মাধ্যমে sensitive তথ্য চুরি এবং credential সংগ্রহের চেষ্টা করেছে। Cisco এই সমস্যার সমাধানে Expressway X15.5.20 আপডেট প্রকাশ করেছে এবং ব্যবহারকারীদের দ্রুত প্যাচ করার পরামর্শ দিয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-76466</span> <span class="tag">Vendor: Cisco</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/five-warning-signs-of-ransomware-breach-before-encryption-or-data-theft/" target="_blank" rel="noopener noreferrer" class="article-title">Five warning signs of ransomware breach before encryption or data theft</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    এই নিবন্ধে Ransomware আক্রমণের প্রাথমিক পর্যায়গুলো শনাক্ত করার গুরুত্ব তুলে ধরা হয়েছে। সাধারণত Ransomware আক্রমণের ক্ষেত্রে ফাইল এনক্রিপশন বা ডেটা চুরির আগেই Threat Actor-রা নেটওয়ার্কে প্রবেশ করে, Privilege Escalation, Lateral Movement এবং Defense Evasion-এর মতো ক্ষতিকর কার্যক্রম চালায়। তাই শুধুমাত্র এনক্রিপশন শনাক্ত না করে, বরং আক্রমণের পূর্ববর্তী সংকেত যেমন—সিকিউরিটি সার্ভিস টেম্পারিং, অস্বাভাবিক ডেটা এক্সফিলট্রেশন এবং রিকভারি সাবোটাজ শনাক্ত করার ওপর জোর দেওয়া হয়েছে। Acronis Cyber Platform-এর মতো EDR এবং MDR টুল ব্যবহার করে এই ধরনের সন্দেহজনক আচরণ আগেভাগেই শনাক্ত ও প্রতিরোধ করা সম্ভব।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Acronis</span> <span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/f5-patches-critical-nginx2root-flaws-as-poc-exploits-go-public/" target="_blank" rel="noopener noreferrer" class="article-title">F5 Patches Critical NGINX2Root Flaws as PoC Exploits Go Public</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    F5 সম্প্রতি NGINX-এ পাঁচটি critical-severity Vulnerability শনাক্ত করেছে, যা সম্মিলিতভাবে NGINX2Root নামে পরিচিত। এই Vulnerability-গুলো unauthenticated Remote Code Execution (RCE) ঘটাতে সক্ষম, যা সার্ভারের সম্পূর্ণ নিয়ন্ত্রণ নিতে পারে। CVE-2026-123007 সহ অন্যান্য ত্রুটিগুলো HTTP/2 এবং mail proxy কনফিগারেশনের মাধ্যমে Exploitation করা সম্ভব। যেহেতু এই Vulnerability-গুলোর জন্য PoC Exploit বর্তমানে অনলাইনে সহজলভ্য, তাই Threat Actor-দের দ্বারা আক্রমণের ঝুঁকি অনেক বেশি। F5 ইতিমধ্যে NGINX Open Source এবং NGINX Plus-এর জন্য প্যাচ প্রকাশ করেছে, তাই দ্রুত সিস্টেম আপডেট করা অত্যন্ত জরুরি।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-113425</span> <span class="tag cve-tag">CVE-2026-121810</span> <span class="tag cve-tag">CVE-2026-123007</span> <span class="tag cve-tag">CVE-2026-123633</span> <span class="tag cve-tag">CVE-2026-123634</span> <span class="tag">Vendor: F5</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/drupal-patches-critical-rce-flaw-warns-exploits-may-surface-quickly/" target="_blank" rel="noopener noreferrer" class="article-title">Drupal patches critical RCE flaw, warns exploits may surface quickly</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Drupal সম্প্রতি একটি critical Remote Code Execution (RCE) Vulnerability (CVE-2026-132165) শনাক্ত করেছে, যা anonymous ব্যবহারকারীদের সাইট টেকওভার বা পুনরায় ইনস্টল করার সুযোগ করে দিতে পারে। এছাড়া, একটি gadget chain vulnerability (CVE-2026-132166) চিহ্নিত করা হয়েছে যা admin privileges ব্যবহার করে RCE ঘটাতে সক্ষম। Drupal Security Team দ্রুত প্যাচ আপডেট করার পরামর্শ দিয়েছে, কারণ এই Vulnerability গুলোর Exploit দ্রুত ছড়িয়ে পড়ার সম্ভাবনা রয়েছে। যারা তাৎক্ষণিকভাবে আপডেট করতে পারছেন না, তাদের ওয়েব সার্ভার কনফিগারেশনে /core/install.php ফাইলটি ব্লক করার নির্দেশনা দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-132165</span> <span class="tag cve-tag">CVE-2026-132166</span> <span class="tag cve-tag">CVE-2026-9082</span> <span class="tag cve-tag">CVE-2026-118539</span> <span class="tag">Vendor: Drupal</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/drupal-patches-critical-installer-flaw.html" target="_blank" rel="noopener noreferrer" class="article-title">Drupal Patches Critical Installer Flaw That Could Give Unauthenticated Attackers Control of Sites</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Drupal-এর core-এ একটি critical Vulnerability (CVE-2026-132165) শনাক্ত করা হয়েছে, যা একজন unauthenticated Threat Actor-কে সাইট পুনরায় ইনস্টল করার সুযোগ দিতে পারে। এই ত্রুটির ফলে Remote Code Execution বা সাইট Takeover হওয়ার ঝুঁকি রয়েছে। যদিও এটি Exploitation-এর জন্য নির্দিষ্ট কিছু শর্তের প্রয়োজন, তবুও Drupal Security Team দ্রুত প্যাচ আপডেট করার পরামর্শ দিয়েছে। এছাড়া, নিরাপত্তার খাতিরে /core/install.php ফাইলটি ব্লক বা রিমুভ করার জন্য নির্দেশ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-132165</span> <span class="tag">Vendor: Drupal</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/critical-nginx-nginx2root-bugs-let-attackers-hijack-servers/" target="_blank" rel="noopener noreferrer" class="article-title">Critical NGINX ‘NGINX2Root’ bugs let attackers hijack servers</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    NGINX-এ আবিষ্কৃত &#x27;nginx2root&#x27; নামক দুটি critical Vulnerability সার্ভারে unauthenticated Remote Code Execution (RCE) করার সুযোগ তৈরি করে। গবেষকরা দেখিয়েছেন যে, এই HTTP/2 ত্রুটিগুলোকে একটি Linux kernel bug-এর সাথে চেইন করে সহজেই root access পাওয়া সম্ভব। এছাড়া, F5 আরও বেশ কিছু Use-after-free এবং Denial of Service (DoS) সংক্রান্ত Vulnerability শনাক্ত করেছে। এই ঝুঁকি এড়াতে NGINX Open Source এবং NGINX Plus ব্যবহারকারীদের দ্রুত লেটেস্ট ভার্সনে আপডেট করার পরামর্শ দেওয়া হয়েছে অথবা সাময়িকভাবে HTTP/2 ডিজেবল করে রাখার নির্দেশনা দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-123007</span> <span class="tag cve-tag">CVE-2026-123633</span> <span class="tag cve-tag">CVE-2026-121810</span> <span class="tag cve-tag">CVE-2026-123634</span> <span class="tag cve-tag">CVE-2026-113425</span> <span class="tag cve-tag">CVE-2026-118899</span> <span class="tag">Vendor: F5</span> <span class="tag">Vendor: NGINX</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/critical-apache-roller-axis-vulnerabilities-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="article-title">Critical Apache Roller, Axis Vulnerabilities Exploited in Attacks</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Apache-এর দুটি গুরুত্বপূর্ণ সফটওয়্যার, Apache Axis এবং Apache Roller-এ গুরুতর Vulnerability শনাক্ত করা হয়েছে যা বর্তমানে সক্রিয়ভাবে Exploited হচ্ছে। CVE-2026-90436 (Apache Axis) একটি Unsafe reflection Vulnerability, যা Remote Code Execution-এর সুযোগ দেয় এবং এটি CISA-এর KEV তালিকায় যুক্ত হয়েছে। অন্যদিকে, Apache Roller-এর CVE-2026-129448 একটি Unsafe deserialization ত্রুটি, যা Unauthenticated Remote Code Execution ঘটাতে সক্ষম। এই Vulnerability-গুলো ব্যবহার করে Threat Actor-রা Atlassian Confluence এবং N-central-এর মতো সিস্টেমে অননুমোদিত প্রবেশ ও ডেটা চুরির চেষ্টা চালাচ্ছে। ব্যবহারকারীদের দ্রুত সংশ্লিষ্ট প্যাচ বা আপডেট ভার্সনে মাইগ্রেট করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-90436</span> <span class="tag cve-tag">CVE-2026-129448</span> <span class="tag cve-tag">CVE-2026-82384</span> <span class="tag">Vendor: Apache</span> <span class="tag">Vendor: Atlassian</span> <span class="tag">Vendor: N-able</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/cisa-warns-of-4-exploited-flaws-linked.html" target="_blank" rel="noopener noreferrer" class="article-title">CISA Warns of 4 Exploited Flaws Linked to Ransomware, Cryptomining, and LLMjacking Attacks</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev">🔥 KEV EXPLOITED</span>
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    CISA তাদের KEV ক্যাটালগে চারটি নতুন Vulnerability যুক্ত করেছে যা বর্তমানে Ransomware, Cryptomining এবং LLMjacking আক্রমণের জন্য সক্রিয়ভাবে ব্যবহৃত হচ্ছে। এই Vulnerability গুলো Apache Axis, REDCap, LiteLLM এবং Synology DSM-এর মতো গুরুত্বপূর্ণ সফটওয়্যারে বিদ্যমান, যা Remote Code Execution (RCE) এর ঝুঁকি তৈরি করে। Threat Actor-রা এই সুযোগ কাজে লাগিয়ে সার্ভারে ক্ষতিকারক স্ক্রিপ্ট চালানো, ডেটা চুরি এবং অভ্যন্তরীণ নেটওয়ার্ক এনুমেরেশনের মতো কাজ করছে। ব্যবহারকারীদের দ্রুত প্যাচ আপডেট করার পরামর্শ দেওয়া হয়েছে যাতে এই ধরনের Zero-Day বা সক্রিয় Exploit থেকে সিস্টেম সুরক্ষিত থাকে।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-90436</span> <span class="tag cve-tag">CVE-2026-90817</span> <span class="tag cve-tag">CVE-2026-40217</span> <span class="tag cve-tag">CVE-2024-10441</span> <span class="tag">Vendor: Apache</span> <span class="tag">Vendor: Vanderbilt University</span> <span class="tag">Vendor: BerriAI</span> <span class="tag">Vendor: Synology</span> <span class="tag">Vendor: Atlassian</span></div>
+            </div>
+            
+
+            <div class="article-card sev-critical">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/security/asus-warns-of-critical-hard-coded-key-flaw-in-control-center-express/" target="_blank" rel="noopener noreferrer" class="article-title">ASUS warns of critical hard-coded key flaw in Control Center Express</a>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    ASUS তাদের Control Center Express, Control Center Enterprise এবং Armoury Crate সফটওয়্যারে বেশ কিছু critical Vulnerability শনাক্ত করেছে। এর মধ্যে CVE-2026-114202 নামক একটি Vulnerability-তে hard-coded cryptographic key ব্যবহারের ফলে unauthenticated remote attacker-রা সহজেই administrative control নিতে পারে। এছাড়া অন্যান্য Vulnerability-গুলোর মাধ্যমে Privilege Escalation এবং unauthorized account creation-এর ঝুঁকি রয়েছে। ব্যবহারকারীদের দ্রুত v1.7.29 বা সংশ্লিষ্ট লেটেস্ট ভার্সনে আপডেট করার পরামর্শ দেওয়া হয়েছে যাতে এই Exploit-গুলো থেকে সুরক্ষা পাওয়া যায়।
+                </div>
+                <div class="tags-container"><span class="tag cve-tag">CVE-2026-114202</span> <span class="tag cve-tag">CVE-2026-114204</span> <span class="tag cve-tag">CVE-2026-114205</span> <span class="tag cve-tag">CVE-2026-126574</span> <span class="tag cve-tag">CVE-2026-112115</span> <span class="tag">Vendor: ASUS</span></div>
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/the-governance-gap-in-open-weight-ai-and-what-to-do-about-it/" target="_blank" rel="noopener noreferrer" class="article-title">The Governance Gap in Open-Weight AI and What to Do About It</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    বর্তমানে এন্টারপ্রাইজগুলোতে Open-weight AI মডেলের ব্যবহার দ্রুত বৃদ্ধি পাচ্ছে, যা প্রতিষ্ঠানের জন্য নতুন ধরনের Security ঝুঁকি তৈরি করছে। নিজস্ব ইনফ্রাস্ট্রাকচারে এই মডেলগুলো রান করার ফলে Trojan horse, ম্যালিসিয়াস কোড এক্সিকিউশন এবং ব্যাকডোর আক্রমণের সম্ভাবনা বাড়ছে। এছাড়া, মডেলের ভার্সন কন্ট্রোল এবং নিয়মিত আপডেট না করার ফলে Attack surface বড় হচ্ছে, যা প্রতিষ্ঠানের ডেটা সিকিউরিটি এবং Governance-এর জন্য বড় চ্যালেঞ্জ হয়ে দাঁড়িয়েছে।
+                </div>
+                
+            </div>
+            
+
+            <div class="article-card sev-high">
+                <div class="card-header">
+                    <a href="https://thehackernews.com/2026/11/n-able-confirms-hackers-accessed-cloud.html" target="_blank" rel="noopener noreferrer" class="article-title">Hackers Breach N-able Cloud Server, Disrupting Email Security Management Across 3 Regions</a>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>The Hacker News</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Data Breach</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    N-able সম্প্রতি তাদের Mail Assure এবং Spam Experts Hosted Cloud সার্ভারে একটি অননুমোদিত অ্যাক্সেসের ঘটনা নিশ্চিত করেছে, যার ফলে বিশ্বব্যাপী তিনটি অঞ্চলে ম্যানেজমেন্ট ইন্টারফেস এবং API পরিষেবাগুলো ব্যাহত হয়েছে। Threat Actor-দের এই অনুপ্রবেশের কারণে কোম্পানিটি তাদের সিস্টেমের নিরাপত্তা জোরদার করার কাজ করছে। যদিও মূল মেইল ফিল্টারিং পরিষেবাগুলো সচল রয়েছে, তবে ম্যানেজমেন্ট পোর্টাল, কোয়ারেন্টাইন এবং লগিং ফিচারগুলো বর্তমানে অফলাইন রাখা হয়েছে। কোম্পানিটি জানিয়েছে যে এখন পর্যন্ত গ্রাহকের ডেটা বা মেইলবক্সের তথ্য Compromise হওয়ার কোনো প্রমাণ পাওয়া যায়নি এবং তারা ক্ষতিগ্রস্ত পরিষেবাগুলো পুনরুদ্ধারে কাজ করে যাচ্ছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: N-able</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/nvidia-responds-to-gentlemen-ransomware-claim/" target="_blank" rel="noopener noreferrer" class="article-title">Nvidia Responds to Gentlemen Ransomware Claim</a>
+                    <div class="badge-group">
+                        <span class="badge badge-medium">MEDIUM (95/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Ransomware</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Gentlemen নামক একটি Ransomware গ্রুপ তাদের ডাটা লিক ওয়েবসাইটে Nvidia-এর নাম উল্লেখ করে একটি সাইবার হামলার দাবি করেছে। তবে Nvidia জানিয়েছে যে, তাদের নিজস্ব সিস্টেম বা নেটওয়ার্কে কোনো ধরনের Breach-এর প্রমাণ পাওয়া যায়নি। কোম্পানিটি ধারণা করছে যে, এই ঘটনাটি তাদের কোনো থার্ড-পার্টি পার্টনারের সিস্টেমের সাথে সম্পর্কিত হতে পারে। Microsoft এই Threat Actor-কে Storm-2697 হিসেবে চিহ্নিত করেছে, যারা মূলত Double-extortion মডেল ব্যবহার করে থাকে। বর্তমানে Nvidia বিষয়টি তদন্ত করছে এবং পরিস্থিতি পর্যবেক্ষণ করছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Nvidia</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-tests-new-edge-lockdown-mode-that-disables-gpu-apis/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft tests new Edge Lockdown Mode that disables GPU APIs</a>
+                    <div class="badge-group">
+                        <span class="badge badge-medium">MEDIUM (90/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Advisory</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Microsoft তাদের Edge ব্রাউজারে একটি নতুন &#x27;Lockdown Mode&#x27; ফিচার নিয়ে কাজ করছে, যা মূলত WebGL, WebGL2 এবং WebGPU API-গুলোকে নিষ্ক্রিয় করার মাধ্যমে ব্রাউজারের attack surface কমিয়ে আনে। এই ফিচারটি মূলত সাংবাদিক, এক্সিকিউটিভ এবং উচ্চ-ঝুঁকিপূর্ণ ব্যবহারকারীদের জন্য তৈরি করা হয়েছে, যারা নিরাপত্তার খাতিরে ওয়েবসাইটের কার্যকারিতা কিছুটা সীমিত করতে রাজি আছেন। এটি মূলত GPU প্রসেসকে লক্ষ্য করে তৈরি করা হয়েছে, যা Privilege Escalation এবং Sandbox Escape-এর মতো আক্রমণ প্রতিরোধে প্রায় ৬০% কার্যকর হতে পারে বলে ধারণা করা হচ্ছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-app-installation-launch-issues-after-hotpatch/" target="_blank" rel="noopener noreferrer" class="article-title">Microsoft confirms app installation, launch issues after hotpatch</a>
+                    <div class="badge-group">
+                        <span class="badge badge-medium">MEDIUM (90/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>BleepingComputer</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Vulnerability</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Microsoft-এর নভেম্বর ২০২৬-এর hotpatch আপডেটটি Windows 11 24H2 এবং পরবর্তী ভার্সনগুলোতে অ্যাপ্লিকেশন ইনস্টলেশন এবং লঞ্চের ক্ষেত্রে একটি গুরুতর সমস্যা তৈরি করেছে। এই ত্রুটিটি মূলত 32-bit Windows Installer DLL (msi.dll) লোড করার সময় ERROR_ALLOTTED_SPACE_EXCEEDED (0xC0000099) এরর প্রদর্শন করে। Windows Autopatch ব্যবহারকারী সিস্টেমগুলোতে এই সমস্যাটি বেশি দেখা যাচ্ছে। Microsoft সাময়িকভাবে Windows Registry-তে &#x27;HotPatchTableSize&#x27; ভ্যালু পরিবর্তন করার একটি workaround প্রদান করেছে যতক্ষণ না কোনো স্থায়ী সমাধান বা প্যাচ রিলিজ করা হয়।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: Microsoft</span></div>
+            </div>
+            
+
+            <div class="article-card">
+                <div class="card-header">
+                    <a href="https://www.securityweek.com/stepsecurity-secures-20-million-to-expand-supply-chain-protection/" target="_blank" rel="noopener noreferrer" class="article-title">StepSecurity Secures $20 Million to Expand Supply Chain Protection</a>
+                    <div class="badge-group">
+                        <span class="badge badge-low">LOW (73/100)</span>
+                        
+                    </div>
+                </div>
+                <div class="meta-bar">
+                    <span class="meta-item"><span class="e">📰</span><strong>SecurityWeek</strong></span>
+                    <span class="meta-item"><span class="e">🏷️</span>Supply Chain</span>
+                    <span class="meta-item"><span class="e">🤖</span>AI: <strong>Gemini</strong></span>
+                </div>
+                <div class="summary-bn">
+                    Supply chain security startup StepSecurity তাদের Series A funding round-এ $20 million সংগ্রহ করেছে, যা তাদের মোট ফান্ডিং-কে $23 million-এ উন্নীত করেছে। কোম্পানিটি তাদের CI/CD pipeline, developer-machine, এবং repository-এর সুরক্ষার জন্য একটি বিশেষ প্ল্যাটফর্ম তৈরি করেছে। তাদের Harden-Runner নামক টুলটি বর্তমানে ২০,০০০-এর বেশি open source project-এ ব্যবহৃত হচ্ছে। এই নতুন বিনিয়োগের মাধ্যমে তারা তাদের engineering team বৃদ্ধি এবং Supply Chain security-র ক্ষেত্রে নতুন উদ্ভাবন ও গবেষণার পরিধি আরও বিস্তৃত করার পরিকল্পনা করছে।
+                </div>
+                <div class="tags-container"><span class="tag">Vendor: StepSecurity</span></div>
+            </div>
+            
+        </div>
+
+        <footer>
+            <div class="footer-credit">
+                Created by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
