@@ -1,9 +1,8 @@
 name: Daily Cyber News Briefing
 
 on:
-  schedule:
-    # 01:30 UTC = 07:30 Asia/Dhaka (UTC+6). GitHub may delay scheduled runs by 10-30 min.
-        - cron: "37 1 * * *"   # 01:30 UTC = 07:30 Asia/Dhaka
+  # Triggered daily at 07:30 Asia/Dhaka by cron-job.org (GitHub API dispatch).
+  # GitHub's own schedule is intentionally not used because it is unreliable on this repo.
   workflow_dispatch:
     inputs:
       test_mode:
@@ -48,7 +47,7 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          ## NVD_API_KEY: ${{ secrets.NVD_API_KEY }}
+          # NVD_API_KEY: ${{ secrets.NVD_API_KEY }}   # not used by the code yet
         run: python -m src.cli_daily ${{ inputs.test_mode && '--test-mode' || '' }}
 
       - name: Check report was generated
