@@ -50,51 +50,39 @@
   // 2. Universal Global Search System (Across all briefings past & present)
   // -------------------------------------------------------------------------
   let searchIndex = [];
+  let indexState = 'idle'; // idle | loading | ready
+  const indexWaiters = [];
 
-  function loadSearchIndex() {
-    // 1. Check window globals from assets/search_index.js
-    if (Array.isArray(window.__THREAT_SEARCH_INDEX__) && window.__THREAT_SEARCH_INDEX__.length > 0) {
-      searchIndex = window.__THREAT_SEARCH_INDEX__;
+  function ensureSearchIndex(onReady) {
+    if (indexState === 'ready') {
+      if (onReady) onReady();
       return;
     }
+    if (onReady) indexWaiters.push(onReady);
+    if (indexState === 'loading') return;
 
-    // 2. Fallback: Fetch search_index.json asynchronously if available
+    indexState = 'loading';
     const isReportSubdir = window.location.pathname.includes('/202') || document.querySelector('.articles-stack') !== null;
-    const fetchPath = isReportSubdir ? '../assets/search_index.json' : './assets/search_index.json';
-
-    fetch(fetchPath)
-      .then((res) => {
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        return res.json();
-      })
-      .then((data) => {
-        if (Array.isArray(data)) {
-          searchIndex = data;
-          window.__THREAT_SEARCH_INDEX__ = data;
-        }
-      })
-      .catch(() => {
-        // Fallback retry root level
-        const rootPath = isReportSubdir ? '../search_index.json' : './search_index.json';
-        fetch(rootPath)
-          .then((r) => r.json())
-          .then((data) => {
-            if (Array.isArray(data)) {
-              searchIndex = data;
-              window.__THREAT_SEARCH_INDEX__ = data;
-            }
-          })
-          .catch(() => {});
-      });
+    const s = document.createElement('script');
+    s.src = (isReportSubdir ? '../assets/' : './assets/') + 'search_index.js';
+    s.onload = () => {
+      searchIndex = Array.isArray(window.__THREAT_SEARCH_INDEX__) ? window.__THREAT_SEARCH_INDEX__ : [];
+      indexState = 'ready';
+      indexWaiters.splice(0).forEach((fn) => fn());
+    };
+    s.onerror = () => {
+      indexState = 'idle'; // allow retry on next focus/keystroke
+      indexWaiters.length = 0;
+    };
+    document.head.appendChild(s);
   }
 
   function initGlobalSearch() {
-    loadSearchIndex();
-
     const searchInput = document.getElementById('global-search-input');
     const clearBtn = document.getElementById('global-search-clear-btn');
     const resultsContainer = document.getElementById('global-search-results');
     if (!searchInput || !resultsContainer) return;
+    searchInput.addEventListener('focus', () => ensureSearchIndex());
 
     let debounceTimer = null;
 
@@ -113,7 +101,7 @@
       }
 
       debounceTimer = setTimeout(() => {
-        executeGlobalSearch(query, resultsContainer);
+        ensureSearchIndex(() => executeGlobalSearch(query, resultsContainer));
       }, 120);
     });
 
