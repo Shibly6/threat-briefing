@@ -3,107 +3,41 @@
     "id": "2026-11-21_art-1",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
-    "title": "Hackers Exploit Critical Cisco Expressway Flaw, Breach Four Devices and Reach Internal Network",
-    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-critical-cisco.html",
+    "title": "Hackers Exploit Critical VMware, Cisco, and Apache Flaws as Espionage Attacks Emerge",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-critical-vmware-cisco.html",
     "report_url": "2026-11-21/index.html#art-1",
     "source_name": "The Hacker News",
     "category": "Vulnerability",
-    "summary_bn": "Threat actors CVE-2026-76466 নামক একটি critical Vulnerability ব্যবহার করে Cisco Expressway ডিভাইসে Remote Code Execution এর মাধ্যমে root access অর্জন করেছে। এই Vulnerability টি মূলত persistent cookies এবং client certific",
+    "summary_bn": "CISA সম্প্রতি তাদের KEV ক্যাটালগে চারটি গুরুত্বপূর্ণ Vulnerability যুক্ত করেছে যা Apache Roller, Cisco Expressway, SAP NetWeaver এবং VMware vCenter-কে প্রভাবিত করছে। এর মধ্যে Apache Roller, Cisco Expressway এবং VMware vC",
     "severity": "critical",
     "score": 100,
     "has_kev": true,
     "cves": [
-      "CVE-2026-76466"
+      "CVE-2026-129448",
+      "CVE-2026-76466",
+      "CVE-2025-42884",
+      "CVE-2026-123890",
+      "CVE-2026-102764"
     ],
     "vendors": [
-      "Cisco"
+      "Apache",
+      "Cisco",
+      "SAP",
+      "Broadcom",
+      "VMware",
+      "BeyondTrust"
     ]
   },
   {
     "id": "2026-11-21_art-2",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
-    "title": "F5 releases emergency patches for critical BIG-IP RCE flaws",
-    "source_url": "https://www.bleepingcomputer.com/news/security/f5-releases-emergency-patches-for-critical-big-ip-rce-flaws/",
-    "report_url": "2026-11-21/index.html#art-2",
-    "source_name": "BleepingComputer",
-    "category": "Vulnerability",
-    "summary_bn": "F5 তাদের BIG-IP পণ্যে পাঁচটি critical Vulnerability শনাক্ত করেছে, যা Remote Code Execution (RCE) এবং Denial-of-Service (DoS) আক্রমণের সুযোগ তৈরি করে। এই Vulnerability-গুলো মূলত BIG-IP Access Policy Manager (APM) এবং iRul",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": true,
-    "cves": [
-      "CVE-2026-121805",
-      "CVE-2026-120292",
-      "CVE-2026-120285",
-      "CVE-2026-116953",
-      "CVE-2026-123637",
-      "CVE-2026-126822",
-      "CVE-2026-94127"
-    ],
-    "vendors": [
-      "F5"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-3",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "China-Linked Hackers Exploit Critical VMware vCenter Zero-Day to Gain Admin Access and Steal Data",
-    "source_url": "https://thehackernews.com/2026/11/china-linked-hackers-exploit-critical.html",
-    "report_url": "2026-11-21/index.html#art-3",
-    "source_name": "The Hacker News",
-    "category": "Vulnerability",
-    "summary_bn": "চীন-ভিত্তিক Threat Actor 'Armory Castle' সম্প্রতি VMware vCenter Server-এর একটি critical Zero-Day Vulnerability (CVE-2026-123890) ব্যবহার করে সিস্টেমের Admin access হাতিয়ে নিয়েছে। এই Vulnerability-টি মূলত VMware Director",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": true,
-    "cves": [
-      "CVE-2026-123890",
-      "CVE-2026-102764"
-    ],
-    "vendors": [
-      "VMware",
-      "Broadcom",
-      "BeyondTrust"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-4",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "CISA Adds Four Known Exploited Vulnerabilities to Catalog | CISA",
-    "source_url": "https://www.cisa.gov/news-events/alerts/2026/11/20/cisa-adds-four-known-exploited-vulnerabilities-catalog",
-    "report_url": "2026-11-21/index.html#art-4",
-    "source_name": "CISA Advisories",
-    "category": "Vulnerability",
-    "summary_bn": "CISA তাদের Known Exploited Vulnerabilities (KEV) ক্যাটালগে নতুন চারটি Vulnerability যুক্ত করেছে, যা বর্তমানে সক্রিয়ভাবে Exploitation করা হচ্ছে। এর মধ্যে SAP NetWeaver, Cisco Expressway Series, VMWare vCenter এবং Apache R",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": true,
-    "cves": [
-      "CVE-2025-42884",
-      "CVE-2026-76466",
-      "CVE-2026-123890",
-      "CVE-2026-129448"
-    ],
-    "vendors": [
-      "SAP",
-      "Cisco",
-      "VMware",
-      "Apache"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-5",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
     "title": "Linux KVM Flaw CVE-2026-99312 Lets Guest VMs Access Host Memory on AMD Hosts",
     "source_url": "https://thehackernews.com/2026/11/new-linux-kvm-flaw-cve-2026-99312-lets.html",
-    "report_url": "2026-11-21/index.html#art-5",
+    "report_url": "2026-11-21/index.html#art-2",
     "source_name": "The Hacker News",
     "category": "Vulnerability",
-    "summary_bn": "Linux kernel-এর KVM hypervisor-এ একটি গুরুতর Vulnerability (CVE-2026-99312) শনাক্ত করা হয়েছে, যা শুধুমাত্র AMD প্রসেসর এবং nested virtualization সক্রিয় থাকা হোস্টগুলোতে প্রভাব ফেলে। এই ত্রুটির ফলে একজন আক্রমণকারী Guest V",
+    "summary_bn": "Linux kernel-এর KVM hypervisor-এ একটি গুরুতর Vulnerability (CVE-2026-99312) শনাক্ত করা হয়েছে, যা শুধুমাত্র AMD প্রসেসর এবং nested virtualization সক্রিয় থাকা হোস্টগুলোতে প্রভাব ফেলে। এই ত্রুটির ফলে একজন আক্রমণকারী একটি Gu",
     "severity": "critical",
     "score": 100,
     "has_kev": false,
@@ -111,51 +45,20 @@
       "CVE-2026-99312"
     ],
     "vendors": [
-      "Linux",
-      "AMD",
-      "DigitalOcean"
+      "Linux Kernel",
+      "AMD"
     ]
   },
   {
-    "id": "2026-11-21_art-6",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "PSIRT | FortiGuard Labs",
-    "source_url": "https://fortiguard.fortinet.com/psirt/FG-IR-26-279",
-    "report_url": "2026-11-21/index.html#art-6",
-    "source_name": "Fortinet PSIRT Advisories",
-    "category": "Vulnerability",
-    "summary_bn": "NGINX OSS-এর বিভিন্ন ভার্সনে একাধিক Vulnerability শনাক্ত করা হয়েছে, যা মূলত CVE-2026-123007, CVE-2026-123633, CVE-2026-121810, CVE-2026-123634, CVE-2026-113425, CVE-2026-118899, CVE-2026-120967, CVE-2026-120993, CVE-2026",
-    "severity": "high",
-    "score": 100,
-    "has_kev": false,
-    "cves": [
-      "CVE-2026-123007",
-      "CVE-2026-123633",
-      "CVE-2026-121810",
-      "CVE-2026-123634",
-      "CVE-2026-113425",
-      "CVE-2026-118899",
-      "CVE-2026-120967",
-      "CVE-2026-120993",
-      "CVE-2026-125283",
-      "CVE-2026-123640"
-    ],
-    "vendors": [
-      "NGINX",
-      "Fortinet"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-7",
+    "id": "2026-11-21_art-3",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
     "title": "WhatsApp Patches 3 Security Flaws, Including Android Bug Suspected of Use in Scams",
     "source_url": "https://thehackernews.com/2026/11/whatsapp-patches-3-security-flaws.html",
-    "report_url": "2026-11-21/index.html#art-7",
+    "report_url": "2026-11-21/index.html#art-3",
     "source_name": "The Hacker News",
     "category": "Vulnerability",
-    "summary_bn": "Meta-এর মালিকানাধীন WhatsApp তাদের Android, iOS এবং Desktop অ্যাপ্লিকেশনে তিনটি গুরুত্বপূর্ণ Vulnerability সমাধান করেছে। এর মধ্যে CVE-2026-23871 নামক একটি Vulnerability-এর মাধ্যমে আক্রমণকারীরা ব্যবহারকারীর IP address সংগ",
+    "summary_bn": "Meta-এর মালিকানাধীন WhatsApp তাদের Android, iOS এবং Mac Desktop অ্যাপ্লিকেশনে তিনটি গুরুত্বপূর্ণ Vulnerability সমাধান করেছে। এর মধ্যে CVE-2026-23871 নামক একটি Vulnerability-এর মাধ্যমে আক্রমণকারীরা ব্যবহারকারীর IP address",
     "severity": "high",
     "score": 100,
     "has_kev": false,
@@ -170,40 +73,168 @@
     ]
   },
   {
-    "id": "2026-11-21_art-8",
+    "id": "2026-11-21_art-4",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
-    "title": "WhatsApp Fixes Flaw Uncovered While Disrupting Scam Campaign",
-    "source_url": "https://www.securityweek.com/whatsapp-fixes-flaw-uncovered-while-disrupting-scam-campaign/",
-    "report_url": "2026-11-21/index.html#art-8",
-    "source_name": "SecurityWeek",
+    "title": "Signal Blocks AI Agents From Reading Private Chats via Screenshots on Android and iOS",
+    "source_url": "https://thehackernews.com/2026/11/signal-blocks-ai-agents-from-reading.html",
+    "report_url": "2026-11-21/index.html#art-4",
+    "source_name": "The Hacker News",
+    "category": "Privacy",
+    "summary_bn": "Signal তাদের Android এবং iOS প্ল্যাটফর্মে AI agents-এর মাধ্যমে ব্যক্তিগত চ্যাট পড়ার ঝুঁকি কমাতে ডিফল্টভাবে স্ক্রিনশট ব্লক করার ফিচার চালু করেছে। মূলত OS-লেভেল AI agents যেমন Apple-এর Siri বা Android-এর AI অ্যাসিস্ট্যান্ট",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Signal",
+      "Apple",
+      "Google",
+      "Microsoft",
+      "Meta"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-5",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "Hackers use autonomous AI tool Cairn to find zero-day, take over server",
+    "source_url": "https://www.bleepingcomputer.com/news/security/hackers-use-autonomous-ai-tool-cairn-to-find-zero-day-take-over-server/",
+    "report_url": "2026-11-21/index.html#art-5",
+    "source_name": "BleepingComputer",
     "category": "Vulnerability",
-    "summary_bn": "WhatsApp তাদের Android অ্যাপ্লিকেশনে একটি Vulnerability (CVE-2026-23871) শনাক্ত করেছে, যা ব্যবহারকারীর IP তথ্য ফাঁস করতে ব্যবহৃত হতে পারে। এই ত্রুটিটি Click to WhatsApp বিজ্ঞাপনের মাধ্যমে Scam ক্যাম্পেইনে ব্যবহার করা হয়ে",
-    "severity": "medium",
+    "summary_bn": "চীনা-লিঙ্কড Threat Actor-রা Cairn নামক একটি autonomous AI agent প্ল্যাটফর্ম ব্যবহার করে MONAI Label-এ একটি Zero-Day Vulnerability খুঁজে বের করেছে এবং সফলভাবে সার্ভারের নিয়ন্ত্রণ নিয়েছে। এই AI agents-রা Path Traversal Vul",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "MONAI Label"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-6",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "GnuPG Warns Critical GPGME Flaw Could Expose App Data via Malicious OpenPGP Keys",
+    "source_url": "https://thehackernews.com/2026/11/gnupg-warns-critical-gpgme-flaw-could.html",
+    "report_url": "2026-11-21/index.html#art-6",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "GnuPG প্রজেক্ট একটি critical মেমরি Vulnerability (CVE-2026-129975) শনাক্ত করেছে যা GPGME লাইব্রেরিতে বিদ্যমান। একটি malicious OpenPGP key ব্যবহার করে এই double free ত্রুটিটি ঘটানো সম্ভব, যা ডেটা চুরি বা সম্ভাব্য Remote C",
+    "severity": "critical",
     "score": 100,
     "has_kev": false,
     "cves": [
-      "CVE-2026-23871",
-      "CVE-2026-102769",
-      "CVE-2026-44908"
+      "CVE-2026-129975"
     ],
     "vendors": [
-      "WhatsApp",
-      "Meta"
+      "GnuPG",
+      "Samba"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-7",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud – Krebs on Security",
+    "source_url": "https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/",
+    "report_url": "2026-11-21/index.html#art-7",
+    "source_name": "KrebsOnSecurity",
+    "category": "Fraud",
+    "summary_bn": "RansomwareHelp নামক একটি প্রতিষ্ঠানের CTO, Juan Ricardo Palacio Escobar-কে FBI-এর একটি sting operation-এর মাধ্যমে Wire Fraud-এর অভিযোগে অভিযুক্ত করা হয়েছে। প্রতিষ্ঠানটি দাবি করত যে তারা তাদের নিজস্ব 'advanced cryptograph",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "RansomwareHelp"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-8",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "Bazuka Android Malware Uses Fake Screen Overlays to Hide Credential Theft and Device Control",
+    "source_url": "https://thehackernews.com/2026/11/bazuka-android-malware-uses-fake-screen.html",
+    "report_url": "2026-11-21/index.html#art-8",
+    "source_name": "The Hacker News",
+    "category": "Malware",
+    "summary_bn": "ThreatFabric গবেষকরা Bazuka নামক একটি নতুন Android Malware ফ্রেমওয়ার্ক শনাক্ত করেছেন, যা LLM ইন্টিগ্রেশন ব্যবহার করে ভিকটিমদের নিয়ন্ত্রণ এবং টার্গেট নির্ধারণ করে। এই Malware-টি একটি উন্নত overlay টেকনিক ব্যবহার করে যা ড",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google"
     ]
   },
   {
     "id": "2026-11-21_art-9",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
+    "title": "Attackers' AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access",
+    "source_url": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html",
+    "report_url": "2026-11-21/index.html#art-9",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "চীন-ভিত্তিক Threat Actor-রা autonomous AI agents ব্যবহার করে MONAI Label-এর একটি Zero-Day Vulnerability শনাক্ত করেছে। এই Path-traversal flaw-এর মাধ্যমে কোনো প্রকার Authentication ছাড়াই সার্ভারে ফাইল রাইট করা সম্ভব, যা পর",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "MONAI"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-10",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "Amazon: China-Linked Hackers' AI Agents Exploited Medical Software Zero-Day",
+    "source_url": "https://www.securityweek.com/amazon-china-linked-hackers-ai-agents-exploited-medical-software-zero-day/",
+    "report_url": "2026-11-21/index.html#art-10",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "চীন-ভিত্তিক একটি Threat Actor তাদের autonomous AI agents ব্যবহার করে MONAI Label সফটওয়্যারের একটি Zero-Day Vulnerability সফলভাবে exploit করেছে। Amazon-এর Threat Intelligence টিম লক্ষ্য করেছে যে, এই AI agents মাত্র ১১ মিন",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "MONAI"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-11",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "A Single Malicious Webpage Let Researchers Hijack Meta Muse and Access Private Chats",
+    "source_url": "https://thehackernews.com/2026/11/a-single-malicious-webpage-let.html",
+    "report_url": "2026-11-21/index.html#art-11",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Meta-এর AI agent 'Muse'-এ একটি গুরুতর Vulnerability শনাক্ত করেছেন NebuSec-এর গবেষকরা, যা ব্যবহারকারীর ব্যক্তিগত কথোপকথন এবং সংরক্ষিত তথ্য চুরির সুযোগ করে দেয়। এই আক্রমণে একটি malicious webpage-এর মাধ্যমে Muse-এর built-in",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Meta"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-12",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
     "title": "Vendor data breach exposes Chase, Visa, Mastercard customer info",
     "source_url": "https://www.bleepingcomputer.com/news/security/vendor-data-breach-exposes-chase-visa-mastercard-customer-info/",
-    "report_url": "2026-11-21/index.html#art-9",
+    "report_url": "2026-11-21/index.html#art-12",
     "source_name": "BleepingComputer",
     "category": "Data Breach",
-    "summary_bn": "একটি থার্ড-পার্টি সার্ভিস প্রোভাইডার, Qubole-এর ওপর সাইবার আক্রমণের ফলে J.P. Morgan Chase, Visa এবং Mastercard-এর গ্রাহকদের ব্যক্তিগত তথ্য ফাঁস হয়েছে। n0n ransomware গ্রুপ এই হামলার দায় স্বীকার করেছে এবং দাবি করেছে যে তা",
+    "summary_bn": "একটি থার্ড-পার্টি সার্ভিস প্রোভাইডার, Qubole-এ সাইবার আক্রমণের ফলে J.P. Morgan Chase, Visa এবং Mastercard-এর গ্রাহকদের ব্যক্তিগত তথ্য ফাঁস হয়েছে। n0n ransomware গ্রুপ এই হামলার দায় স্বীকার করেছে এবং দাবি করেছে যে তারা Qu",
     "severity": "high",
-    "score": 100,
+    "score": 99,
     "has_kev": false,
     "cves": [],
     "vendors": [
@@ -215,17 +246,17 @@
     ]
   },
   {
-    "id": "2026-11-21_art-10",
+    "id": "2026-11-21_art-13",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
     "title": "Still tracking company passwords in spreadsheets? You’re flying blind.",
     "source_url": "https://www.bleepingcomputer.com/news/security/still-tracking-company-passwords-in-spreadsheets-youre-flying-blind/",
-    "report_url": "2026-11-21/index.html#art-10",
+    "report_url": "2026-11-21/index.html#art-13",
     "source_name": "BleepingComputer",
     "category": "Advisory",
     "summary_bn": "এই নিবন্ধটি প্রতিষ্ঠানের পাসওয়ার্ড ব্যবস্থাপনায় স্প্রেডশিট ব্যবহারের ঝুঁকি এবং এর সীমাবদ্ধতা নিয়ে আলোচনা করেছে। ম্যানুয়াল পদ্ধতিতে পাসওয়ার্ড ট্র্যাক করার ফলে কর্মীরা প্রায়ই অনিরাপদ উপায়ে যেমন ব্রাউজার স্টোরেজ, চ্যাট বা ব",
     "severity": "high",
-    "score": 100,
+    "score": 99,
     "has_kev": false,
     "cves": [],
     "vendors": [
@@ -234,76 +265,59 @@
     ]
   },
   {
-    "id": "2026-11-21_art-11",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "SonicWall Warns Gen 6 Firewalls Won't Get Security Patches, Even for Critical Flaws",
-    "source_url": "https://thehackernews.com/2026/11/sonicwall-warns-gen-6-firewalls-wont.html",
-    "report_url": "2026-11-21/index.html#art-11",
-    "source_name": "The Hacker News",
-    "category": "Advisory",
-    "summary_bn": "SonicWall তাদের Gen 6 ফায়ারওয়াল ডিভাইসগুলোর জন্য সিকিউরিটি প্যাচ প্রদান বন্ধ করে দিয়েছে এবং ব্যবহারকারীদের দ্রুত এগুলো সরিয়ে নতুন Gen 8 ডিভাইসে মাইগ্রেট করার পরামর্শ দিয়েছে। AI-চালিত অটোমেশন ব্যবহার করে Threat Actor-রা",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "SonicWall"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-12",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "SBC Medical Group Data Breach Impacts Over 2 Million",
-    "source_url": "https://www.securityweek.com/sbc-medical-group-data-breach-impacts-over-2-million/",
-    "report_url": "2026-11-21/index.html#art-12",
-    "source_name": "SecurityWeek",
-    "category": "Data Breach",
-    "summary_bn": "SBC Medical Group একটি বড় ধরনের Data Breach-এর শিকার হয়েছে, যার ফলে জাপানের প্রায় ২ মিলিয়নেরও বেশি গ্রাহকের ব্যক্তিগত এবং মেডিকেল তথ্য ফাঁস হয়েছে। Threat Actor-রা কোম্পানির অনলাইন প্ল্যাটফর্ম এবং ডাটাবেস অ্যাক্সেস করে না",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "SBC Medical Group",
-      "Tribeau"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-13",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "ROMULUS ClickFix Attacks Deliver RAT That Can Spy on Users and Control PCs",
-    "source_url": "https://thehackernews.com/2026/11/romulus-clickfix-attacks-deliver-rat.html",
-    "report_url": "2026-11-21/index.html#art-13",
-    "source_name": "The Hacker News",
-    "category": "Malware",
-    "summary_bn": "ROMULUS নামক একটি Malware delivery platform বর্তমানে ClickFix কৌশলের মাধ্যমে CNCMachineRMS নামক একটি নতুন RAT (Remote Access Trojan) ছড়িয়ে দিচ্ছে। এই আক্রমণে Threat actors বিভিন্ন ভুয়া ওয়েবসাইট, ChatGPT Custom GPT এবং DL",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "IBM",
-      "Stardock",
-      "OpenAI",
-      "Google",
-      "Cloudflare"
-    ]
-  },
-  {
     "id": "2026-11-21_art-14",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "N-able says recent security breach led to major service outage",
+    "source_url": "https://www.bleepingcomputer.com/news/microsoft/n-able-says-recent-security-breach-led-to-major-service-outage/",
+    "report_url": "2026-11-21/index.html#art-14",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "N-able সম্প্রতি তাদের Mail Assure এবং SpamExperts Hosted Cloud সার্ভারে একটি Security Incident বা unauthorized access শনাক্ত করেছে, যার ফলে বিশ্বব্যাপী বড় ধরনের Service Outage দেখা দিয়েছে। কোম্পানিটি জানিয়েছে যে, তারা আক",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "N-able"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-15",
+    "date": "2026-11-21",
+    "date_pretty": "21 Nov 2026",
+    "title": "Industry Reactions to Major Outages and AI Patching Debate: Feedback Friday",
+    "source_url": "https://www.securityweek.com/industry-reactions-to-major-outages-and-ai-patching-questions-feedback-friday/",
+    "report_url": "2026-11-21/index.html#art-15",
+    "source_name": "SecurityWeek",
+    "category": "Advisory",
+    "summary_bn": "যুক্তরাষ্ট্রের বিভিন্ন গুরুত্বপূর্ণ খাতে সাম্প্রতিক প্রযুক্তিগত বিভ্রাটগুলো মূলত AI-চালিত দ্রুত Patching প্রক্রিয়ার কারণে সৃষ্ট অস্থিরতাকে সামনে নিয়ে এসেছে। Microsoft 365, FAA এবং NSA-এর মতো প্রতিষ্ঠানগুলোতে ঘটে যাওয়া এ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft",
+      "FAA",
+      "JPMorgan Chase",
+      "NSA",
+      "United Airlines",
+      "Apple",
+      "Azul"
+    ]
+  },
+  {
+    "id": "2026-11-21_art-16",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
     "title": "In Other News: Norwegian Energy Firm Cyberattacks, Supercomputer Hack, New Nightmare Eclipse Exploit",
     "source_url": "https://www.securityweek.com/in-other-news-norwegian-energy-firm-cyberattacks-supercomputer-hack-new-nightmare-eclipse-exploit/",
-    "report_url": "2026-11-21/index.html#art-14",
+    "report_url": "2026-11-21/index.html#art-16",
     "source_name": "SecurityWeek",
     "category": "Data Breach",
     "summary_bn": "এই সপ্তাহে সাইবার নিরাপত্তা জগতে বেশ কিছু গুরুত্বপূর্ণ ঘটনা ঘটেছে। এর মধ্যে উল্লেখযোগ্য হলো Gemini AI এজেন্ট কর্তৃক Epoch AI-এর ওয়েবসাইটে SQL injection চালানোর চেষ্টা, Infoblox-এর থার্ড-পার্টি ভেন্ডর কম্প্রোমাইজেশনের ফলে",
     "severity": "high",
-    "score": 100,
+    "score": 99,
     "has_kev": false,
     "cves": [],
     "vendors": [
@@ -314,57 +328,21 @@
     ]
   },
   {
-    "id": "2026-11-21_art-15",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "Hackers use autonomous AI tool Cairn to find zero-day, take over server",
-    "source_url": "https://www.bleepingcomputer.com/news/security/hackers-use-autonomous-ai-tool-cairn-to-find-zero-day-take-over-server/",
-    "report_url": "2026-11-21/index.html#art-15",
-    "source_name": "BleepingComputer",
-    "category": "Vulnerability",
-    "summary_bn": "চীনা-লিঙ্কড Threat Actor-রা 'Cairn' নামক একটি autonomous AI agent প্ল্যাটফর্ম ব্যবহার করে MONAI Label-এ একটি Zero-Day Vulnerability খুঁজে বের করেছে। এই Path Traversal Vulnerability-টি কাজে লাগিয়ে তারা সার্ভারে arbitrary ",
-    "severity": "critical",
-    "score": 100,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "MONAI"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-16",
+    "id": "2026-11-21_art-17",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
     "title": "Dialing for Data: Inside the Com’s High-Profile Heists",
     "source_url": "https://unit42.paloaltonetworks.com/com-affiliate-vishing-attacks/",
-    "report_url": "2026-11-21/index.html#art-16",
+    "report_url": "2026-11-21/index.html#art-17",
     "source_name": "Palo Alto Unit 42",
     "category": "Threat Actor",
-    "summary_bn": "Unit 42 সম্প্রতি Com-affiliated Threat Actor-দের দ্বারা পরিচালিত ব্যাপক Vishing আক্রমণের একটি সিরিজ শনাক্ত করেছে, যা মূলত financial services, healthcare এবং legal services-এর মতো গুরুত্বপূর্ণ খাতগুলোকে লক্ষ্যবস্তু করছে। ",
+    "summary_bn": "Unit 42 সম্প্রতি Com-affiliated Threat Actor-দের দ্বারা পরিচালিত ব্যাপক Vishing আক্রমণের একটি সিরিজ শনাক্ত করেছে, যা মূলত আর্থিক, স্বাস্থ্যসেবা এবং আইনি খাতের প্রতিষ্ঠানগুলোকে লক্ষ্যবস্তু করছে। Bling Libra এবং অন্যান্য T",
     "severity": "high",
-    "score": 100,
+    "score": 99,
     "has_kev": false,
     "cves": [],
     "vendors": [
       "Palo Alto Networks"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-17",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "CTO of ‘RansomwareHelp’ Indicted for Wire Fraud – Krebs on Security",
-    "source_url": "https://krebsonsecurity.com/2026/11/cto-of-ransomwarehelp-indicted-for-wire-fraud/",
-    "report_url": "2026-11-21/index.html#art-17",
-    "source_name": "KrebsOnSecurity",
-    "category": "Ransomware",
-    "summary_bn": "RansomwareHelp নামক একটি প্রতিষ্ঠানের CTO, Juan Ricardo Palacio Escobar-কে FBI-এর একটি sting operation-এর মাধ্যমে Wire Fraud-এর অভিযোগে অভিযুক্ত করা হয়েছে। প্রতিষ্ঠানটি দাবি করত যে তারা তাদের নিজস্ব 'advanced cryptograph",
-    "severity": "high",
-    "score": 100,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "RansomwareHelp"
     ]
   },
   {
@@ -378,7 +356,7 @@
     "category": "Data Breach",
     "summary_bn": "Bell Canada সম্প্রতি একটি সাইবার আক্রমণের শিকার হয়েছে, যেখানে একজন 'agentic' Threat Actor তাদের Maximo সিস্টেমের একটি pre-production environment অ্যাক্সেস করে এন্টারপ্রাইজ গ্রাহকদের তথ্য চুরি করেছে। এই Breach-এর ফলে গ্রা",
     "severity": "high",
-    "score": 100,
+    "score": 99,
     "has_kev": false,
     "cves": [],
     "vendors": [
@@ -390,222 +368,35 @@
     "id": "2026-11-21_art-19",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
-    "title": "Bazuka Android Malware Uses Fake Screen Overlays to Hide Credential Theft and Device Control",
-    "source_url": "https://thehackernews.com/2026/11/bazuka-android-malware-uses-fake-screen.html",
+    "title": "WhatsApp Fixes Flaw Uncovered While Disrupting Scam Campaign",
+    "source_url": "https://www.securityweek.com/whatsapp-fixes-flaw-uncovered-while-disrupting-scam-campaign/",
     "report_url": "2026-11-21/index.html#art-19",
-    "source_name": "The Hacker News",
-    "category": "Malware",
-    "summary_bn": "ThreatFabric গবেষকরা Bazuka নামক একটি নতুন Android Malware ফ্রেমওয়ার্ক শনাক্ত করেছেন, যা LLM ইন্টিগ্রেশনের মাধ্যমে ভিকটিমদের নিয়ন্ত্রণ এবং টার্গেট করার ক্ষমতা রাখে। এই Malware-টি একটি উন্নত overlay কৌশলের মাধ্যমে ব্যবহা",
-    "severity": "critical",
-    "score": 100,
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "WhatsApp তাদের Android অ্যাপ্লিকেশনে একটি Vulnerability (CVE-2026-23871) প্যাচ করেছে, যা Click to WhatsApp বিজ্ঞাপনের মাধ্যমে ব্যবহারকারীর IP তথ্য ফাঁস করতে ব্যবহৃত হতে পারত। এছাড়া, SQL Injection (CVE-2026-102769) এবং re",
+    "severity": "medium",
+    "score": 95,
     "has_kev": false,
-    "cves": [],
+    "cves": [
+      "CVE-2026-23871",
+      "CVE-2026-102769",
+      "CVE-2026-44908"
+    ],
     "vendors": [
-      "Google"
+      "WhatsApp",
+      "Meta"
     ]
   },
   {
     "id": "2026-11-21_art-20",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
-    "title": "Ruby Patches Ruby2Shell Vulnerability That Could Lead to RCE",
-    "source_url": "https://www.securityweek.com/ruby-patches-ruby2shell-vulnerability-that-could-lead-to-rce/",
-    "report_url": "2026-11-21/index.html#art-20",
-    "source_name": "SecurityWeek",
-    "category": "Vulnerability",
-    "summary_bn": "Ruby প্রোগ্রামিং ল্যাঙ্গুয়েজে সাতটি নতুন Vulnerability শনাক্ত করা হয়েছে, যার মধ্যে Ruby2Shell (CVE-2026-132825) অন্যতম। এটি একটি heap-based buffer overflow ত্রুটি যা নির্দিষ্ট ক্ষেত্রে Remote Code Execution (RCE) ঘটাতে স",
-    "severity": "high",
-    "score": 99,
-    "has_kev": false,
-    "cves": [
-      "CVE-2026-132825"
-    ],
-    "vendors": [
-      "Ruby",
-      "GitHub",
-      "Chatwoot",
-      "GitLab",
-      "Mastodon",
-      "OpenProject",
-      "Discourse"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-21",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "N-able says recent security breach led to major service outage",
-    "source_url": "https://www.bleepingcomputer.com/news/microsoft/n-able-says-recent-security-breach-led-to-major-service-outage/",
-    "report_url": "2026-11-21/index.html#art-21",
-    "source_name": "BleepingComputer",
-    "category": "Data Breach",
-    "summary_bn": "N-able সম্প্রতি একটি Security Incident-এর শিকার হয়েছে, যার ফলে তাদের Mail Assure এবং SpamExperts Hosted Cloud পরিষেবাগুলোতে বিশ্বব্যাপী বড় ধরনের বিভ্রাট দেখা দিয়েছে। কোম্পানিটি নিশ্চিত করেছে যে তাদের একটি সার্ভারে Unauth",
-    "severity": "high",
-    "score": 99,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "N-able"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-22",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "N-able Blames Service Disruption on Cyberattack",
-    "source_url": "https://www.securityweek.com/n-able-blames-service-disruption-on-cyberattack/",
-    "report_url": "2026-11-21/index.html#art-22",
-    "source_name": "SecurityWeek",
-    "category": "Data Breach",
-    "summary_bn": "N-able এর Mail Assure এবং SpamExperts Hosted Cloud সার্ভিসে একটি সাইবার অ্যাটাকের কারণে কয়েকদিন ধরে বড় ধরনের সার্ভিস ডিসরাপশন দেখা দিয়েছে। কোম্পানিটি জানিয়েছে যে, একজন Threat Actor তাদের একটি ওয়েব সার্ভার কম্প্রোমাইজ করে",
-    "severity": "high",
-    "score": 99,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "N-able"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-23",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "JPMorgan, Visa, Mastercard Cite Third-Party Incidents Amid Data Leak",
-    "source_url": "https://www.securityweek.com/jpmorgan-visa-mastercard-cite-third-party-incidents-amid-data-leak/",
-    "report_url": "2026-11-21/index.html#art-23",
-    "source_name": "SecurityWeek",
-    "category": "Data Breach",
-    "summary_bn": "JPMorgan Chase, Visa এবং Mastercard-এর থার্ড-পার্টি সার্ভিস প্রোভাইডারদের সিস্টেমে সাইবার আক্রমণের ফলে গ্রাহকদের ব্যক্তিগত তথ্যের ডেটা লিক হয়েছে। N0n নামক একটি Threat Actor গ্রুপ এই ডেটা চুরির দাবি করেছে, যার মধ্যে গ্রাহ",
-    "severity": "high",
-    "score": 99,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "JPMorgan Chase",
-      "Visa",
-      "Mastercard"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-24",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "Industry Reactions to Major Outages and AI Patching Debate: Feedback Friday",
-    "source_url": "https://www.securityweek.com/industry-reactions-to-major-outages-and-ai-patching-questions-feedback-friday/",
-    "report_url": "2026-11-21/index.html#art-24",
-    "source_name": "SecurityWeek",
-    "category": "Advisory",
-    "summary_bn": "যুক্তরাষ্ট্রের বিভিন্ন গুরুত্বপূর্ণ খাতে সাম্প্রতিক প্রযুক্তিগত বিভ্রাটগুলো মূলত AI-চালিত দ্রুত Patching প্রক্রিয়ার কারণে সিস্টেমের অস্থিতিশীলতাকে সামনে নিয়ে এসেছে। বিশেষজ্ঞরা মনে করছেন, AI-এর মাধ্যমে দ্রুত Vulnerabilit",
-    "severity": "high",
-    "score": 99,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "Microsoft",
-      "Apple",
-      "JPMorgan Chase",
-      "FAA",
-      "NSA"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-25",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "European Commission Confirms AI-Assisted Cyberattack Disrupted Services",
-    "source_url": "https://www.securityweek.com/european-commission-confirms-ai-assisted-cyberattack-disrupted-services/",
-    "report_url": "2026-11-21/index.html#art-25",
-    "source_name": "SecurityWeek",
-    "category": "Cyberattack",
-    "summary_bn": "European Commission সম্প্রতি একটি AI-assisted cyberattack-এর শিকার হয়েছে, যার ফলে তাদের বেশ কিছু গুরুত্বপূর্ণ সার্ভিস সাময়িকভাবে ব্যাহত হয়। তদন্তে জানা গেছে যে, Threat Actor-রা সম্ভবত Artex নামক একটি AI-powered penetrati",
-    "severity": "high",
-    "score": 99,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "European Commission"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-26",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "New Unpatched Windows 0-Day FastUnlock Lets Someone Holding a Locked PC Run Programs on It",
-    "source_url": "https://thehackernews.com/2026/11/new-unpatched-windows-0-day-fastunlock.html",
-    "report_url": "2026-11-21/index.html#art-26",
-    "source_name": "The Hacker News",
-    "category": "Vulnerability",
-    "summary_bn": "Microsoft Windows-এ একটি নতুন Zero-Day Vulnerability শনাক্ত করা হয়েছে, যার নাম 'FastUnlock'। এই কৌশলের মাধ্যমে একজন আক্রমণকারী ফিজিক্যাল অ্যাক্সেস ব্যবহার করে লক করা পিসি থেকে কোনো লগইন ছাড়াই নির্দিষ্ট প্রোগ্রাম রান করতে",
-    "severity": "medium",
-    "score": 90,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "Microsoft"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-27",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
     "title": "Microsoft named a Leader in the 2026 Gartner® Magic Quadrant™ for SIEM  | Microsoft Security Blog",
     "source_url": "https://www.microsoft.com/en-us/security/blog/2026/11/20/microsoft-named-a-leader-in-the-2026-gartner-magic-quadrant-for-siem/",
-    "report_url": "2026-11-21/index.html#art-27",
+    "report_url": "2026-11-21/index.html#art-20",
     "source_name": "Microsoft Security Blog",
     "category": "Advisory",
-    "summary_bn": "Microsoft-কে ২০২৬ সালের Gartner Magic Quadrant-এ SIEM ক্যাটাগরিতে লিডার হিসেবে স্বীকৃতি দেওয়া হয়েছে। এই প্রতিবেদনে Microsoft Perception-এর মাধ্যমে 'agentic era'-এর জন্য উন্নত সিকিউরিটি সক্ষমতা এবং আধুনিক Threat Detection",
-    "severity": "low",
-    "score": 78,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "Microsoft"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-28",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "Windows 11 KB5132057 update released with 28 changes and fixes",
-    "source_url": "https://www.bleepingcomputer.com/news/microsoft/windows-11-kb5132057-update-released-with-28-changes-and-fixes/",
-    "report_url": "2026-11-21/index.html#art-28",
-    "source_name": "BleepingComputer",
-    "category": "Advisory",
-    "summary_bn": "Microsoft তাদের Windows 11 25H2 এবং 26H2 ভার্সনের জন্য KB5132057 নামক একটি optional cumulative update প্রকাশ করেছে। এই আপডেটে মোট ২৮টি পরিবর্তন এবং বাগ ফিক্স অন্তর্ভুক্ত করা হয়েছে, যার মধ্যে Windows Search, Windows Hell",
-    "severity": "low",
-    "score": 73,
-    "has_kev": false,
-    "cves": [],
-    "vendors": [
-      "Microsoft"
-    ]
-  },
-  {
-    "id": "2026-11-21_art-29",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "The Path to AI Autonomy in the SOC",
-    "source_url": "https://thehackernews.com/2026/11/the-path-to-ai-autonomy-in-soc.html",
-    "report_url": "2026-11-21/index.html#art-29",
-    "source_name": "The Hacker News",
-    "category": "Advisory",
-    "summary_bn": "এই নিবন্ধটি Security Operations Center (SOC)-এ AI agents-এর ক্রমবর্ধমান ব্যবহার এবং তাদের স্বায়ত্তশাসনের (autonomy) বিবর্তন নিয়ে আলোচনা করে। CISOs-দের জরিপ অনুযায়ী, সংস্থাগুলো বর্তমানে low-risk security actions-এর ক্ষেত্",
-    "severity": "low",
-    "score": 73,
-    "has_kev": false,
-    "cves": [],
-    "vendors": []
-  },
-  {
-    "id": "2026-11-21_art-30",
-    "date": "2026-11-21",
-    "date_pretty": "21 Nov 2026",
-    "title": "Microsoft now automatically installs Windows 11 26H2 on unmanaged devices",
-    "source_url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-now-automatically-installs-windows-11-26h2-on-personal-and-unmanaged-pcs/",
-    "report_url": "2026-11-21/index.html#art-30",
-    "source_name": "BleepingComputer",
-    "category": "Advisory",
-    "summary_bn": "Microsoft তাদের unmanaged Windows 11 ডিভাইসগুলোর জন্য Windows 11 26H2 ভার্সনটি অটোমেটিক আপডেট হিসেবে রোলআউট করা শুরু করেছে। এই আপডেটটি মূলত Windows 11 24H2 এবং 25H2 চালিত ডিভাইসগুলোর জন্য প্রযোজ্য, যা ব্যবহারকারীর ম্যানু",
+    "summary_bn": "Microsoft-কে ২০২৬ সালের Gartner Magic Quadrant-এ SIEM ক্যাটাগরিতে লিডার হিসেবে স্বীকৃতি দেওয়া হয়েছে। এই স্বীকৃতিটি মূলত Microsoft-এর Security প্ল্যাটফর্ম এবং তাদের নতুন 'Microsoft Perception' প্রযুক্তির সক্ষমতাকে তুলে ধর",
     "severity": "low",
     "score": 73,
     "has_kev": false,
