@@ -20,12 +20,9 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     timeout-minutes: 120
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -47,7 +44,6 @@ jobs:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
-          # NVD_API_KEY: ${{ secrets.NVD_API_KEY }}   # not used by the code yet
         run: python -m src.cli_daily ${{ inputs.test_mode && '--test-mode' || '' }}
 
       - name: Check report was generated
@@ -58,15 +54,11 @@ jobs:
         with:
           path: reports
 
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
-
       - name: Commit reports back to main (keeps the archive growing)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports
+          git add reports data/feed_status.json data/run_history.json
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
@@ -86,3 +78,14 @@ jobs:
             data/run_history.json
           retention-days: 7
           if-no-files-found: ignore
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
