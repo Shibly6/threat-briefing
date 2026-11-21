@@ -17,7 +17,7 @@ from src.utils import format_iso_utc
 from src.gemini_engine import SYSTEM_PROMPT
 
 GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions"
-GROQ_MODEL = "llama-3.3-70b-versatile"  # 30 RPM, 12000 TPM free tier
+GROQ_MODEL = "openai/gpt-oss-120b"  # 30 RPM, 12000 TPM free tier
 
 
 class GroqEngine:

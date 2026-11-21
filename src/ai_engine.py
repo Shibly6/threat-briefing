@@ -157,7 +157,7 @@ def _call_gemini(api_key: str, model: str, user_content: str,
 def _call_groq(api_key: str, user_content: str,
                max_retries: int, logger: logging.Logger) -> tuple:
     payload = {
-        "model": "llama-3.3-70b-versatile",   # 30 RPM, 12K TPM free tier
+        "model": "openai/gpt-oss-120b",   # 30 RPM, 12K TPM free tier
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user",   "content": user_content},

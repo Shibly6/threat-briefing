@@ -10,11 +10,6 @@ on:
         type: boolean
         default: false
 
-permissions:
-  contents: write   # commit reports/ back to main
-  pages: write      # deploy to GitHub Pages
-  id-token: write   # required by deploy-pages
-
 concurrency:
   group: daily-briefing
   cancel-in-progress: false
@@ -23,6 +18,8 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 120
+    permissions:
+      contents: write   # commit reports/ back to main
     steps:
       - name: Checkout
         uses: actions/checkout@v5
@@ -49,16 +46,11 @@ jobs:
       - name: Check report was generated
         run: test -f reports/index.html
 
-      - name: Upload site artifact
-        uses: actions/upload-pages-artifact@v4
-        with:
-          path: reports
-
       - name: Commit reports back to main (keeps the archive growing)
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add reports data/feed_status.json data/run_history.json
+          git add -f reports
           if git diff --cached --quiet; then
             echo "No changes to commit"
           else
@@ -66,6 +58,11 @@ jobs:
             git pull --rebase origin main
             git push origin HEAD:main
           fi
+
+      - name: Upload site artifact
+        uses: actions/upload-pages-artifact@v4
+        with:
+          path: reports
 
       - name: Upload logs for debugging
         if: always()
@@ -82,6 +79,9 @@ jobs:
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write      # deploy to GitHub Pages
+      id-token: write   # required by deploy-pages
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

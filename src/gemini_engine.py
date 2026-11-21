@@ -143,7 +143,7 @@ def _call_groq(api_key: str, user_content: str,
                max_retries: int, logger: logging.Logger) -> tuple:
     """Groq OpenAI-compatible API. Smart 429 fast-switch."""
     payload = {
-        "model": "llama-3.3-70b-versatile",
+        "model": "openai/gpt-oss-120b",
         "messages": [
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user",   "content": user_content},
