@@ -2,8 +2,8 @@
 .env
 
 # runtime data and logs (recreated on every run)
-data/
-logs/
+/data/
+/logs/
 
 # python / local environment
 myenv/
