@@ -1,5 +1,243 @@
 [
   {
+    "id": "2026-11-22_art-1",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "Hackers Exploit Critical VMware, Cisco, and Apache Flaws as Espionage Attacks Emerge",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-critical-vmware-cisco.html",
+    "report_url": "2026-11-22/index.html#art-1",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "CISA সম্প্রতি তাদের KEV ক্যাটালগে চারটি গুরুত্বপূর্ণ Vulnerability যুক্ত করেছে যা Apache Roller, Cisco Expressway, SAP NetWeaver এবং VMware vCenter-কে প্রভাবিত করছে। এর মধ্যে Apache Roller, Cisco Expressway এবং VMware vC",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-129448",
+      "CVE-2026-76466",
+      "CVE-2025-42884",
+      "CVE-2026-123890",
+      "CVE-2026-102764"
+    ],
+    "vendors": [
+      "Apache",
+      "Cisco",
+      "SAP",
+      "Broadcom",
+      "VMware",
+      "BeyondTrust"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-2",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "Rackspace Spot breach let hackers access customer Kubernetes secrets",
+    "source_url": "https://www.bleepingcomputer.com/news/security/rackspace-spot-breach-let-hackers-access-customer-kubernetes-secrets/",
+    "report_url": "2026-11-22/index.html#art-2",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "Rackspace Spot প্ল্যাটফর্মে একটি নিরাপত্তা লঙ্ঘনের ঘটনা ঘটেছে যেখানে Threat Actor-রা compromised credentials ব্যবহার করে গ্রাহকদের Kubernetes clusters-এ অননুমোদিত প্রবেশাধিকার পেয়েছে। এই আক্রমণের ফলে হ্যাকাররা Kubernetes",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Rackspace",
+      "Platform9"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-3",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "Microsoft Entra Connect Health flaw exploited to steal tenant data",
+    "source_url": "https://www.bleepingcomputer.com/news/security/microsoft-entra-connect-health-flaw-exploited-to-steal-tenant-data/",
+    "report_url": "2026-11-22/index.html#art-3",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "Microsoft Entra Connect Health সার্ভিসের একটি Vulnerability ব্যবহার করে Threat Actor-রা অননুমোদিতভাবে বিভিন্ন Tenant-এর কনফিগারেশন এবং অ্যাডমিনিস্ট্রেটরদের ইমেইল অ্যাড্রেসসহ গুরুত্বপূর্ণ মেটাডেটা সংগ্রহ করেছে। যদিও Micro",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-4",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "GnuPG Warns Critical GPGME Flaw Could Expose App Data via Malicious OpenPGP Keys",
+    "source_url": "https://thehackernews.com/2026/11/gnupg-warns-critical-gpgme-flaw-could.html",
+    "report_url": "2026-11-22/index.html#art-4",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "GnuPG প্রজেক্ট একটি critical মেমরি Vulnerability (CVE-2026-129975) শনাক্ত করেছে, যা GPGME লাইব্রেরিতে একটি double free ত্রুটির কারণে ঘটে। একটি malicious OpenPGP key ব্যবহার করে আক্রমণকারীরা আক্রান্ত অ্যাপ্লিকেশন থেকে ডেট",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-129975"
+    ],
+    "vendors": [
+      "GnuPG",
+      "Samba"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-5",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "FBI reportedly hacked again, this time targeting nationwide police database",
+    "source_url": "https://www.bleepingcomputer.com/news/security/fbi-reportedly-hacked-again-this-time-targeting-nationwide-police-database/",
+    "report_url": "2026-11-22/index.html#art-5",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "FBI-এর National Crime Information Center (NCIC) সিস্টেমে একটি সম্ভাব্য Data Breach এর ঘটনা ঘটেছে বলে জানা গেছে। এই সিস্টেমটি মার্কিন আইন প্রয়োগকারী সংস্থাগুলোর মধ্যে অপরাধ সংক্রান্ত তথ্য আদান-প্রদানের জন্য ব্যবহৃত হয়। ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "FBI"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-6",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "FBI Investigating Apparent Hack of Its Key National Criminal Justice Database, AP Source Says",
+    "source_url": "https://www.securityweek.com/fbi-investigating-apparent-hack-of-its-key-national-criminal-justice-database-ap-source-says/",
+    "report_url": "2026-11-22/index.html#art-6",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "FBI-এর ন্যাশনাল ক্রাইম ইনফরমেশন সেন্টার (NCIC) ডেটাবেসে একটি সম্ভাব্য হ্যাকিংয়ের ঘটনা তদন্ত করা হচ্ছে। এই ডেটাবেসটি ফেডারেল, স্টেট এবং লোকাল ল এনফোর্সমেন্ট এজেন্সিগুলোর জন্য অত্যন্ত গুরুত্বপূর্ণ, যেখানে অপরাধী, নিখোঁজ ব্",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "FBI"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-7",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "BADBOX botnet returns with record-breaking 40 billion daily ad requests",
+    "source_url": "https://www.bleepingcomputer.com/news/security/badbox-30-botnet-returns-with-record-breaking-40-billion-daily-ad-requests/",
+    "report_url": "2026-11-22/index.html#art-7",
+    "source_name": "BleepingComputer",
+    "category": "Malware",
+    "summary_bn": "BADBOX botnet-এর নতুন সংস্করণ BADBOX 3.0 বর্তমানে সক্রিয় হয়ে প্রতিদিন রেকর্ড ৪০ বিলিয়ন fraudulent advertising bid requests তৈরি করছে। এই Malware মূলত সস্তা Android-based ডিভাইস, যেমন TV box এবং ট্যাবলেটগুলোকে লক্ষ্য করে ",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google",
+      "T95"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-8",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "Attackers' AI Agents Found a Zero-Day in Medical-Imaging Software and Gained Root Access",
+    "source_url": "https://thehackernews.com/2026/11/attackers-ai-agents-found-zero-day-in.html",
+    "report_url": "2026-11-22/index.html#art-8",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "চীন-ভিত্তিক Threat Actor-রা autonomous AI agents ব্যবহার করে MONAI Label সফটওয়্যারে একটি Zero-Day Vulnerability শনাক্ত করেছে। এই Path-traversal flaw-টি ব্যবহার করে আক্রমণকারীরা কোনো প্রকার Authentication ছাড়াই সার্ভারে ফ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "MONAI"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-9",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "Amazon: China-Linked Hackers' AI Agents Exploited Medical Software Zero-Day",
+    "source_url": "https://www.securityweek.com/amazon-china-linked-hackers-ai-agents-exploited-medical-software-zero-day/",
+    "report_url": "2026-11-22/index.html#art-9",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "চীন-ভিত্তিক একটি Threat Actor তাদের autonomous AI agents ব্যবহার করে MONAI Label সফটওয়্যারে একটি Zero-Day Vulnerability খুঁজে বের করেছে এবং তা সফলভাবে exploit করেছে। এই আক্রমণের মাধ্যমে হ্যাকাররা টার্গেট করা সার্ভারে arb",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "MONAI"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-10",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "A Single Malicious Webpage Let Researchers Hijack Meta Muse and Access Private Chats",
+    "source_url": "https://thehackernews.com/2026/11/a-single-malicious-webpage-let.html",
+    "report_url": "2026-11-22/index.html#art-10",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Meta-এর AI agent 'Muse'-এ একটি গুরুতর Vulnerability শনাক্ত করা হয়েছে, যা ব্যবহারকারীর ব্যক্তিগত কথোপকথন, সংরক্ষিত স্মৃতি এবং সংযুক্ত অ্যাকাউন্টের credentials চুরি করতে সক্ষম। NebuSec-এর গবেষকরা দেখিয়েছেন যে, একটি malicio",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Meta"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-11",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "Signal Blocks AI Agents From Reading Private Chats via Screenshots on Android and iOS",
+    "source_url": "https://thehackernews.com/2026/11/signal-blocks-ai-agents-from-reading.html",
+    "report_url": "2026-11-22/index.html#art-11",
+    "source_name": "The Hacker News",
+    "category": "Privacy",
+    "summary_bn": "Signal তাদের Android এবং iOS প্ল্যাটফর্মে AI agents-এর মাধ্যমে ব্যক্তিগত চ্যাট পড়ার ঝুঁকি কমাতে ডিফল্টভাবে স্ক্রিনশট ব্লক করার ফিচার চালু করেছে। মূলত OS-এর সাথে ইন্টিগ্রেটেড AI agents-এর মাধ্যমে ব্যবহারকারীর স্ক্রিন থেকে",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Signal",
+      "Apple",
+      "Google",
+      "Microsoft",
+      "Meta"
+    ]
+  },
+  {
+    "id": "2026-11-22_art-12",
+    "date": "2026-11-22",
+    "date_pretty": "22 Nov 2026",
+    "title": "President Trump Taps Kirsten Davies as National Cyber Director",
+    "source_url": "https://www.securityweek.com/president-trump-taps-kirsten-davies-as-national-cyber-director/",
+    "report_url": "2026-11-22/index.html#art-12",
+    "source_name": "SecurityWeek",
+    "category": "Advisory",
+    "summary_bn": "প্রেসিডেন্ট ট্রাম্প Kirsten Davies-কে নতুন National Cyber Director হিসেবে নিয়োগ দিয়েছেন। এই নিয়োগটি এমন এক সময়ে এসেছে যখন মার্কিন যুক্তরাষ্ট্রে Microsoft 365, FAA এবং JPMorgan Chase-এর মতো গুরুত্বপূর্ণ পরিষেবাগুলোতে বড় ধ",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft",
+      "JPMorgan Chase",
+      "United Airlines"
+    ]
+  },
+  {
     "id": "2026-11-21_art-1",
     "date": "2026-11-21",
     "date_pretty": "21 Nov 2026",
