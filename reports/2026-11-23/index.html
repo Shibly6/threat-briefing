@@ -1,0 +1,2111 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity threat intelligence briefing for 23 Nov 2026. Automated vulnerability triage, CISA KEV exploitation tracking, and Bengali summaries.">
+    <meta name="author" content="Noor Elahi Ali Shibly">
+    <title>23 Nov 2026 — Cyber Threat Intelligence Briefing</title>
+
+    <!-- Typography: Inter (UI), JetBrains Mono (Code/CVEs), Hind Siliguri (Bengali Intelligence) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+/* ==========================================================================
+   Threat Intelligence Dashboard - Core Stylesheet
+   Modern, Human-Crafted, Responsive Security Telemetry & Briefings
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Dark Mode (Default) */
+  --bg-app: #080c14;
+  --bg-surface: #0e1524;
+  --bg-surface-elevated: #141e33;
+  --bg-surface-hover: #192640;
+  --bg-surface-subtle: rgba(255, 255, 255, 0.03);
+  
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-default: #1f2c44;
+  --border-strong: #2d3f60;
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  --accent-primary: #38bdf8;
+  --accent-primary-subtle: rgba(56, 189, 248, 0.12);
+  --accent-primary-border: rgba(56, 189, 248, 0.3);
+  --accent-cyan: #06b6d4;
+
+  /* Severity Semantics */
+  --sev-critical: #f43f5e;
+  --sev-critical-bg: rgba(244, 63, 94, 0.12);
+  --sev-critical-border: rgba(244, 63, 94, 0.32);
+  --sev-critical-text: #fda4af;
+
+  --sev-high: #f97316;
+  --sev-high-bg: rgba(249, 115, 22, 0.12);
+  --sev-high-border: rgba(249, 115, 22, 0.3);
+  --sev-high-text: #fdba74;
+
+  --sev-medium: #eab308;
+  --sev-medium-bg: rgba(234, 179, 8, 0.12);
+  --sev-medium-border: rgba(234, 179, 8, 0.28);
+  --sev-medium-text: #fde047;
+
+  --sev-low: #10b981;
+  --sev-low-bg: rgba(16, 185, 129, 0.12);
+  --sev-low-border: rgba(16, 185, 129, 0.28);
+  --sev-low-text: #6ee7b7;
+
+  --sev-kev: #c084fc;
+  --sev-kev-bg: rgba(192, 132, 252, 0.14);
+  --sev-kev-border: rgba(192, 132, 252, 0.36);
+  --sev-kev-text: #f3e8ff;
+
+  /* Layout & Geometry */
+  --container-max: 1200px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  --font-bengali: "Hind Siliguri", "Noto Sans Bengali", "SolaimanLipi", -apple-system, sans-serif;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 12px 32px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --bg-surface-hover: #e2e8f0;
+  --bg-surface-subtle: #f8fafc;
+
+  --border-subtle: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-strong: #94a3b8;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #f8fafc;
+
+  --accent-primary: #0284c7;
+  --accent-primary-subtle: rgba(2, 132, 199, 0.08);
+  --accent-primary-border: rgba(2, 132, 199, 0.25);
+
+  --sev-critical: #e11d48;
+  --sev-critical-bg: #ffe4e6;
+  --sev-critical-border: #fecdd3;
+  --sev-critical-text: #9f1239;
+
+  --sev-high: #ea580c;
+  --sev-high-bg: #ffedd5;
+  --sev-high-border: #fed7aa;
+  --sev-high-text: #9a3412;
+
+  --sev-medium: #d97706;
+  --sev-medium-bg: #fef3c7;
+  --sev-medium-border: #fde68a;
+  --sev-medium-text: #854d0e;
+
+  --sev-low: #059669;
+  --sev-low-bg: #d1fae5;
+  --sev-low-border: #a7f3d0;
+  --sev-low-text: #065f46;
+
+  --sev-kev: #7e22ce;
+  --sev-kev-bg: #f3e8ff;
+  --sev-kev-border: #e9d5ff;
+  --sev-kev-text: #581c87;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 2px 10px -1px rgba(0, 0, 0, 0.06), 0 1px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Elements
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 24px 20px 60px;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.site-header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.brand-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--accent-primary-subtle);
+  border: 1px solid var(--accent-primary-border);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-title-group h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-title-group h1 .accent-text {
+  color: var(--accent-primary);
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Universal Global Search System (Across all briefings)
+   ========================================================================== */
+.global-search-container {
+  position: relative;
+  flex: 1;
+  max-width: 460px;
+  min-width: 260px;
+}
+
+.global-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.global-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.global-search-input {
+  width: 100%;
+  padding: 8px 34px 8px 36px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.global-search-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-primary-subtle);
+  background: var(--bg-surface);
+}
+
+.global-search-input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.global-search-clear {
+  position: absolute;
+  right: 10px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+.global-search-clear:hover {
+  color: var(--text-primary);
+}
+
+/* Search Results Floating Dropdown / Modal */
+.global-search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+  max-height: 480px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.global-search-header {
+  padding: 8px 14px;
+  background: var(--bg-surface-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.search-result-item {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--transition-fast);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item:focus {
+  background: var(--bg-surface-hover);
+  outline: none;
+}
+
+.result-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.result-date-badge {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.result-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.result-summary {
+  font-size: 0.78rem;
+  font-family: var(--font-bengali);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.result-tags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+.result-tag-cve {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--sev-critical-bg);
+  color: var(--sev-critical-text);
+  border: 1px solid var(--sev-critical-border);
+}
+
+.result-tag-vendor {
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.search-no-results {
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+}
+
+.btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+}
+
+.btn-primary {
+  background: var(--accent-primary-subtle);
+  border-color: var(--accent-primary-border);
+  color: var(--accent-primary);
+}
+
+.btn-primary:hover {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  border-color: var(--accent-primary);
+}
+
+.theme-toggle-btn {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Telemetry Cards (Metric KPIs)
+   ========================================================================== */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.telemetry-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.telemetry-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.telemetry-card.is-active {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+}
+
+.telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.telemetry-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.telemetry-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+}
+
+.telemetry-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1.1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.telemetry-subtext {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Color Accent Variants for Telemetry */
+.telemetry-card.metric-critical .telemetry-value,
+.telemetry-card.metric-critical .telemetry-icon {
+  color: var(--sev-critical);
+}
+.telemetry-card.metric-critical:hover {
+  border-color: var(--sev-critical-border);
+}
+
+.telemetry-card.metric-high .telemetry-value,
+.telemetry-card.metric-high .telemetry-icon {
+  color: var(--sev-high);
+}
+.telemetry-card.metric-high:hover {
+  border-color: var(--sev-high-border);
+}
+
+.telemetry-card.metric-kev .telemetry-value,
+.telemetry-card.metric-kev .telemetry-icon {
+  color: var(--sev-kev);
+}
+.telemetry-card.metric-kev:hover {
+  border-color: var(--sev-kev-border);
+}
+
+/* ==========================================================================
+   Filter Toolbar (Report Page)
+   ========================================================================== */
+.toolbar-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filter-pill:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.filter-pill.is-active {
+  background: var(--accent-primary-subtle);
+  border-color: var(--accent-primary-border);
+  color: var(--accent-primary);
+}
+
+.results-stats {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   Spotlight Section (Top 5 Priority News)
+   ========================================================================== */
+.spotlight-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 10px;
+}
+
+.spotlight-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spotlight-badge {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--sev-high-bg);
+  color: var(--sev-high-text);
+  border: 1px solid var(--sev-high-border);
+  font-weight: 700;
+}
+
+.spotlight-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spotlight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.spotlight-row:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-surface-hover);
+  transform: translateX(2px);
+}
+
+.spotlight-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.spotlight-rank {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.spotlight-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spotlight-link:hover {
+  color: var(--accent-primary);
+}
+
+.spotlight-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Article Cards (Intelligence Feed)
+   ========================================================================== */
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.articles-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.article-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.article-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+
+.article-card.is-hidden {
+  display: none !important;
+}
+
+/* Card Header */
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.article-title-link {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+  display: inline;
+}
+
+.article-title-link:hover {
+  color: var(--accent-primary);
+}
+
+.article-title-link .external-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.article-title-link:hover .external-icon {
+  opacity: 1;
+}
+
+/* Badges */
+.badge-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+}
+
+.badge-critical {
+  background: var(--sev-critical-bg);
+  color: var(--sev-critical-text);
+  border-color: var(--sev-critical-border);
+}
+
+.badge-high {
+  background: var(--sev-high-bg);
+  color: var(--sev-high-text);
+  border-color: var(--sev-high-border);
+}
+
+.badge-medium {
+  background: var(--sev-medium-bg);
+  color: var(--sev-medium-text);
+  border-color: var(--sev-medium-border);
+}
+
+.badge-low {
+  background: var(--sev-low-bg);
+  color: var(--sev-low-text);
+  border-color: var(--sev-low-border);
+}
+
+.badge-kev {
+  background: var(--sev-kev-bg);
+  color: var(--sev-kev-text);
+  border-color: var(--sev-kev-border);
+}
+
+/* Metadata Bar */
+.article-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.meta-tags-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-sans);
+}
+
+.meta-pill strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.meta-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-elevated);
+  transition: all var(--transition-fast);
+}
+
+.copy-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+.copy-btn.is-copied {
+  color: var(--sev-low);
+  border-color: var(--sev-low-border);
+}
+
+/* Intelligence Summary (Bengali Typography) */
+.article-summary-bn {
+  font-family: var(--font-bengali);
+  font-size: 0.98rem;
+  line-height: 1.82;
+  color: var(--text-primary);
+  background: var(--bg-surface-subtle);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-primary);
+  margin-bottom: 12px;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Technical Tags (CVEs, CVSS, Vendors) */
+.technical-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag-cve {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--sev-critical-bg);
+  color: var(--sev-critical-text);
+  border: 1px solid var(--sev-critical-border);
+  transition: all var(--transition-fast);
+}
+
+.tag-cve:hover {
+  border-color: var(--sev-critical);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tag-cvss {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.tag-vendor {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Empty / No Results State */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  background: var(--bg-surface-subtle);
+}
+
+/* ==========================================================================
+   Archive Page Specific Styles
+   ========================================================================== */
+.archive-hero {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.archive-hero-title h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.archive-hero-title p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+/* Monthly Archive Grouping */
+.archive-month-section {
+  margin-bottom: 32px;
+}
+
+.archive-month-section:last-child {
+  margin-bottom: 0;
+}
+
+.archive-month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.archive-month-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.archive-month-badge {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  list-style: none;
+}
+
+.archive-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.archive-card-link:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.archive-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.archive-date-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary-subtle);
+  border: 1px solid var(--accent-primary-border);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.archive-date-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.archive-pretty-date {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.archive-iso-date {
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.archive-arrow-icon {
+  color: var(--text-muted);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.archive-card-link:hover .archive-arrow-icon {
+  color: var(--accent-primary);
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.footer-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.footer-text a {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 768px) {
+  body {
+    padding: 16px 12px 40px;
+  }
+  
+  .site-header {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .brand-title-group h1 {
+    font-size: 1.15rem;
+  }
+
+  .global-search-container {
+    order: 3;
+    max-width: 100%;
+    min-width: 100%;
+    margin: 6px 0 0 0;
+  }
+
+  .telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .telemetry-card {
+    padding: 14px;
+  }
+
+  .telemetry-value {
+    font-size: 1.5rem;
+  }
+
+  .article-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .badge-group {
+    justify-content: flex-start;
+  }
+
+  .spotlight-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .spotlight-right {
+    align-self: flex-end;
+  }
+
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Site Header -->
+        <header class="site-header">
+            <div class="brand-section">
+                <div class="brand-icon-wrapper" aria-hidden="true">
+                    <!-- Shield SVG Icon -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v4"/>
+                        <path d="M12 16h.01"/>
+                    </svg>
+                </div>
+                <div class="brand-title-group">
+                    <h1>23 Nov 2026 <span class="accent-text">Threat Briefing</span></h1>
+                    <div class="header-meta">
+                        <span>INTELLIGENCE CYCLE &bull; 2026-11-23</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Universal Global Search Bar (Searches all briefings) -->
+            <div class="global-search-container">
+                <div class="global-search-input-wrapper">
+                    <span class="global-search-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="text" id="global-search-input" class="global-search-input" placeholder="Search all briefings (CVE, vendor, threat, keyword)... [/]" autocomplete="off" aria-label="Global threat search">
+                    <button id="global-search-clear-btn" class="global-search-clear" style="display:none;" title="Clear search">&times;</button>
+                </div>
+                <div id="global-search-results" class="global-search-results" style="display: none;"></div>
+            </div>
+
+            <div class="header-actions">
+                <a href="../index.html" class="btn" title="Back to Archive Index">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Archive Index</span>
+                </a>
+                
+                <button id="theme-toggle-btn" class="btn theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Interactive Telemetry Grid -->
+        <section class="telemetry-grid" aria-label="Threat Telemetry Statistics">
+            <div class="telemetry-card" data-telemetry-filter="all" title="Click to show all articles">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">Total Articles</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                            <path d="M18 14h-8"/>
+                            <path d="M15 18h-5"/>
+                            <path d="M10 6h8v4h-8V6Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">5</div>
+                <div class="telemetry-subtext">Aggregated &amp; analyzed</div>
+            </div>
+
+            <div class="telemetry-card metric-critical" data-telemetry-filter="critical" title="Click to filter critical threats">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">Critical Threats</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">3</div>
+                <div class="telemetry-subtext">Immediate action advised</div>
+            </div>
+
+            <div class="telemetry-card metric-high" data-telemetry-filter="high" title="Click to filter high alerts">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">High Alerts</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">1</div>
+                <div class="telemetry-subtext">High priority vulnerabilities</div>
+            </div>
+
+            <div class="telemetry-card metric-kev" data-telemetry-filter="kev" title="Click to filter CISA KEV exploited threats">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">CISA KEV Exploited</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">0</div>
+                <div class="telemetry-subtext">Actively exploited in wild</div>
+            </div>
+        </section>
+
+        <!-- Executive Spotlight Section (Top 5 Priority News) -->
+        <section class="spotlight-panel" aria-label="Executive Priority Briefing">
+            <div class="spotlight-header">
+                <div class="spotlight-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sev-high)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Executive Priority Briefing &bull; Top 5 Surfaced Threats</span>
+                </div>
+                <span class="spotlight-badge">TOP IMPACT</span>
+            </div>
+            <div class="spotlight-grid">
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#01</span>    <a href="https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="Researchers Demonstrate Ghostscript Sandbox-Escape RCE via Crafted File Uploads in Popular Apps">      Researchers Demonstrate Ghostscript Sandbox-Escape RCE via Crafted File Uploads in Popular Apps <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>      </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#02</span>    <a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices/" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="Hackers exploit GL.iNet cloud flaw to infect routers, KVM devices">      Hackers exploit GL.iNet cloud flaw to infect routers, KVM devices <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>      </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#03</span>    <a href="https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="Cleverbridge warns hackers stole credit card numbers, CVVs in data breach">      Cleverbridge warns hackers stole credit card numbers, CVVs in data breach <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>      </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#04</span>    <a href="https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms">      OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>      </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#05</span>    <a href="https://www.bleepingcomputer.com/news/security/signal-to-block-siri-gemini-ai-from-capturing-chats-on-ios-android/" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="Signal to block Siri, Gemini AI from capturing chats on iOS, Android">      Signal to block Siri, Gemini AI from capturing chats on iOS, Android <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-medium"><span class="badge-dot"></span>MEDIUM (95/100)</span>      </div></div>
+            </div>
+        </section>
+
+        <!-- Dynamic Severity & Category Filter Toolbar -->
+        <section class="toolbar-section">
+            <div class="filter-bar">
+                <div class="filter-pills">
+                    <button class="filter-pill is-active" data-filter="all">All (5)</button>
+                    <button class="filter-pill" data-filter="critical">Critical (3)</button>
+                    <button class="filter-pill" data-filter="high">High (1)</button>
+                    <button class="filter-pill" data-filter="medium">Medium</button>
+                    <button class="filter-pill" data-filter="low">Low</button>
+                    <button class="filter-pill" data-filter="kev">CISA KEV (0)</button>
+                    <button class="filter-pill" data-filter="cve">Has CVEs</button>
+                </div>
+                <div id="results-stats" class="results-stats">Showing 5 of 5 threats</div>
+            </div>
+        </section>
+
+        <!-- Main Intelligence Feed -->
+        <main>
+            <div class="section-heading">
+                <div class="section-title">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Full Intelligence Triage Feed</span>
+                </div>
+            </div>
+
+            <div class="articles-stack">
+
+            <article class="article-card" id="art-1" data-severity="critical" data-has-kev="false" data-cves-count="2">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Researchers Demonstrate Ghostscript Sandbox-Escape RCE via Crafted File Uploads in Popular Apps
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-1" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-1">
+                    Ghostscript-এ একটি গুরুতর Use-after-free Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-125396 হিসেবে ট্র্যাক করা হচ্ছে। এই Vulnerability-এর মাধ্যমে একজন Threat Actor একটি বিশেষভাবে তৈরি ফাইল ব্যবহার করে Ghostscript-এর -dSAFER sandbox থেকে বেরিয়ে সার্ভারে Remote Code Execution (RCE) চালাতে সক্ষম। ImageMagick, Pillow, এবং libvips-এর মতো সাধারণ লাইব্রেরিগুলো ব্যবহার করে এই Exploit কার্যকর করা সম্ভব, যা WordPress, Roundcube এবং Debian-এর মতো প্ল্যাটফর্মের জন্য বড় ঝুঁকি তৈরি করেছে। Artifex ইতিমধ্যে ১০.০৮.০ ভার্সনে এর সমাধান দিয়েছে, তবে কন্টেইনার বা বান্ডেল করা অ্যাপ্লিকেশনের ক্ষেত্রে ম্যানুয়ালি আপডেট করা জরুরি।
+                </div>
+
+                <div class="technical-tags"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-125396" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-125396 on NIST NVD">CVE-2026-125396 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-65640" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-65640 on NIST NVD">CVE-2026-65640 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <span class="tag-cvss">CVSS 8.8</span> <span class="tag-vendor">Vendor: Artifex</span> <span class="tag-vendor">Vendor: WordPress</span> <span class="tag-vendor">Vendor: Debian</span> <span class="tag-vendor">Vendor: Roundcube</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-2" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Hackers exploit GL.iNet cloud flaw to infect routers, KVM devices
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-2" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-2">
+                    GL.iNet-এর GoodCloud প্ল্যাটফর্মে একটি Vulnerability ব্যবহার করে হ্যাকাররা তাদের রাউটার এবং KVM ডিভাইসে Malware ইনস্টল করেছে। এই আক্রমণের ফলে ডিভাইসে Backdoor এবং Reverse shell তৈরি হয়েছে, যা দিয়ে হ্যাকাররা দূর থেকে নিয়ন্ত্রণ নিতে সক্ষম হয়েছে। যদিও GL.iNet তাদের Cloud প্ল্যাটফর্মের ত্রুটি সংশোধন করেছে, তবুও আক্রান্ত ডিভাইসগুলো থেকে Malware স্বয়ংক্রিয়ভাবে মুছে যাবে না। কোম্পানিটি ব্যবহারকারীদের দ্রুত সর্বশেষ Firmware আপডেট করতে এবং তাদের তৈরি করা বা কমিউনিটি-ডেভেলপড স্ক্যানার ব্যবহার করে ডিভাইস চেক করার পরামর্শ দিয়েছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: GL.iNet</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-3" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Cleverbridge warns hackers stole credit card numbers, CVVs in data breach
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-3" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-3">
+                    ই-কমার্স প্ল্যাটফর্ম Cleverbridge একটি বড় ধরনের Data Breach-এর শিকার হয়েছে, যেখানে হ্যাকাররা তাদের সিস্টেম থেকে গ্রাহকদের ক্রেডিট কার্ড নম্বর, এক্সপায়ারেশন ডেট এবং CVV/CVC কোড চুরি করেছে। ৪ নভেম্বর ২০২৬-এ এই অননুমোদিত অ্যাক্টিভিটি শনাক্ত হওয়ার পর কোম্পানিটি তাদের সিস্টেম সাময়িকভাবে অফলাইন করে। যদিও এটি কোনো Ransomware আক্রমণ নয়, তবে সংবেদনশীল পেমেন্ট তথ্য চুরি হওয়ায় এটি গ্রাহকদের আর্থিক নিরাপত্তার জন্য একটি বড় ঝুঁকি তৈরি করেছে। Cleverbridge বর্তমানে আইন প্রয়োগকারী সংস্থা এবং সংশ্লিষ্ট কর্তৃপক্ষের সাথে কাজ করছে এবং ক্ষতিগ্রস্ত গ্রাহকদের ক্রেডিট মনিটরিং সুবিধা প্রদান করছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Cleverbridge</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-4" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-4" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-4">
+                    AI inference provider-দের প্ল্যাটফর্মে দীর্ঘ কয়েক মাস ধরে চলমান একটি Data Breach শনাক্ত হয়েছে, যেখানে Threat Actor-রা গ্রাহকদের AI prompt এবং সংবেদনশীল তথ্য চুরি করেছে। গবেষকরা Canary token ব্যবহার করে প্রমাণ পেয়েছেন যে, Zero Data Retention পলিসি থাকা সত্ত্বেও অনেক ক্ষেত্রে ডেটা চুরি হয়েছে। এই আক্রমণের ফলে AWS keys এবং অন্যান্য Credentials ফাঁস হয়েছে, যা ব্যবহার করে আক্রমণকারীরা অননুমোদিত অ্যাক্সেস পাওয়ার চেষ্টা করেছে। OpenRouter এই ঘটনার প্রেক্ষিতে তিনটি Provider-কে তাদের প্ল্যাটফর্ম থেকে সরিয়ে দিয়েছে এবং নিরাপত্তা ব্যবস্থা জোরদার করেছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: OpenRouter</span> <span class="tag-vendor">Vendor: AWS</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-5" data-severity="medium" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/signal-to-block-siri-gemini-ai-from-capturing-chats-on-ios-android/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Signal to block Siri, Gemini AI from capturing chats on iOS, Android
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-medium"><span class="badge-dot"></span>MEDIUM (95/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Advisory</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-5" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-5">
+                    Signal তাদের iOS এবং Android অ্যাপে নতুন নিরাপত্তা ফিচার যুক্ত করেছে, যা Siri এবং Gemini-এর মতো AI assistants-কে ব্যবহারকারীর ব্যক্তিগত চ্যাট স্ক্রিন থেকে তথ্য সংগ্রহ করা থেকে বিরত রাখবে। এই পদক্ষেপটি মূলত OS-level AI agents-এর মাধ্যমে সংবেদনশীল তথ্য ফাঁস হওয়ার ঝুঁকি কমাতে নেওয়া হয়েছে। Signal জানিয়েছে যে তারা reverse engineering-এর মাধ্যমে AI-এর ডেটা সংগ্রহের পথগুলো চিহ্নিত করেছে এবং তা ব্লক করার ব্যবস্থা করেছে। তবে, macOS-এর মতো প্ল্যাটফর্মে এখনো সীমাবদ্ধতা থাকায় ব্যবহারকারীদের ম্যানুয়ালি Siri সেটিংস থেকে Signal অ্যাপটিকে exclude করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Signal</span> <span class="tag-vendor">Vendor: Apple</span> <span class="tag-vendor">Vendor: Google</span> <span class="tag-vendor">Vendor: Microsoft</span></div>
+            </article>
+            
+            </div>
+
+            <!-- Zero Results State -->
+            <div id="no-results-state" class="empty-state" style="display: none;">
+                <p>No threat intelligence items match your active search or filter criteria.</p>
+            </div>
+        </main>
+
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div class="footer-text">
+                Daily Threat Intelligence Briefing &bull; Authored &amp; Maintained by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client-Side Search Index & Interactivity -->
+    <script>
+/**
+ * Threat Intelligence Dashboard - Client Interactions
+ * Universal Cross-Briefing Search, In-Page Severity Filtering, Theme Toggle, and Clipboard Actions.
+ */
+
+(function () {
+  'use strict';
+
+  // -------------------------------------------------------------------------
+  // 1. Theme Management (Dark / Light Mode)
+  // -------------------------------------------------------------------------
+  const THEME_STORAGE_KEY = 'threat_briefing_theme';
+
+  function initTheme() {
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+    applyTheme(initialTheme);
+
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      });
+    }
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    if (toggleBtn) {
+      const isDark = theme === 'dark';
+      toggleBtn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+
+      const sunIcon = toggleBtn.querySelector('.icon-sun');
+      const moonIcon = toggleBtn.querySelector('.icon-moon');
+      if (sunIcon && moonIcon) {
+        sunIcon.style.display = isDark ? 'block' : 'none';
+        moonIcon.style.display = isDark ? 'none' : 'block';
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // 2. Universal Global Search System (Across all briefings past & present)
+  // -------------------------------------------------------------------------
+  let searchIndex = [];
+  let indexState = 'idle'; // idle | loading | ready
+  const indexWaiters = [];
+
+  function ensureSearchIndex(onReady) {
+    if (indexState === 'ready') {
+      if (onReady) onReady();
+      return;
+    }
+    if (onReady) indexWaiters.push(onReady);
+    if (indexState === 'loading') return;
+
+    indexState = 'loading';
+    const isReportSubdir = window.location.pathname.includes('/202') || document.querySelector('.articles-stack') !== null;
+    const s = document.createElement('script');
+    s.src = (isReportSubdir ? '../assets/' : './assets/') + 'search_index.js';
+    s.onload = () => {
+      searchIndex = Array.isArray(window.__THREAT_SEARCH_INDEX__) ? window.__THREAT_SEARCH_INDEX__ : [];
+      indexState = 'ready';
+      indexWaiters.splice(0).forEach((fn) => fn());
+    };
+    s.onerror = () => {
+      indexState = 'idle'; // allow retry on next focus/keystroke
+      indexWaiters.length = 0;
+    };
+    document.head.appendChild(s);
+  }
+
+  function initGlobalSearch() {
+    const searchInput = document.getElementById('global-search-input');
+    const clearBtn = document.getElementById('global-search-clear-btn');
+    const resultsContainer = document.getElementById('global-search-results');
+    if (!searchInput || !resultsContainer) return;
+    searchInput.addEventListener('focus', () => ensureSearchIndex());
+
+    let debounceTimer = null;
+
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(debounceTimer);
+      const query = (e.target.value || '').trim();
+
+      if (clearBtn) {
+        clearBtn.style.display = query ? 'block' : 'none';
+      }
+
+      if (!query) {
+        resultsContainer.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        return;
+      }
+
+      debounceTimer = setTimeout(() => {
+        ensureSearchIndex(() => executeGlobalSearch(query, resultsContainer));
+      }, 120);
+    });
+
+    searchInput.addEventListener('focus', () => {
+      const query = (searchInput.value || '').trim();
+      if (query && resultsContainer.children.length > 0) {
+        resultsContainer.style.display = 'flex';
+      }
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        resultsContainer.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        searchInput.focus();
+      });
+    }
+
+    // Keyboard Shortcuts: '/' to focus search, 'Escape' to close dropdown
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      } else if (e.key === 'Escape') {
+        if (resultsContainer.style.display !== 'none') {
+          resultsContainer.style.display = 'none';
+        }
+        if (document.activeElement === searchInput) {
+          searchInput.blur();
+        }
+      }
+    });
+
+    // Close results dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.global-search-container')) {
+        resultsContainer.style.display = 'none';
+      }
+    });
+  }
+
+  function executeGlobalSearch(query, resultsContainer) {
+    if (!searchIndex || searchIndex.length === 0) {
+      // If index not yet ready, try pulling from window again
+      if (Array.isArray(window.__THREAT_SEARCH_INDEX__)) {
+        searchIndex = window.__THREAT_SEARCH_INDEX__;
+      }
+    }
+
+    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (tokens.length === 0) {
+      resultsContainer.style.display = 'none';
+      return;
+    }
+
+    const isReportSubdir = window.location.pathname.includes('/202') || document.querySelector('.articles-stack') !== null;
+    const currentPath = window.location.pathname;
+
+    const matches = searchIndex.filter((item) => {
+      const searchTarget = [
+        item.title || '',
+        item.summary_bn || '',
+        item.source_name || '',
+        item.category || '',
+        item.date || '',
+        item.date_pretty || '',
+        (item.cves || []).join(' '),
+        (item.vendors || []).join(' ')
+      ].join(' ').toLowerCase();
+
+      return tokens.every((token) => searchTarget.includes(token));
+    });
+
+    // Sort by score descending, then date descending
+    matches.sort((a, b) => {
+      const scoreDiff = (b.score || 0) - (a.score || 0);
+      if (scoreDiff !== 0) return scoreDiff;
+      return (b.date || '').localeCompare(a.date || '');
+    });
+
+    const displayMatches = matches.slice(0, 20);
+
+    if (displayMatches.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="global-search-header">
+          <span>0 RESULTS FOUND ACROSS BRIEFINGS</span>
+          <span>ESC TO CLOSE</span>
+        </div>
+        <div class="search-no-results">
+          No threat intelligence matches "<strong>${escapeHtml(query)}</strong>" in the repository.
+        </div>
+      `;
+      resultsContainer.style.display = 'flex';
+      return;
+    }
+
+    const htmlList = [];
+    htmlList.push(`
+      <div class="global-search-header">
+        <span>FOUND ${matches.length} THREATS ACROSS REPOSITORY</span>
+        <span>ESC TO CLOSE</span>
+      </div>
+    `);
+
+    displayMatches.forEach((item) => {
+      // Determine link target URL
+      let linkHref = '';
+      const isSameDate = isReportSubdir && currentPath.includes(item.date);
+
+      if (isSameDate) {
+        const anchorId = item.id ? item.id.split('_')[1] : '';
+        linkHref = anchorId ? `#${anchorId}` : '#';
+      } else if (isReportSubdir) {
+        linkHref = `../${item.report_url}`;
+      } else {
+        linkHref = `./${item.report_url}`;
+      }
+
+      const sev = (item.severity || 'medium').toLowerCase();
+      const score = item.score || 50;
+      const kevBadge = item.has_kev ? `<span class="badge badge-kev" style="font-size:0.62rem; padding:1px 5px;">🔥 KEV</span>` : '';
+      const dateDisplay = item.date_pretty || item.date || '';
+
+      const cveTags = (item.cves || []).slice(0, 3).map((c) => `<span class="result-tag-cve">${escapeHtml(c)}</span>`).join('');
+      const vendorTags = (item.vendors || []).slice(0, 2).map((v) => `<span class="result-tag-vendor">${escapeHtml(v)}</span>`).join('');
+
+      htmlList.push(`
+        <a href="${linkHref}" class="search-result-item" data-date="${escapeHtml(item.date)}" data-anchor="${escapeHtml(item.id || '')}">
+          <div class="result-top-row">
+            <span class="result-date-badge">📅 ${escapeHtml(dateDisplay)}</span>
+            <div style="display:flex; align-items:center; gap:4px;">
+              <span class="badge badge-${sev}" style="font-size:0.62rem; padding:2px 5px;">${sev.toUpperCase()} (${score})</span>
+              ${kevBadge}
+            </div>
+          </div>
+          <div class="result-title">${escapeHtml(item.title)}</div>
+          <div class="result-summary">${escapeHtml(item.summary_bn || '')}</div>
+          <div class="result-tags">
+            ${cveTags}
+            ${vendorTags}
+            <span class="result-tag-vendor" style="margin-left:auto;">${escapeHtml(item.source_name || '')}</span>
+          </div>
+        </a>
+      `);
+    });
+
+    resultsContainer.innerHTML = htmlList.join('');
+    resultsContainer.style.display = 'flex';
+
+    // Click handler for internal smooth scrolling if navigating within current page
+    resultsContainer.querySelectorAll('.search-result-item').forEach((link) => {
+      link.addEventListener('click', (ev) => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          ev.preventDefault();
+          const targetCard = document.querySelector(href);
+          if (targetCard) {
+            resultsContainer.style.display = 'none';
+            // Reset any filter so target card is visible
+            document.querySelectorAll('.article-card').forEach((c) => c.classList.remove('is-hidden'));
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetCard.style.outline = '2px solid var(--accent-primary)';
+            targetCard.style.outlineOffset = '4px';
+            setTimeout(() => {
+              targetCard.style.outline = 'none';
+            }, 2500);
+          }
+        }
+      });
+    });
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // -------------------------------------------------------------------------
+  // 3. Severity & Attribute Filtering (Report Page)
+  // -------------------------------------------------------------------------
+  let currentFilter = 'all';
+
+  function initReportFilterPills() {
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const telemetryCards = document.querySelectorAll('.telemetry-card');
+    if (filterPills.length === 0) return;
+
+    // Filter pill buttons
+    filterPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach((p) => p.classList.remove('is-active'));
+        pill.classList.add('is-active');
+        currentFilter = pill.getAttribute('data-filter') || 'all';
+        syncTelemetryState(currentFilter);
+        applyReportFilters();
+      });
+    });
+
+    // Telemetry metric cards act as interactive filters
+    telemetryCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const targetFilter = card.getAttribute('data-telemetry-filter');
+        if (!targetFilter) return;
+
+        if (currentFilter === targetFilter && targetFilter !== 'all') {
+          currentFilter = 'all';
+        } else {
+          currentFilter = targetFilter;
+        }
+
+        filterPills.forEach((p) => {
+          if (p.getAttribute('data-filter') === currentFilter) {
+            p.classList.add('is-active');
+          } else {
+            p.classList.remove('is-active');
+          }
+        });
+
+        syncTelemetryState(currentFilter);
+        applyReportFilters();
+      });
+    });
+  }
+
+  function syncTelemetryState(filter) {
+    const telemetryCards = document.querySelectorAll('.telemetry-card');
+    telemetryCards.forEach((card) => {
+      const cardFilter = card.getAttribute('data-telemetry-filter');
+      if (cardFilter && cardFilter === filter && filter !== 'all') {
+        card.classList.add('is-active');
+      } else {
+        card.classList.remove('is-active');
+      }
+    });
+  }
+
+  function applyReportFilters() {
+    const cards = document.querySelectorAll('.article-card');
+    const emptyState = document.getElementById('no-results-state');
+    const statsElem = document.getElementById('results-stats');
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const sev = (card.getAttribute('data-severity') || '').toLowerCase();
+      const hasKev = card.getAttribute('data-has-kev') === 'true';
+      const cvesCount = parseInt(card.getAttribute('data-cves-count') || '0', 10);
+
+      let matchesFilter = true;
+      if (currentFilter === 'critical') {
+        matchesFilter = sev === 'critical';
+      } else if (currentFilter === 'high') {
+        matchesFilter = sev === 'high';
+      } else if (currentFilter === 'medium') {
+        matchesFilter = sev === 'medium';
+      } else if (currentFilter === 'low') {
+        matchesFilter = sev === 'low';
+      } else if (currentFilter === 'kev') {
+        matchesFilter = hasKev;
+      } else if (currentFilter === 'cve') {
+        matchesFilter = cvesCount > 0;
+      }
+
+      if (matchesFilter) {
+        card.classList.remove('is-hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+
+    if (emptyState) {
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    if (statsElem) {
+      statsElem.textContent = `Showing ${visibleCount} of ${cards.length} threats`;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // 4. Clipboard Actions (Copy Bengali Summary)
+  // -------------------------------------------------------------------------
+  function initClipboard() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+
+      const targetId = btn.getAttribute('data-copy-target');
+      let textToCopy = '';
+
+      if (targetId) {
+        const targetElem = document.getElementById(targetId);
+        if (targetElem) {
+          textToCopy = targetElem.innerText || targetElem.textContent || '';
+        }
+      } else if (btn.getAttribute('data-copy-text')) {
+        textToCopy = btn.getAttribute('data-copy-text');
+      }
+
+      if (textToCopy) {
+        navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+          const originalText = btn.innerHTML;
+          btn.classList.add('is-copied');
+          btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+
+          setTimeout(() => {
+            btn.classList.remove('is-copied');
+            btn.innerHTML = originalText;
+          }, 1800);
+        }).catch((err) => {
+          console.error('Clipboard copy failed:', err);
+        });
+      }
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // DOM Ready Initialization
+  // -------------------------------------------------------------------------
+  function init() {
+    initTheme();
+    initGlobalSearch();
+    initReportFilterPills();
+    initClipboard();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+    </script>
+</body>
+</html>

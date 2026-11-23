@@ -1,5 +1,105 @@
 [
   {
+    "id": "2026-11-23_art-1",
+    "date": "2026-11-23",
+    "date_pretty": "23 Nov 2026",
+    "title": "Researchers Demonstrate Ghostscript Sandbox-Escape RCE via Crafted File Uploads in Popular Apps",
+    "source_url": "https://thehackernews.com/2026/11/researchers-demonstrate-ghostscript.html",
+    "report_url": "2026-11-23/index.html#art-1",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Ghostscript-এ একটি গুরুতর Use-after-free Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-125396 হিসেবে ট্র্যাক করা হচ্ছে। এই Vulnerability-এর মাধ্যমে একজন Threat Actor একটি বিশেষভাবে তৈরি ফাইল ব্যবহার করে Ghostscript-এর -dSA",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-125396",
+      "CVE-2026-65640"
+    ],
+    "vendors": [
+      "Artifex",
+      "WordPress",
+      "Debian",
+      "Roundcube"
+    ]
+  },
+  {
+    "id": "2026-11-23_art-2",
+    "date": "2026-11-23",
+    "date_pretty": "23 Nov 2026",
+    "title": "Hackers exploit GL.iNet cloud flaw to infect routers, KVM devices",
+    "source_url": "https://www.bleepingcomputer.com/news/security/hackers-exploit-glinet-cloud-flaw-to-infect-routers-kvm-devices/",
+    "report_url": "2026-11-23/index.html#art-2",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "GL.iNet-এর GoodCloud প্ল্যাটফর্মে একটি Vulnerability ব্যবহার করে হ্যাকাররা তাদের রাউটার এবং KVM ডিভাইসে Malware ইনস্টল করেছে। এই আক্রমণের ফলে ডিভাইসে Backdoor এবং Reverse shell তৈরি হয়েছে, যা দিয়ে হ্যাকাররা দূর থেকে নিয়ন",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "GL.iNet"
+    ]
+  },
+  {
+    "id": "2026-11-23_art-3",
+    "date": "2026-11-23",
+    "date_pretty": "23 Nov 2026",
+    "title": "Cleverbridge warns hackers stole credit card numbers, CVVs in data breach",
+    "source_url": "https://www.bleepingcomputer.com/news/security/cleverbridge-warns-hackers-stole-credit-card-numbers-cvvs-in-data-breach/",
+    "report_url": "2026-11-23/index.html#art-3",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "ই-কমার্স প্ল্যাটফর্ম Cleverbridge একটি বড় ধরনের Data Breach-এর শিকার হয়েছে, যেখানে হ্যাকাররা তাদের সিস্টেম থেকে গ্রাহকদের ক্রেডিট কার্ড নম্বর, এক্সপায়ারেশন ডেট এবং CVV/CVC কোড চুরি করেছে। ৪ নভেম্বর ২০২৬-এ এই অননুমোদিত অ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Cleverbridge"
+    ]
+  },
+  {
+    "id": "2026-11-23_art-4",
+    "date": "2026-11-23",
+    "date_pretty": "23 Nov 2026",
+    "title": "OpenRouter Drops 3 Providers After Researchers Catch Months of Prompt Theft at AI Hosting Firms",
+    "source_url": "https://thehackernews.com/2026/11/openrouter-drops-3-providers-after.html",
+    "report_url": "2026-11-23/index.html#art-4",
+    "source_name": "The Hacker News",
+    "category": "Data Breach",
+    "summary_bn": "AI inference provider-দের প্ল্যাটফর্মে দীর্ঘ কয়েক মাস ধরে চলমান একটি Data Breach শনাক্ত হয়েছে, যেখানে Threat Actor-রা গ্রাহকদের AI prompt এবং সংবেদনশীল তথ্য চুরি করেছে। গবেষকরা Canary token ব্যবহার করে প্রমাণ পেয়েছেন যে,",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "OpenRouter",
+      "AWS"
+    ]
+  },
+  {
+    "id": "2026-11-23_art-5",
+    "date": "2026-11-23",
+    "date_pretty": "23 Nov 2026",
+    "title": "Signal to block Siri, Gemini AI from capturing chats on iOS, Android",
+    "source_url": "https://www.bleepingcomputer.com/news/security/signal-to-block-siri-gemini-ai-from-capturing-chats-on-ios-android/",
+    "report_url": "2026-11-23/index.html#art-5",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "Signal তাদের iOS এবং Android অ্যাপে নতুন নিরাপত্তা ফিচার যুক্ত করেছে, যা Siri এবং Gemini-এর মতো AI assistants-কে ব্যবহারকারীর ব্যক্তিগত চ্যাট স্ক্রিন থেকে তথ্য সংগ্রহ করা থেকে বিরত রাখবে। এই পদক্ষেপটি মূলত OS-level AI ag",
+    "severity": "medium",
+    "score": 95,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Signal",
+      "Apple",
+      "Google",
+      "Microsoft"
+    ]
+  },
+  {
     "id": "2026-11-22_art-1",
     "date": "2026-11-22",
     "date_pretty": "22 Nov 2026",
