@@ -1,5 +1,544 @@
 window.__THREAT_SEARCH_INDEX__ = [
   {
+    "id": "2026-11-24_art-1",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Hackers Exploit Critical ScreenConnect Flaw to Hijack MSP Technician PCs Without Warning",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-critical-screenconnect.html",
+    "report_url": "2026-11-24/index.html#art-1",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Threat actors বর্তমানে ConnectWise ScreenConnect-এর একটি critical Vulnerability (CVE-2026-84869) ব্যবহার করে MSP টেকনিশিয়ানদের workstation-এ Malware আক্রমণ চালাচ্ছে। এই Zero-Day Exploitation-এর মাধ্যমে আক্রমণকারীরা guest",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-84869"
+    ],
+    "vendors": [
+      "ConnectWise"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-2",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "⚡ Weekly Recap: VMware 0-Day, Java4Shell, NGINX2Root, Ruby2Shell, and a Whole Lot of Shell Trouble",
+    "source_url": "https://thehackernews.com/2026/11/weekly-recap-vmware-0-day-java4shell.html",
+    "report_url": "2026-11-24/index.html#art-2",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "এই সপ্তাহে সাইবার নিরাপত্তা জগতে বেশ কিছু গুরুত্বপূর্ণ ঘটনা ঘটেছে, যার মধ্যে Armory Castle নামক Threat Actor-এর VMware vCenter-এর একটি critical Zero-Day Vulnerability (CVE-2026-123890) ব্যবহার করে সাইবার গুপ্তচরবৃত্তি অন",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-123890"
+    ],
+    "vendors": [
+      "VMware",
+      "BeyondTrust",
+      "Cursor",
+      "Anthropic",
+      "Fireworks AI"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-3",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "SAP NetWeaver, Cisco Expressway Flaws Exploited in Attacks",
+    "source_url": "https://www.securityweek.com/sap-netweaver-cisco-expressway-flaws-exploited-in-attacks/",
+    "report_url": "2026-11-24/index.html#art-3",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "CISA সম্প্রতি SAP NetWeaver এবং Cisco Expressway-এর Vulnerability-গুলো সক্রিয়ভাবে Exploited হওয়ার বিষয়ে সতর্কবার্তা জারি করেছে। এর মধ্যে CVE-2026-76466 একটি critical hardcoded credentials weakness, যা ব্যবহার করে Threat ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2025-42884",
+      "CVE-2026-76466",
+      "CVE-2026-123890",
+      "CVE-2026-129448"
+    ],
+    "vendors": [
+      "SAP",
+      "Cisco",
+      "VMware",
+      "Apache"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-4",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "CISA flags critical Cisco RCE flaw as actively exploited in attacks",
+    "source_url": "https://www.bleepingcomputer.com/news/security/cisa-flags-critical-cisco-expressway-rce-flaw-as-actively-exploited/",
+    "report_url": "2026-11-24/index.html#art-4",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "CISA সম্প্রতি Cisco Expressway সিরিজের একটি critical Vulnerability (CVE-2026-76466) শনাক্ত করেছে, যা বর্তমানে সক্রিয়ভাবে Exploited হচ্ছে। এই Vulnerability-টি hard-coded credentials এবং client certificate ভ্যালিডেশনের ত্র",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-76466",
+      "CVE-2026-20320"
+    ],
+    "vendors": [
+      "Cisco"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-5",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "CISA Adds Two Known Exploited Vulnerabilities to Catalog | CISA",
+    "source_url": "https://www.cisa.gov/news-events/alerts/2026/11/23/cisa-adds-two-known-exploited-vulnerabilities-catalog",
+    "report_url": "2026-11-24/index.html#art-5",
+    "source_name": "CISA Advisories",
+    "category": "Vulnerability",
+    "summary_bn": "CISA তাদের Known Exploited Vulnerabilities (KEV) ক্যাটালগে দুটি নতুন Vulnerability যুক্ত করেছে, যা বর্তমানে সক্রিয়ভাবে Exploit করা হচ্ছে। এর মধ্যে একটি হলো Project MONAI-এর Path Traversal Vulnerability (CVE-2026-133968) ",
+    "severity": "high",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-133968",
+      "CVE-2026-134624"
+    ],
+    "vendors": [
+      "Project MONAI",
+      "N-able"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-6",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Critical binary-parser Flaw Enables JavaScript Injection via Malicious Parser Definitions",
+    "source_url": "https://thehackernews.com/2026/11/critical-binary-parser-flaw-enables.html",
+    "report_url": "2026-11-24/index.html#art-6",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "জনপ্রিয় binary-parser লাইব্রেরিতে একটি critical Vulnerability (CVE-2026-134814) শনাক্ত করা হয়েছে, যা attackers-দের arbitrary JavaScript কোড execute করার সুযোগ দেয়। এই Code Injection ত্রুটিটি মূলত Context.generateOption()",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-134814",
+      "CVE-2026-1245"
+    ],
+    "vendors": [
+      "binary-parser"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-7",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "phpAfterShell Vulnerability Revives PHP2Shell's Attack Path",
+    "source_url": "https://www.securityweek.com/phpaftershell-vulnerability-revives-php2shells-attack-path/",
+    "report_url": "2026-11-24/index.html#art-7",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "PHP-তে একটি critical-severity Vulnerability শনাক্ত করা হয়েছে, যার নাম দেওয়া হয়েছে phpAfterShell (CVE-2026-126714)। এই Vulnerability-টি মূলত session file লেখার প্রক্রিয়ায় ত্রুটির কারণে ঘটে, যেখানে ফাইল রাইট অপারেশন মাঝপথে",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-126714"
+    ],
+    "vendors": [
+      "PHP"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-8",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Webworm Suspected of Modifying SoftEther VPN to Evade Detection and Hide Remote Access",
+    "source_url": "https://thehackernews.com/2026/11/webworm-suspected-of-modifying.html",
+    "report_url": "2026-11-24/index.html#art-8",
+    "source_name": "The Hacker News",
+    "category": "Malware",
+    "summary_bn": "চীন-ভিত্তিক Threat Actor 'Webworm' তাদের সাইবার আক্রমণের গোপনীয়তা বজায় রাখতে SoftEther VPN Bridge টুলটিকে মডিফাই করেছে। তারা এই টুলটির নাম পরিবর্তন করে 'NtMonitor VPN' রেখেছে এবং এটিকে Network Monitor Software হিসেবে ছদ্",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "SoftEther Project",
+      "Network Systems Solutions Inc"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-9",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Spanish LaLiga confirms hackers stole soccer fans’ personal data",
+    "source_url": "https://www.bleepingcomputer.com/news/security/spanish-laliga-confirms-hackers-stole-soccer-fans-personal-data/",
+    "report_url": "2026-11-24/index.html#art-9",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "স্পেনের শীর্ষ ফুটবল লিগ LaLiga সম্প্রতি একটি Data Breach-এর শিকার হয়েছে, যেখানে তাদের ফ্যান সার্ভিস প্ল্যাটফর্ম থেকে ব্যবহারকারীদের ব্যক্তিগত তথ্য চুরি হয়েছে। ১৪ থেকে ১৬ নভেম্বরের মধ্যে সংঘটিত এই সাইবার অ্যাটাক-এর মাধ্যম",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "LaLiga"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-10",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "South Korea’s power giant KEPCO confirms data breach impacting 1.5 million",
+    "source_url": "https://www.bleepingcomputer.com/news/security/south-koreas-power-giant-kepco-confirms-data-breach-impacting-15-million/",
+    "report_url": "2026-11-24/index.html#art-10",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "দক্ষিণ কোরিয়ার রাষ্ট্রীয় বিদ্যুৎ কোম্পানি KEPCO একটি বড় ধরনের Data Breach-এর শিকার হয়েছে, যেখানে প্রায় ১.৫ মিলিয়ন গ্রাহক, কর্মচারী এবং ঠিকাদারের ব্যক্তিগত তথ্য ফাঁস হয়েছে। Threat Actor-রা KEPCO ON বিলিং প্ল্যাটফর্ম এবং ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "KEPCO"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-11",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "OpenRouter drops AI providers over leaked prompts and secrets",
+    "source_url": "https://www.bleepingcomputer.com/news/security/openrouter-drops-ai-providers-over-leaked-prompts-and-secrets/",
+    "report_url": "2026-11-24/index.html#art-11",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "OpenRouter প্ল্যাটফর্ম থেকে তিনটি AI প্রোভাইডারকে অপসারণ করা হয়েছে, কারণ তারা ব্যবহারকারীর ডেটা এবং সিক্রেট কি (secrets) ফাঁস করেছে। Dragos নামক একটি সিকিউরিটি ফার্মের গবেষণায় দেখা গেছে যে, প্রোভাইডারদের দুর্বল ডেটা হ্যা",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "OpenRouter",
+      "Together AI",
+      "Phala",
+      "Novita",
+      "Atlas Cloud",
+      "Dragos"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-12",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "N-able Patches Critical Flaw Disclosed After Mail Assure Cyberattack",
+    "source_url": "https://www.securityweek.com/n-able-patches-critical-flaw-disclosed-after-mail-assure-cyberattack/",
+    "report_url": "2026-11-24/index.html#art-12",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "N-able তাদের Mail Assure এবং SpamExperts Hosted Cloud সার্ভিসে একটি গুরুতর SSRF Vulnerability শনাক্ত করেছে, যা CVE-2026-134624 হিসেবে চিহ্নিত। এই Vulnerability-এর CVSS স্কোর ৯.৩, যা একজন privileged API ব্যবহারকারীকে অভ্য",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-134624"
+    ],
+    "vendors": [
+      "N-able"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-13",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "N-able Discloses Critical Mail Assure Vulnerability Found During Breach Investigation",
+    "source_url": "https://thehackernews.com/2026/11/n-able-discloses-critical-mail-assure.html",
+    "report_url": "2026-11-24/index.html#art-13",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "N-able তাদের Mail Assure এবং SpamExperts Hosted Cloud সার্ভিসে একটি critical SSRF Vulnerability (CVE-2026-134624) শনাক্ত করেছে। এই Vulnerability-এর মাধ্যমে একজন authenticated API user সার্ভারের অভ্যন্তরীণ সিস্টেমে অননুমো",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-134624"
+    ],
+    "vendors": [
+      "N-able"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-14",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Microsoft Azure flaw exploited to steal customers' API credentials",
+    "source_url": "https://www.bleepingcomputer.com/news/security/microsoft-azure-flaw-exploited-to-steal-customers-api-credentials/",
+    "report_url": "2026-11-24/index.html#art-14",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "Microsoft Azure API Management (APIM) Classic tiers-এ একটি গুরুতর Vulnerability শনাক্ত করা হয়েছে, যা ব্যবহার করে Threat Actor-রা গ্রাহকদের API credentials এবং গোপন তথ্য চুরি করেছে। এই Zero-Day Exploitation-এর মাধ্যমে আক্",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-15",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Hackers Exploited GL.iNet Cloud Flaw to Install Malware on Routers and KVM Devices",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploited-glinet-cloud-flaw-to.html",
+    "report_url": "2026-11-24/index.html#art-15",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "GL.iNet-এর GoodCloud রিমোট ম্যানেজমেন্ট সার্ভিসে একটি গুরুতর Vulnerability শনাক্ত করা হয়েছে, যা ব্যবহার করে Threat Actor-রা রাউটার এবং KVM ডিভাইসে Malware ইনস্টল করেছে। এই Exploit-এর মাধ্যমে ডিভাইসে root-level reverse sh",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "GL.iNet"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-16",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Hackers Exploit Critical ASP.NET Anti-CSRF Library Flaw Allowing Unauthenticated RCE",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-critical-aspnet-anti.html",
+    "report_url": "2026-11-24/index.html#art-16",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Idunno.AntiCsrf লাইব্রেরির একটি critical Vulnerability (CVE-2026-131914) শনাক্ত করা হয়েছে, যা Unauthenticated Remote Code Execution (RCE) এর সুযোগ তৈরি করে। এই legacy লাইব্রেরিটি .NET ObjectStateFormatter ব্যবহার করে অনি",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-131914"
+    ],
+    "vendors": [
+      "Idunno"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-17",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "GlobeTopper loses $2.5 million after hackers steal $70k in gift cards",
+    "source_url": "https://www.bleepingcomputer.com/news/security/globetopper-loses-25-million-after-hackers-steal-70k-in-gift-cards/",
+    "report_url": "2026-11-24/index.html#art-17",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "B2B digital gift card distributor GlobeTopper একটি সাইবার আক্রমণের শিকার হয়েছে, যার ফলে কোম্পানিটি প্রায় $২.৫ মিলিয়ন ডলার রাজস্ব হারিয়েছে এবং হ্যাকাররা $৭০,০০০ ডলার মূল্যের গিফট কার্ড হাতিয়ে নিয়েছে। আক্রমণকারীরা কোম্পানি",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "GlobeTopper",
+      "iQSTEL"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-18",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "GL.iNet Routers, KVMs Compromised via Remote Management Service Flaw",
+    "source_url": "https://www.securityweek.com/gl-inet-routers-kvms-compromised-via-remote-management-service-flaw/",
+    "report_url": "2026-11-24/index.html#art-18",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "GL.iNet এর GoodCloud প্ল্যাটফর্মে থাকা একটি Vulnerability ব্যবহার করে Threat Actor রা তাদের রাউটার এবং KVM ডিভাইসে Malware প্রবেশ করিয়েছে। এই Vulnerability টি মূলত রিমোট ম্যানেজমেন্ট সার্ভিসের মাধ্যমে কমান্ড এক্সিকিউশন ক",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "GL.iNet"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-19",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Azure Flaw Exploited to Target Secrets at Norwegian Energy Firms",
+    "source_url": "https://www.securityweek.com/azure-flaw-exploited-to-target-secrets-at-norwegian-energy-firms/",
+    "report_url": "2026-11-24/index.html#art-19",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "Microsoft-এর Azure API Management (APIM) সার্ভিসে একটি গুরুতর Vulnerability শনাক্ত করা হয়েছে, যা ব্যবহার করে Threat Actor-রা সংরক্ষিত secrets, client secrets এবং tokens-এর মতো সংবেদনশীল তথ্য হাতিয়ে নিতে সক্ষম হয়েছে। এই ত",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-20",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "AI-Assisted Cyber Attacks Trigger Unauthorized Payments at Indian Banks and Fintech Firms",
+    "source_url": "https://thehackernews.com/2026/11/ai-assisted-cyberattacks-trigger.html",
+    "report_url": "2026-11-24/index.html#art-20",
+    "source_name": "The Hacker News",
+    "category": "Threat Actor",
+    "summary_bn": "CERT-In সতর্ক করেছে যে Threat Actor-রা AI-driven Agentic Offensive Frameworks (AOFS) ব্যবহার করে ভারতের ব্যাংকিং এবং Fintech সেক্টরে সাইবার আক্রমণ চালাচ্ছে। এই আক্রমণকারীরা সরাসরি API exploit না করে বরং Business applicat",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "N/A"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-21",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "AI Agents Are Creating a Shared Responsibility Gap",
+    "source_url": "https://www.bleepingcomputer.com/news/security/ai-agents-are-creating-a-shared-responsibility-gap/",
+    "report_url": "2026-11-24/index.html#art-21",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "AI Agent-এর ক্রমবর্ধমান ব্যবহারের ফলে একটি নতুন 'shared responsibility gap' তৈরি হয়েছে, যেখানে AI মডেল প্রোভাইডার এবং ব্যবহারকারীর মধ্যে নিরাপত্তার দায়িত্বের সীমারেখা অস্পষ্ট। Agentic AI প্রায়ই বিভিন্ন থার্ড-পার্টি সিস্ট",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft",
+      "AWS",
+      "Anthropic",
+      "OpenAI",
+      "GitHub",
+      "Cursor"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-22",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Call center operator gets 8 years for helping scam 30,000 Americans",
+    "source_url": "https://www.bleepingcomputer.com/news/security/call-center-operator-gets-8-years-for-helping-scam-30-000-americans/",
+    "report_url": "2026-11-24/index.html#art-22",
+    "source_name": "BleepingComputer",
+    "category": "Fraud",
+    "summary_bn": "পেরুর একজন কল সেন্টার অপারেটর Carla Magaly Alcedo Mendoza-কে ৩০,০০০-এরও বেশি স্প্যানিশ-ভাষী মার্কিন নাগরিকের সাথে প্রতারণার দায়ে আট বছরের কারাদণ্ড দেওয়া হয়েছে। অপরাধীরা সরকারি কর্মকর্তা সেজে ভুক্তভোগীদের আইনি ব্যবস্থা বা",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": []
+  },
+  {
+    "id": "2026-11-24_art-23",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "BadBox 3.0 Ad Fraud Operation Generating 40 Billion Daily Bid Requests Disrupted",
+    "source_url": "https://www.securityweek.com/badbox-3-0-ad-fraud-operation-generating-40-billion-daily-bid-requests-disrupted/",
+    "report_url": "2026-11-24/index.html#art-23",
+    "source_name": "SecurityWeek",
+    "category": "Malware",
+    "summary_bn": "Human Security সম্প্রতি BadBox 3.0 নামক একটি বিশাল Ad Fraud Botnet শনাক্ত ও নিষ্ক্রিয় করেছে, যা প্রতিদিন প্রায় ৪০ বিলিয়ন Bid Requests তৈরি করছিল। এই Botnet-টি মূলত কম খরচের uncertified Android ডিভাইসে ব্যাকডোর এবং ম্যালও",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google",
+      "TXCZ"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-24",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "AI Inference Providers Failed to Detect Hacking and Prompt Theft, Says Dragos",
+    "source_url": "https://www.securityweek.com/ai-inference-providers-failed-to-detect-hacking-and-prompt-theft-says-dragos/",
+    "report_url": "2026-11-24/index.html#art-24",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "Dragos-এর গবেষকরা অন্তত তিনটি AI inference provider-এ বড় ধরনের নিরাপত্তা লঙ্ঘনের ঘটনা শনাক্ত করেছেন, যেখানে Threat Actor-রা গ্রাহকদের গোপন Prompt এবং AWS keys চুরি করেছে। এই আক্রমণকারীরা API-এর front door থেকেই ডেটা কপি ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Phala",
+      "Together AI",
+      "Novita",
+      "Atlas Cloud",
+      "MiniMax",
+      "OpenRouter"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-25",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Microsoft confirms Windows printing issues affecting Forcepoint users",
+    "source_url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-confirms-printing-issues-after-kb5132043-windows-hotpatch/",
+    "report_url": "2026-11-24/index.html#art-25",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "Microsoft নিশ্চিত করেছে যে নভেম্বর ২০২৬-এর Windows hotpatch (KB5132043) ইনস্টল করার পর Forcepoint DLP Endpoint Agent ব্যবহারকারী Windows 11 24H2 সিস্টেমে প্রিন্টিং সমস্যা দেখা দিচ্ছে। এই Compatibility ইস্যুর কারণে Print ",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft",
+      "Forcepoint"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-26",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "Microsoft testing fix for Windows 11 Bluetooth audio quality drops",
+    "source_url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-testing-fix-for-windows-11-bluetooth-audio-quality-drops/",
+    "report_url": "2026-11-24/index.html#art-26",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "Microsoft Windows 11-এ ব্লুটুথ অডিও কোয়ালিটি ড্রপ সংক্রান্ত একটি দীর্ঘস্থায়ী সমস্যার সমাধান নিয়ে কাজ করছে। মূলত যখন কোনো অ্যাপ বা গেম মাইক্রোফোন ব্যবহার করে, তখন Windows স্বয়ংক্রিয়ভাবে A2DP স্টেরিও প্রোফাইল থেকে হ্যান্ড",
+    "severity": "low",
+    "score": 73,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft",
+      "Intel"
+    ]
+  },
+  {
+    "id": "2026-11-24_art-27",
+    "date": "2026-11-24",
+    "date_pretty": "24 Nov 2026",
+    "title": "CrowdStrike to Acquire Zscaler in $43.9 Billion Deal",
+    "source_url": "https://www.securityweek.com/crowdstrike-to-acquire-zscaler-in-43-9-billion-deal/",
+    "report_url": "2026-11-24/index.html#art-27",
+    "source_name": "SecurityWeek",
+    "category": "Business Acquisition",
+    "summary_bn": "CrowdStrike ৪৩.৯ বিলিয়ন ডলারের একটি অল-স্টক ট্রানজ্যাকশনের মাধ্যমে Zscaler অধিগ্রহণের ঘোষণা দিয়েছে। এই চুক্তির ফলে endpoint security এবং cloud-delivered zero-trust access প্রযুক্তি একত্রিত হবে, যা সাইবার সিকিউরিটি মার্ক",
+    "severity": "low",
+    "score": 73,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "CrowdStrike",
+      "Zscaler"
+    ]
+  },
+  {
     "id": "2026-11-23_art-1",
     "date": "2026-11-23",
     "date_pretty": "23 Nov 2026",
