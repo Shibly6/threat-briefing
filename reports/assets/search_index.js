@@ -1,5 +1,708 @@
 window.__THREAT_SEARCH_INDEX__ = [
   {
+    "id": "2026-11-25_art-1",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Hackers compromise Check Point Servers in 22 organizations",
+    "source_url": "https://www.bleepingcomputer.com/news/security/hackers-compromise-check-point-servers-in-22-organizations/",
+    "report_url": "2026-11-25/index.html#art-1",
+    "source_name": "BleepingComputer",
+    "category": "Espionage",
+    "summary_bn": "Threat actors, চিহ্নিত GT13 হিসেবে, ২২টি প্রতিষ্ঠানের Check Point Security management servers-এ সফলভাবে অনুপ্রবেশ করেছে। এই সাইবারস্পিওনেজ ক্যাম্পেইনে CVE-2026-16232 সহ একাধিক Vulnerability ব্যবহার করা হয়েছে, যা attacker",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-61500",
+      "CVE-2026-16232",
+      "CVE-2025-5777",
+      "CVE-2024-21893",
+      "CVE-2026-41089",
+      "CVE-2026-98432",
+      "CVE-2023-4966",
+      "CVE-2021-21972",
+      "CVE-2023-34048",
+      "CVE-2021-26855",
+      "CVE-2021-34473",
+      "CVE-2020-1472"
+    ],
+    "vendors": [
+      "Check Point",
+      "Rejetto",
+      "Citrix",
+      "Ivanti",
+      "Microsoft",
+      "VMware"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-2",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Check Point Security Management Servers Hacked in AI-Assisted Campaign",
+    "source_url": "https://www.securityweek.com/check-point-security-management-servers-hacked-in-ai-assisted-campaign/",
+    "report_url": "2026-11-25/index.html#art-2",
+    "source_name": "SecurityWeek",
+    "category": "Threat Actor",
+    "summary_bn": "GreyNoise-এর তথ্য অনুযায়ী, GT13 নামক এক Threat Actor একটি AI-assisted ক্যাম্পেইনের মাধ্যমে Check Point Security Management সার্ভারগুলোকে লক্ষ্যবস্তু করেছে। আক্রমণকারীরা ৯৯টি IP অ্যাড্রেস ব্যবহার করে বিভিন্ন সেক্টরের অন্ত",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-61500",
+      "CVE-2023-4966",
+      "CVE-2025-5777",
+      "CVE-2024-21893",
+      "CVE-2026-16232",
+      "CVE-2026-98432",
+      "CVE-2020-1472",
+      "CVE-2026-41089",
+      "CVE-2021-26855",
+      "CVE-2021-34473",
+      "CVE-2021-21972",
+      "CVE-2023-34048"
+    ],
+    "vendors": [
+      "Check Point",
+      "Rejetto",
+      "Citrix",
+      "Ivanti",
+      "Microsoft",
+      "VMware"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-3",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Hackers Exploit N-able MailAssure Flaw While AI Agents Exploit MONAI Label Zero-Day",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-n-able-mailassure-flaw.html",
+    "report_url": "2026-11-25/index.html#art-3",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "CISA তাদের KEV ক্যাটালগে দুটি নতুন Vulnerability যুক্ত করেছে যা N-able MailAssure এবং MONAI Label-কে প্রভাবিত করছে। N-able MailAssure-এ থাকা CVE-2026-134624 একটি SSRF Vulnerability, যা অভ্যন্তরীণ সিস্টেমে অননুমোদিত অ্যাক",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-134624",
+      "CVE-2026-133968"
+    ],
+    "vendors": [
+      "N-able",
+      "MONAI"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-4",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog | CISA",
+    "source_url": "https://www.cisa.gov/news-events/alerts/2026/11/24/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+    "report_url": "2026-11-25/index.html#art-4",
+    "source_name": "CISA Advisories",
+    "category": "Vulnerability",
+    "summary_bn": "CISA তাদের Known Exploited Vulnerabilities (KEV) ক্যাটালগে তিনটি নতুন Vulnerability যুক্ত করেছে যা বর্তমানে সক্রিয়ভাবে Exploitation করা হচ্ছে। এর মধ্যে Idunno AntiCsrf-এর Deserialization of Untrusted Data, Drupal Core-এর",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-131914",
+      "CVE-2026-132165",
+      "CVE-2026-132224"
+    ],
+    "vendors": [
+      "Idunno",
+      "Drupal",
+      "Optimizely"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-5",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "NGINX HTTP/2 Use-After-Free: CVE-2026-123633",
+    "source_url": "https://unit42.paloaltonetworks.com/cve-2026-123633-nginx-http2-vulnerability/",
+    "report_url": "2026-11-25/index.html#art-5",
+    "source_name": "Palo Alto Unit 42",
+    "category": "Vulnerability",
+    "summary_bn": "NGINX-এ একটি গুরুতর Use-After-Free Vulnerability শনাক্ত করা হয়েছে, যা CVE-2026-123633 হিসেবে ট্র্যাক করা হচ্ছে। এই ত্রুটিটি HTTP/2 প্রোটোকল হ্যান্ডলিংয়ের সময় ঘটে, যখন সার্ভারে কানেকশন প্রেশার বেশি থাকে। একজন unauthentica",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-123633",
+      "CVE-2026-123634"
+    ],
+    "vendors": [
+      "F5",
+      "NGINX"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-6",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "WHMCS SQL Injection Could Expose Customer Data and Admin Password Hashes without Login",
+    "source_url": "https://thehackernews.com/2026/11/whmcs-sql-injection-flaw-could-expose.html",
+    "report_url": "2026-11-25/index.html#art-6",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "WHMCS প্ল্যাটফর্মে একটি গুরুতর SQL Injection Vulnerability শনাক্ত করা হয়েছে, যা কোনো প্রকার Authentication ছাড়াই ইন্টারনেটের মাধ্যমে আক্রমণকারীদের ডাটাবেস থেকে গ্রাহকের তথ্য এবং অ্যাডমিনিস্ট্রেটরদের Password Hashes চুরি ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-82981",
+      "CVE-2026-82979",
+      "CVE-2026-93700"
+    ],
+    "vendors": [
+      "WHMCS"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-7",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "VMware vCenter Hit by Another Critical 9.8-Rated Auth Bypass Flaw After Zero-Day Exploitation",
+    "source_url": "https://thehackernews.com/2026/11/vmware-vcenter-hit-by-another-critical.html",
+    "report_url": "2026-11-25/index.html#art-7",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Broadcom সম্প্রতি VMware-এর বিভিন্ন প্রোডাক্টে ২৩টি Vulnerability সমাধান করার জন্য প্যাচ প্রকাশ করেছে। এর মধ্যে সবচেয়ে গুরুত্বপূর্ণ হলো CVE-2026-123903, যা একটি Authentication Bypass Vulnerability এবং এর CVSS স্কোর ৯.৮। ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-123903",
+      "CVE-2026-123904",
+      "CVE-2026-123905",
+      "CVE-2026-123906",
+      "CVE-2026-123907",
+      "CVE-2026-123890"
+    ],
+    "vendors": [
+      "Broadcom",
+      "VMware"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-8",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "VMware Updates Patch Critical ESX, vCenter Vulnerabilities",
+    "source_url": "https://www.securityweek.com/vmware-updates-patch-critical-esx-vcenter-vulnerabilities/",
+    "report_url": "2026-11-25/index.html#art-8",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "Broadcom তাদের বিভিন্ন VMware প্রোডাক্টে ২৩টি Vulnerability সমাধানের জন্য প্যাচ রিলিজ করেছে, যার মধ্যে ESX এবং vCenter-এর বেশ কিছু Critical-severity ত্রুটি রয়েছে। এর মধ্যে CVE-2026-123903, CVE-2026-123910, CVE-2026-12391",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-123903",
+      "CVE-2026-123910",
+      "CVE-2026-123911",
+      "CVE-2026-123912"
+    ],
+    "vendors": [
+      "Broadcom",
+      "VMware"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-9",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Turnitin discloses cyberattack affecting customer-facing systems",
+    "source_url": "https://www.bleepingcomputer.com/news/security/turnitin-discloses-cyberattack-affecting-customer-facing-systems/",
+    "report_url": "2026-11-25/index.html#art-9",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "Educational technology কোম্পানি Turnitin সম্প্রতি তাদের customer-facing সিস্টেমে অননুমোদিত অ্যাক্টিভিটি শনাক্ত করেছে। কোম্পানিটি তাদের incident response plan কার্যকর করেছে এবং external cybersecurity বিশেষজ্ঞদের সহায়তায় ত",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Turnitin"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-10",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "ShinyHunters claims to return after FBI arrests, uses old PGP keys as proof",
+    "source_url": "https://www.bleepingcomputer.com/news/security/shinyhunters-resurfaces-after-fbi-arrests-uses-old-pgp-keys-as-proof/",
+    "report_url": "2026-11-25/index.html#art-10",
+    "source_name": "BleepingComputer",
+    "category": "Threat Actor",
+    "summary_bn": "কুখ্যাত Threat Actor গ্রুপ ShinyHunters আইন প্রয়োগকারী সংস্থার সাম্প্রতিক ধরপাকড় এবং সদস্য গ্রেপ্তারের পর পুনরায় সক্রিয় হওয়ার ঘোষণা দিয়েছে। তারা তাদের পুরনো PGP keys ব্যবহার করে নতুন একটি Tor সাইটে বার্তা প্রকাশ করেছে, ",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Oracle"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-11",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Recent Trends and Tactics of Agentic AI Attacks",
+    "source_url": "https://unit42.paloaltonetworks.com/autonomous-ai-agent-threat-campaigns/",
+    "report_url": "2026-11-25/index.html#art-11",
+    "source_name": "Palo Alto Unit 42",
+    "category": "Malware",
+    "summary_bn": "২০২৬ সালের জুলাই থেকে সেপ্টেম্বর পর্যন্ত পরিচালিত ১০টিরও বেশি গ্লোবাল ক্যাম্পেইনে Threat Actors-রা autonomous AI agents ব্যবহার করে সাইবার আক্রমণের গতি ও কার্যকারিতা বহুগুণ বাড়িয়ে দিয়েছে। এই AI agents-গুলো মূলত vulnerabl",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Palo Alto Networks"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-12",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Radware discloses breach exposing customer cloud access keys",
+    "source_url": "https://www.bleepingcomputer.com/news/security/radware-discloses-breach-exposing-customer-cloud-access-keys/",
+    "report_url": "2026-11-25/index.html#art-12",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "Radware একটি অনিরাপদ internal Cloud WAF management API উন্মুক্ত থাকার কারণে একটি Data Breach-এর শিকার হয়েছে। এই Vulnerability-এর ফলে Threat Actor-রা গ্রাহকদের contact details এবং log export-এর জন্য ব্যবহৃত cloud access k",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Radware",
+      "Amazon Web Services",
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-13",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Rackspace shuts down Spot cloud platform after security breach",
+    "source_url": "https://www.bleepingcomputer.com/news/security/rackspace-shuts-down-spot-cloud-platform-after-security-breach/",
+    "report_url": "2026-11-25/index.html#art-13",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "Rackspace তাদের Spot cloud platform-এ একটি গুরুতর security breach শনাক্ত করার পর পরিষেবাটি স্থায়ীভাবে বন্ধ করার সিদ্ধান্ত নিয়েছে। হ্যাকাররা compromised credentials ব্যবহার করে গ্রাহকদের Kubernetes clusters-এ অননুমোদিত প্",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Rackspace"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-14",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "New Inception extortion gang launches large-scale vishing campaign",
+    "source_url": "https://www.bleepingcomputer.com/news/security/new-inception-extortion-gang-launches-large-scale-vishing-campaign/",
+    "report_url": "2026-11-25/index.html#art-14",
+    "source_name": "BleepingComputer",
+    "category": "Threat Actor",
+    "summary_bn": "Inception নামক একটি নতুন Threat Actor গ্রুপ বড় আকারের Vishing ক্যাম্পেইন পরিচালনা করছে, যা মূলত SSO ক্রেডেনশিয়াল চুরির উদ্দেশ্যে তৈরি। এই গ্রুপটি Okta এবং NetIQ/OpenText Access Manager-এর মতো সার্ভিসগুলোকে নকল করে ভুয়া ও",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "AMD",
+      "PepsiCo",
+      "Cigna Healthcare",
+      "AutoZone",
+      "Lucid Motors",
+      "Okta",
+      "OpenText",
+      "Dropbox",
+      "Duolingo",
+      "Western Union",
+      "Indeed",
+      "Activision Blizzard",
+      "Riot Games",
+      "Twitch",
+      "Reddit",
+      "Nestlé",
+      "Anthropic",
+      "Nintendo",
+      "Starbucks",
+      "McDonald's",
+      "Paramount",
+      "NBCUniversal"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-15",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "McDonald's Japan data breach exposes customer location information",
+    "source_url": "https://www.bleepingcomputer.com/news/security/mcdonalds-japan-data-breach-exposes-customer-location-information/",
+    "report_url": "2026-11-25/index.html#art-15",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "McDonald's Japan সম্প্রতি একটি Data Breach-এর শিকার হয়েছে, যেখানে Threat Actor-রা তাদের অফিসিয়াল স্মার্টফোন অ্যাপের ডাটাবেসে অননুমোদিত প্রবেশাধিকার পেয়েছে। এই ঘটনায় গ্রাহকদের IP addresses, product purchase history এবং mo",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "McDonald's"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-16",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Iran-Aligned Volant Manticore Uses IPFS-Based KuboShell Backdoor in Espionage Campaigns",
+    "source_url": "https://thehackernews.com/2026/11/iran-aligned-volant-manticore-uses-ipfs.html",
+    "report_url": "2026-11-25/index.html#art-16",
+    "source_name": "The Hacker News",
+    "category": "Espionage",
+    "summary_bn": "ইরান-সংশ্লিষ্ট Threat Actor 'Volant Manticore' সাইবার Espionage ক্যাম্পেইনের মাধ্যমে সাইপ্রাস এবং সৌদি আরবের গুরুত্বপূর্ণ অবকাঠামো, টেলিকম এবং স্বাস্থ্যসেবা খাতকে লক্ষ্যবস্তু করছে। তারা KuboShell নামক একটি নতুন Backdoor ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "MeshCentral",
+      "NetLock",
+      "N-able",
+      "Pinata"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-17",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "European Commission confirms data theft in EU Academy breach",
+    "source_url": "https://www.bleepingcomputer.com/news/security/european-commission-confirms-data-theft-in-eu-academy-breach/",
+    "report_url": "2026-11-25/index.html#art-17",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "European Commission সম্প্রতি নিশ্চিত করেছে যে তাদের EU Academy প্ল্যাটফর্মে একটি সাইবার আক্রমণের মাধ্যমে ব্যবহারকারীদের ব্যক্তিগত তথ্য যেমন নাম এবং ইমেইল অ্যাড্রেস চুরি হয়েছে। আক্রমণকারীরা ARTEX নামক একটি AI-powered pene",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "European Commission"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-18",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "European Commission Uncovers Data Breach in Cyberattack Investigation",
+    "source_url": "https://www.securityweek.com/european-commission-uncovers-data-breach-in-cyberattack-investigation/",
+    "report_url": "2026-11-25/index.html#art-18",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "European Commission সম্প্রতি একটি AI-assisted cyberattack-এর শিকার হয়েছে, যার ফলে তাদের EU Academy প্ল্যাটফর্ম থেকে ব্যবহারকারীদের ব্যক্তিগত তথ্য যেমন নাম এবং email address ফাঁস হয়েছে। প্রাথমিক তদন্তে কোনো তথ্য চুরির প্র",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "European Commission"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-19",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Elecbrakes Bluetooth Vulnerabilities Expose Trailers to Forced Braking",
+    "source_url": "https://www.securityweek.com/elecbrakes-bluetooth-vulnerabilities-expose-trailers-to-forced-braking/",
+    "report_url": "2026-11-25/index.html#art-19",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "অস্ট্রেলিয়ান কোম্পানি Elecbrakes-এর Bluetooth-enabled ব্রেক কন্ট্রোলারে তিনটি গুরুতর Vulnerability শনাক্ত করা হয়েছে, যা একজন আক্রমণকারীকে দূর থেকে ট্রেলারের ব্রেক নিয়ন্ত্রণ করার সুযোগ করে দিতে পারে। এই Vulnerability-গ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Elecbrakes"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-20",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "An Unclassified CIA System Was Breached in a Cyberattack, AP Source Says",
+    "source_url": "https://www.securityweek.com/an-unclassified-cia-system-was-breached-in-a-cyberattack-ap-source-says/",
+    "report_url": "2026-11-25/index.html#art-20",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "CIA-এর একটি unclassified সিস্টেমে সাইবার আক্রমণের ঘটনা ঘটেছে, যা মূলত open source intelligence সংগ্রহের কাজে ব্যবহৃত হতো। যদিও এই Breach-এ কোনো classified তথ্য ফাঁস হয়নি, তবে এটি সরকারি গুরুত্বপূর্ণ অবকাঠামোর নিরাপত্তা ঝ",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "CIA"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-21",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "1.5 Million Impacted by Data Breach at South Korean Electric Company KEPCO",
+    "source_url": "https://www.securityweek.com/1-5-million-impacted-by-data-breach-at-south-korean-electric-company-kepco/",
+    "report_url": "2026-11-25/index.html#art-21",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "দক্ষিণ কোরিয়ার রাষ্ট্রায়ত্ত বিদ্যুৎ কোম্পানি KEPCO একটি বড় ধরনের Data Breach-এর শিকার হয়েছে, যার ফলে প্রায় ১.৫ মিলিয়ন গ্রাহক ও সরবরাহকারীর ব্যক্তিগত তথ্য ফাঁস হয়েছে। হ্যাকাররা KEPCO ON পোর্টাল এবং SRM প্ল্যাটফর্ম থেকে না",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "KEPCO"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-22",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Peninsula Energy Halts Trading After Cyber Incident Hits US Uranium Mine",
+    "source_url": "https://www.securityweek.com/peninsula-energy-halts-trading-after-cyber-incident-hits-us-uranium-mine/",
+    "report_url": "2026-11-25/index.html#art-22",
+    "source_name": "SecurityWeek",
+    "category": "Ransomware",
+    "summary_bn": "অস্ট্রেলিয়ান ইউরেনিয়াম কোম্পানি Peninsula Energy তাদের মার্কিন যুক্তরাষ্ট্রের Lance Project-এ একটি সাইবার আক্রমণের শিকার হওয়ার পর শেয়ার বাজারে ট্রেডিং সাময়িকভাবে স্থগিত করেছে। কোম্পানিটি জানিয়েছে যে এই ঘটনায় তাদের অপার",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Peninsula Energy"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-23",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Okta Links ShinyHunters-Associated Vishing Group to New INCEPTION Data Leak Site",
+    "source_url": "https://thehackernews.com/2026/11/okta-links-shinyhunters-associated.html",
+    "report_url": "2026-11-25/index.html#art-23",
+    "source_name": "The Hacker News",
+    "category": "Threat Actor",
+    "summary_bn": "Okta-এর Threat Intelligence টিম O-UNC-053 নামক একটি Threat Actor গ্রুপকে শনাক্ত করেছে, যারা পূর্বে ShinyHunters-এর সাথে যুক্ত ছিল এবং বর্তমানে INCEPTION নামক নতুন একটি Data Leak Site ব্যবহার করছে। এই গ্রুপটি মূলত Vishing",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Okta",
+      "NetIQ"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-24",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Microsoft Fixes Azure API Management Classic Flaw as Actor Targets Customer Secrets",
+    "source_url": "https://thehackernews.com/2026/11/microsoft-fixes-azure-api-management.html",
+    "report_url": "2026-11-25/index.html#art-24",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Microsoft-এর Azure API Management (APIM) Classic টায়ারে একটি গুরুতর Vulnerability শনাক্ত করা হয়েছে, যা ব্যবহারকারীদের গোপনীয় তথ্য যেমন- access tokens, secrets এবং subscription keys-এর অননুমোদিত অ্যাক্সেসের ঝুঁকি তৈরি ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-25",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Hackers Found a Way Around GitHub SHA Pinning. This Webinar Explains How to Close the Gap",
+    "source_url": "https://thehackernews.com/2026/11/hackers-found-way-around-github-sha.html",
+    "report_url": "2026-11-25/index.html#art-25",
+    "source_name": "The Hacker News",
+    "category": "Supply Chain",
+    "summary_bn": "GitHub Actions-এ SHA pinning ব্যবহার করা সত্ত্বেও Threat Actor-রা fork-এর মাধ্যমে malicious code ইনজেক্ট করার নতুন কৌশল খুঁজে বের করেছে। এই পদ্ধতিতে attackers মূল repository-র পরিবর্তে fork-এর commit SHA ব্যবহার করে, যা ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "GitHub"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-26",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Google Researcher Shows How a Single Bit Change in .NET Files Bypassed Windows Code Integrity",
+    "source_url": "https://thehackernews.com/2026/11/google-researcher-shows-how-single-bit.html",
+    "report_url": "2026-11-25/index.html#art-26",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Google Project Zero-এর গবেষক James Forshaw .NET Framework-এর একটি ত্রুটি শনাক্ত করেছেন, যা Windows Code Integrity এবং Oracle VirtualBox-এর প্রসেস হার্ডেনিং বাইপাস করতে সক্ষম। এই Vulnerability-টি মূলত .NET ফাইলের হেডার থে",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-87268",
+      "CVE-2026-108398"
+    ],
+    "vendors": [
+      "Microsoft",
+      "Oracle"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-27",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "AutomationDirect C-More EA9 Programming Software | CISA",
+    "source_url": "https://www.cisa.gov/news-events/ics-advisories/icsa-26-328-01",
+    "report_url": "2026-11-25/index.html#art-27",
+    "source_name": "CISA Advisories",
+    "category": "Vulnerability",
+    "summary_bn": "AutomationDirect-এর C-More EA9 Programming Software এবং Schneider Electric-এর EcoStruxure Power Build Rapsody সফটওয়্যারে গুরুতর Vulnerability শনাক্ত করা হয়েছে। এই নিরাপত্তা ত্রুটিগুলো Threat Actor-দের সিস্টেমের ওপর নিয়ন্",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "AutomationDirect",
+      "Schneider Electric"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-28",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Police disrupt 57 illegal streaming services with 7.3 million visits",
+    "source_url": "https://www.bleepingcomputer.com/news/security/police-disrupt-57-illegal-streaming-services-with-73-million-visits/",
+    "report_url": "2026-11-25/index.html#art-28",
+    "source_name": "BleepingComputer",
+    "category": "Cybercrime",
+    "summary_bn": "১১টি দেশের আইন প্রয়োগকারী সংস্থা যৌথভাবে ৫৭টি অবৈধ IPTV সার্ভিস বন্ধ করেছে, যা কপিরাইটযুক্ত কন্টেন্ট অবৈধভাবে প্রচার করছিল। এই অপারেশনটি Europol, INTERPOL এবং EUIPO-এর সমন্বয়ে পরিচালিত হয়েছে, যেখানে Binance, Coinbase ",
+    "severity": "medium",
+    "score": 95,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Binance",
+      "Coinbase",
+      "Chainalysis",
+      "Netflix",
+      "Spotify",
+      "Disney+"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-29",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "From Vulnerability Noise to Resilience: Rethinking Security in the AI Era",
+    "source_url": "https://www.bleepingcomputer.com/news/security/from-vulnerability-noise-to-resilience-rethinking-security-in-the-ai-era/",
+    "report_url": "2026-11-25/index.html#art-29",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "আধুনিক সফটওয়্যার ডেভেলপমেন্টে AI-এর ব্যবহারের ফলে সৃষ্ট জটিলতা এবং Vulnerability ব্যবস্থাপনার চ্যালেঞ্জ নিয়ে এই নিবন্ধটি আলোচনা করেছে। লেখক যুক্তি দিয়েছেন যে, কেবল CVSS স্কোর বা Vulnerability স্ক্যানিংয়ের ওপর নির্ভর না ক",
+    "severity": "medium",
+    "score": 95,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "RapidFort"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-30",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "OpenAI, Cisco Unveil Open Source Tool to Shield Unpatched Linux Systems",
+    "source_url": "https://www.securityweek.com/openai-cisco-unveil-open-source-tool-to-shield-unpatched-linux-systems/",
+    "report_url": "2026-11-25/index.html#art-30",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "OpenAI এবং Cisco যৌথভাবে Shirudo নামক একটি নতুন open source security platform উন্মোচন করেছে, যা AI agents ব্যবহার করে Linux সিস্টেমে Vulnerability exploitation প্রতিরোধ করতে সক্ষম। এই টুলটি eBPF প্রযুক্তি ব্যবহার করে Lin",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "OpenAI",
+      "Cisco"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-31",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "OpenAI and Cisco Unveil AI-Assisted Linux Security Tool to Block Exploits Before Patching",
+    "source_url": "https://thehackernews.com/2026/11/openai-and-cisco-unveil-ai-assisted.html",
+    "report_url": "2026-11-25/index.html#art-31",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "OpenAI এবং Cisco যৌথভাবে 'Shirudo' নামক একটি নতুন open-source Linux runtime টুল উন্মোচন করেছে, যা AI agents ব্যবহার করে সিস্টেমের Vulnerability-এর বিরুদ্ধে তাৎক্ষণিক সুরক্ষা প্রদান করে। এই টুলটি eBPF প্রযুক্তি ব্যবহার কর",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "OpenAI",
+      "Cisco"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-32",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "Anthropic Expands Enterprise Safeguards for Detecting AI Misuse",
+    "source_url": "https://www.securityweek.com/anthropic-expands-enterprise-safeguards-for-detecting-ai-misuse/",
+    "report_url": "2026-11-25/index.html#art-32",
+    "source_name": "SecurityWeek",
+    "category": "Advisory",
+    "summary_bn": "Anthropic তাদের Enterprise Frontier Safeguards (EFS) সিস্টেমের পাবলিক বেটা সংস্করণ উন্মোচন করেছে, যা মূলত এন্টারপ্রাইজ লেভেলে AI-এর অপব্যবহার শনাক্ত করার জন্য ডিজাইন করা হয়েছে। এই সিস্টেমটি একাধিক রিকোয়েস্টের মধ্যে সন্দে",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Anthropic",
+      "AWS",
+      "Google Cloud"
+    ]
+  },
+  {
+    "id": "2026-11-25_art-33",
+    "date": "2026-11-25",
+    "date_pretty": "25 Nov 2026",
+    "title": "2027 SOC Budget Reset: 5 Priorities to Cut Costs and Reduce Cyber Risk",
+    "source_url": "https://thehackernews.com/2026/11/2027-soc-budget-reset-5-priorities-to.html",
+    "report_url": "2026-11-25/index.html#art-33",
+    "source_name": "The Hacker News",
+    "category": "Advisory",
+    "summary_bn": "২০২৭ সালের SOC বাজেট পরিকল্পনা এবং সাইবার নিরাপত্তা ঝুঁকি হ্রাসের কৌশল নিয়ে এই নিবন্ধটি আলোচনা করেছে। এতে বলা হয়েছে যে, ক্রমবর্ধমান Alert ভলিউম এবং সীমিত বাজেটের চ্যালেঞ্জ মোকাবিলায় SOC টিমগুলোকে ম্যানুয়াল প্রসেস কমিয়ে A",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "ANY.RUN"
+    ]
+  },
+  {
     "id": "2026-11-24_art-1",
     "date": "2026-11-24",
     "date_pretty": "24 Nov 2026",
