@@ -1,5 +1,349 @@
 window.__THREAT_SEARCH_INDEX__ = [
   {
+    "id": "2026-11-27_art-1",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Mitel MiCollab Zero-Days Exploited in Suspected AI-Assisted Attacks",
+    "source_url": "https://www.securityweek.com/mitel-micollab-zero-days-exploited-in-suspected-ai-assisted-attacks/",
+    "report_url": "2026-11-27/index.html#art-1",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "Threat actors Mitel MiCollab-এর পাঁচটি Vulnerability-কে Zero-Day হিসেবে ব্যবহার করে একটি Data Theft ক্যাম্পেইন পরিচালনা করেছে। এই Vulnerability-গুলোর মধ্যে Arbitrary File Upload, XML Injection, Unauthorized Access, Comma",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-133275",
+      "CVE-2026-133303",
+      "CVE-2026-133311",
+      "CVE-2026-133323",
+      "CVE-2026-133324"
+    ],
+    "vendors": [
+      "Mitel"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-2",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Hackers Exploit 10 Vulnerabilities Across Mitel, Juniper, Vates, and Danfoss Products",
+    "source_url": "https://thehackernews.com/2026/11/hackers-exploit-10-vulnerabilities.html",
+    "report_url": "2026-11-27/index.html#art-2",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "CISA তাদের KEV ক্যাটালগে Mitel, Juniper, Vates এবং Danfoss-এর ১০টি নতুন Vulnerability যুক্ত করেছে। এর মধ্যে Mitel MiCollab-এর পাঁচটি গুরুতর Vulnerability রয়েছে, যার মধ্যে একটির CVSS স্কোর ১০.০। Threat Actor-রা এই Vulnera",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-133275",
+      "CVE-2026-133303",
+      "CVE-2026-133311",
+      "CVE-2026-133323",
+      "CVE-2026-133324"
+    ],
+    "vendors": [
+      "Mitel",
+      "Juniper",
+      "Vates",
+      "Danfoss"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-3",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Critical Juniper Session Smart Conductor Flaw Exploited in Attacks",
+    "source_url": "https://www.securityweek.com/critical-juniper-session-smart-conductor-flaw-exploited-in-attacks/",
+    "report_url": "2026-11-27/index.html#art-3",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "Juniper Networks-এর Session Smart Conductor-এ একটি critical OS command injection vulnerability (CVE-2026-103406) শনাক্ত করা হয়েছে, যা বর্তমানে Threat Actor-রা সক্রিয়ভাবে exploit করছে। এই Vulnerability-টি AutomatedProvisi",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-103406"
+    ],
+    "vendors": [
+      "Juniper Networks"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-4",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "ThreatsDay: 10M NGINX Services at Risk, 250+ Malicious Extensions, AI Server Hijacking + 17 More Stories",
+    "source_url": "https://thehackernews.com/2026/11/threatsday-250-rogue-extensions-10m.html",
+    "report_url": "2026-11-27/index.html#art-4",
+    "source_name": "The Hacker News",
+    "category": "Data Breach",
+    "summary_bn": "Todoist একটি Data Breach-এর শিকার হয়েছে যেখানে Threat Actor-রা stolen credentials ব্যবহার করে তাদের production systems-এ অননুমোদিত প্রবেশাধিকার লাভ করেছে। এই আক্রমণের ফলে প্রায় ৬% ব্যবহারকারীর তথ্য ফাঁস হয়েছে, যার মধ্যে ",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Todoist"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-5",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Remus malware steals Gmail messages via fake Google Sheets extension",
+    "source_url": "https://www.bleepingcomputer.com/news/security/remus-malware-steals-gmail-messages-via-fake-google-sheets-extension/",
+    "report_url": "2026-11-27/index.html#art-5",
+    "source_name": "BleepingComputer",
+    "category": "Malware",
+    "summary_bn": "Remus infostealer একটি ক্ষতিকারক Chrome extension ব্যবহার করে ব্যবহারকারীদের Gmail থেকে ইমেইল চুরি করছে। যদিও Threat Actor এটিকে একটি Zero-Day vulnerability হিসেবে প্রচার করেছিল, কিন্তু গবেষণায় দেখা গেছে এটি মূলত একটি ma",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-6",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "North Korea-Linked PolinRider Poisons Over 7,600 GitHub Repositories to Spread Malware",
+    "source_url": "https://thehackernews.com/2026/11/north-korea-linked-polinrider-poisons.html",
+    "report_url": "2026-11-27/index.html#art-6",
+    "source_name": "The Hacker News",
+    "category": "Supply Chain",
+    "summary_bn": "উত্তর কোরিয়া-ভিত্তিক Threat Actor গ্রুপ 'PolinRider' একটি বড় ধরনের Supply Chain আক্রমণের মাধ্যমে ৭,৬০০টিরও বেশি GitHub repository-তে Malware ছড়িয়েছে। আক্রমণকারীরা Python loader ব্যবহার করে Ethereum transaction-এর মাধ্যমে",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "GitHub",
+      "Google",
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-7",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Fake paid expert interviews impersonate brands to steal Google logins",
+    "source_url": "https://www.bleepingcomputer.com/news/apple/fake-paid-expert-interviews-impersonate-brands-to-steal-google-logins/",
+    "report_url": "2026-11-27/index.html#art-7",
+    "source_name": "BleepingComputer",
+    "category": "Phishing",
+    "summary_bn": "GoodGuys নামক একটি চলমান Phishing ক্যাম্পেইন বিভিন্ন বড় ব্র্যান্ড যেমন Google, Nvidia, Accenture এবং SpaceX-এর নাম ব্যবহার করে ভুয়া ইন্টারভিউ ও ওয়েবিনারের প্রলোভন দেখিয়ে কর্পোরেট Google এবং Okta ক্রেডেনশিয়াল চুরি করছে। আ",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google",
+      "Nvidia",
+      "Accenture",
+      "SpaceX",
+      "Okta",
+      "American Express",
+      "Coca-Cola",
+      "Culver's",
+      "Spotify"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-8",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "FIFA Says It Has Been Victim of a Cyberattack Accessing 'Personal and Business Information'",
+    "source_url": "https://www.securityweek.com/fifa-says-it-has-been-victim-of-a-cyberattack-accessing-personal-and-business-information/",
+    "report_url": "2026-11-27/index.html#art-8",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "FIFA একটি সাইবার আক্রমণের শিকার হয়েছে, যার ফলে তাদের কিছু ব্যক্তিগত এবং ব্যবসায়িক তথ্য ফাঁস হয়েছে। Handsome Boy Hacking Club নামক একটি Threat Actor গ্রুপ এই ঘটনার দায় স্বীকার করেছে এবং দাবি করেছে যে তারা প্রায় ১২ গিগাবাই",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "FIFA"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-9",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Drupal Warns of New Highly Critical Site Takeover Vulnerability Under Active Exploitation",
+    "source_url": "https://thehackernews.com/2026/11/drupal-warns-of-new-highly-critical.html",
+    "report_url": "2026-11-27/index.html#art-9",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Drupal-এ একটি অত্যন্ত ঝুঁকিপূর্ণ Vulnerability শনাক্ত করা হয়েছে, যা বর্তমানে Active Exploitation-এর শিকার হচ্ছে। CVE-2026-136716 হিসেবে চিহ্নিত এই ত্রুটিটি মূলত Drupal core-এর installer-এর একটি অসম্পূর্ণ অবস্থার কারণে তৈ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-136716",
+      "CVE-2026-132165"
+    ],
+    "vendors": [
+      "Drupal"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-10",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Drupal Installer Patch Left a Gap Attackers Are Already Exploiting",
+    "source_url": "https://www.securityweek.com/drupal-installer-patch-left-a-gap-attackers-are-already-exploiting/",
+    "report_url": "2026-11-27/index.html#art-10",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "Drupal-এর core installer-এ থাকা একটি Vulnerability-র জন্য গত সপ্তাহে প্যাচ রিলিজ করা হলেও, তা সব ওয়েবসাইটের জন্য কার্যকর ছিল না। নতুন এই Vulnerability-টি CVE-2026-136716 হিসেবে চিহ্নিত করা হয়েছে, যা একটি Access Bypass ইস",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-136716",
+      "CVE-2026-132165"
+    ],
+    "vendors": [
+      "Drupal"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-11",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "SYS010 malware abuses browser management to spy on Gmail, Outlook",
+    "source_url": "https://www.bleepingcomputer.com/news/security/sys010-malware-abuses-browser-management-to-spy-on-gmail-outlook/",
+    "report_url": "2026-11-27/index.html#art-11",
+    "source_name": "BleepingComputer",
+    "category": "Malware",
+    "summary_bn": "SYS010 নামক একটি নতুন Infostealer Malware Meta ads-এর মাধ্যমে Windows ব্যবহারকারীদের লক্ষ্য করে ছড়ানো হচ্ছে। এটি মূলত Wallpaper Engine বা Lively Wallpapers-এর ছদ্মবেশে ডিভাইসে প্রবেশ করে এবং ব্রাউজার ম্যানেজমেন্ট পলিসি অ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google",
+      "Microsoft",
+      "Mozilla",
+      "Meta"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-12",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "Most Wanted: The Phishing Kits and Techniques Getting Past Security Controls",
+    "source_url": "https://thehackernews.com/2026/11/most-wanted-phishing-kits-and.html",
+    "report_url": "2026-11-27/index.html#art-12",
+    "source_name": "The Hacker News",
+    "category": "Phishing",
+    "summary_bn": "Push Security-এর সাম্প্রতিক গবেষণায় DOMDIFFER নামক একটি অত্যন্ত কার্যকর AiTM Phishing kit শনাক্ত করা হয়েছে, যা ইমেইল সিকিউরিটি এবং ওয়েব গেটওয়েগুলোকে সহজেই ফাঁকি দিতে সক্ষম। এই kit-টি DOM mirroring প্রযুক্তি ব্যবহার করে ভ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Google",
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-13",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "1Password Hacked, Customer Data and Source Code Stolen in GitHub Account Breach",
+    "source_url": "https://thehackernews.com/2026/11/1password-hacked-customer-data-and.html",
+    "report_url": "2026-11-27/index.html#art-13",
+    "source_name": "The Hacker News",
+    "category": "Data Breach",
+    "summary_bn": "1Password-এর একটি কর্পোরেট GitHub অ্যাকাউন্টে অননুমোদিত প্রবেশের মাধ্যমে একটি Security Incident ঘটেছে, যেখানে একজন Threat Actor কোম্পানির backend সিস্টেমে প্রবেশ করে কিছু গ্রাহকের নাম এবং ইমেল অ্যাড্রেসসহ প্রশাসনিক ডেটা ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "1Password",
+      "GitHub"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-14",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "1Password Breach Exposes Customer Data, Internal Source Code",
+    "source_url": "https://www.securityweek.com/1password-breach-exposes-customer-data-internal-source-code/",
+    "report_url": "2026-11-27/index.html#art-14",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "1Password একটি নিরাপত্তা লঙ্ঘনের শিকার হয়েছে যেখানে একজন Threat Actor কোম্পানির একটি compromised GitHub অ্যাকাউন্টের মাধ্যমে অভ্যন্তরীণ Source Code এবং গ্রাহকদের কিছু Metadata চুরি করেছে। যদিও গ্রাহকদের Vault এবং Cryptog",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "1Password"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-15",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "13 Malicious NuGet Packages Turn Fake .NET Job Assessments Into Malware Delivery Traps",
+    "source_url": "https://thehackernews.com/2026/11/13-malicious-nuget-packages-turn-fake.html",
+    "report_url": "2026-11-27/index.html#art-15",
+    "source_name": "The Hacker News",
+    "category": "Malware",
+    "summary_bn": "সাইবার নিরাপত্তা গবেষকরা ১৩টি ক্ষতিকারক NuGet প্যাকেজ শনাক্ত করেছেন, যা মূলত .NET ডেভেলপারদের লক্ষ্য করে তৈরি করা হয়েছে। এই প্যাকেজগুলো একটি ভুয়া জব অ্যাসেসমেন্ট বা চাকরির পরীক্ষার আড়ালে ছড়ানো হচ্ছে। ডেভেলপাররা যখন এই প্",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-16",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "OpenAI warns GPT-6.2 Astra will hit usage limits 40% faster because it fixed a bug",
+    "source_url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-warns-gpt-62-astra-will-hit-usage-limits-40-percent-faster-because-it-fixed-a-bug/",
+    "report_url": "2026-11-27/index.html#art-16",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "OpenAI একটি বিলিং 'bug' সংশোধন করেছে যা ভুলভাবে GPT-6.2 Astra এবং Sol মডেলের ব্যবহারকে কম হিসাব করছিল। এই সংশোধনের ফলে ব্যবহারকারীরা এখন আগের তুলনায় ৪০% দ্রুত তাদের নির্ধারিত usage limits-এ পৌঁছে যাবেন। OpenAI এই সমস্যার",
+    "severity": "low",
+    "score": 78,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "OpenAI"
+    ]
+  },
+  {
+    "id": "2026-11-27_art-17",
+    "date": "2026-11-27",
+    "date_pretty": "27 Nov 2026",
+    "title": "NordVPN Black Friday Deal: Get 78% off VPN plans in 2026",
+    "source_url": "https://www.bleepingcomputer.com/news/security/nordvpn-black-friday-deal-get-78-percent-off-vpn-plans-in-2026/",
+    "report_url": "2026-11-27/index.html#art-17",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "এই নিবন্ধটি NordVPN-এর ২০২৬ সালের Black Friday এবং Cyber Monday প্রমোশনাল অফার সম্পর্কে তথ্য প্রদান করে, যেখানে ব্যবহারকারীরা VPN সাবস্ক্রিপশনে ৭৮% পর্যন্ত ছাড় পাচ্ছেন। NordVPN তাদের গ্রাহকদের অনলাইন নিরাপত্তা এবং গোপনীয়",
+    "severity": "low",
+    "score": 18,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "NordVPN"
+    ]
+  },
+  {
     "id": "2026-11-26_art-1",
     "date": "2026-11-26",
     "date_pretty": "26 Nov 2026",
