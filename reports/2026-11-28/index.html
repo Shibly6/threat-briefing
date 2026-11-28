@@ -1,0 +1,2719 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Cybersecurity threat intelligence briefing for 28 Nov 2026. Automated vulnerability triage, CISA KEV exploitation tracking, and Bengali summaries.">
+    <meta name="author" content="Noor Elahi Ali Shibly">
+    <title>28 Nov 2026 — Cyber Threat Intelligence Briefing</title>
+
+    <!-- Typography: Inter (UI), JetBrains Mono (Code/CVEs), Hind Siliguri (Bengali Intelligence) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+/* ==========================================================================
+   Threat Intelligence Dashboard - Core Stylesheet
+   Modern, Human-Crafted, Responsive Security Telemetry & Briefings
+   ========================================================================== */
+
+:root {
+  /* Color Palette - Dark Mode (Default) */
+  --bg-app: #080c14;
+  --bg-surface: #0e1524;
+  --bg-surface-elevated: #141e33;
+  --bg-surface-hover: #192640;
+  --bg-surface-subtle: rgba(255, 255, 255, 0.03);
+  
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-default: #1f2c44;
+  --border-strong: #2d3f60;
+  
+  --text-primary: #f1f5f9;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --text-inverse: #0f172a;
+
+  --accent-primary: #38bdf8;
+  --accent-primary-subtle: rgba(56, 189, 248, 0.12);
+  --accent-primary-border: rgba(56, 189, 248, 0.3);
+  --accent-cyan: #06b6d4;
+
+  /* Severity Semantics */
+  --sev-critical: #f43f5e;
+  --sev-critical-bg: rgba(244, 63, 94, 0.12);
+  --sev-critical-border: rgba(244, 63, 94, 0.32);
+  --sev-critical-text: #fda4af;
+
+  --sev-high: #f97316;
+  --sev-high-bg: rgba(249, 115, 22, 0.12);
+  --sev-high-border: rgba(249, 115, 22, 0.3);
+  --sev-high-text: #fdba74;
+
+  --sev-medium: #eab308;
+  --sev-medium-bg: rgba(234, 179, 8, 0.12);
+  --sev-medium-border: rgba(234, 179, 8, 0.28);
+  --sev-medium-text: #fde047;
+
+  --sev-low: #10b981;
+  --sev-low-bg: rgba(16, 185, 129, 0.12);
+  --sev-low-border: rgba(16, 185, 129, 0.28);
+  --sev-low-text: #6ee7b7;
+
+  --sev-kev: #c084fc;
+  --sev-kev-bg: rgba(192, 132, 252, 0.14);
+  --sev-kev-border: rgba(192, 132, 252, 0.36);
+  --sev-kev-text: #f3e8ff;
+
+  /* Layout & Geometry */
+  --container-max: 1200px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  /* Typography */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", Menlo, Monaco, Consolas, monospace;
+  --font-bengali: "Hind Siliguri", "Noto Sans Bengali", "SolaimanLipi", -apple-system, sans-serif;
+
+  /* Elevation Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-card: 0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
+  --shadow-elevated: 0 12px 32px -4px rgba(0, 0, 0, 0.5), 0 4px 12px -2px rgba(0, 0, 0, 0.3);
+
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 220ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme Overrides */
+[data-theme="light"] {
+  --bg-app: #f8fafc;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #f1f5f9;
+  --bg-surface-hover: #e2e8f0;
+  --bg-surface-subtle: #f8fafc;
+
+  --border-subtle: #e2e8f0;
+  --border-default: #cbd5e1;
+  --border-strong: #94a3b8;
+
+  --text-primary: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+  --text-inverse: #f8fafc;
+
+  --accent-primary: #0284c7;
+  --accent-primary-subtle: rgba(2, 132, 199, 0.08);
+  --accent-primary-border: rgba(2, 132, 199, 0.25);
+
+  --sev-critical: #e11d48;
+  --sev-critical-bg: #ffe4e6;
+  --sev-critical-border: #fecdd3;
+  --sev-critical-text: #9f1239;
+
+  --sev-high: #ea580c;
+  --sev-high-bg: #ffedd5;
+  --sev-high-border: #fed7aa;
+  --sev-high-text: #9a3412;
+
+  --sev-medium: #d97706;
+  --sev-medium-bg: #fef3c7;
+  --sev-medium-border: #fde68a;
+  --sev-medium-text: #854d0e;
+
+  --sev-low: #059669;
+  --sev-low-bg: #d1fae5;
+  --sev-low-border: #a7f3d0;
+  --sev-low-text: #065f46;
+
+  --sev-kev: #7e22ce;
+  --sev-kev-bg: #f3e8ff;
+  --sev-kev-border: #e9d5ff;
+  --sev-kev-text: #581c87;
+
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-card: 0 2px 10px -1px rgba(0, 0, 0, 0.06), 0 1px 4px -1px rgba(0, 0, 0, 0.04);
+  --shadow-elevated: 0 10px 25px -3px rgba(0, 0, 0, 0.08), 0 4px 8px -2px rgba(0, 0, 0, 0.04);
+}
+
+/* ==========================================================================
+   CSS Reset & Base Elements
+   ========================================================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-app);
+  color: var(--text-primary);
+  line-height: 1.6;
+  min-height: 100vh;
+  padding: 24px 20px 60px;
+  transition: background-color var(--transition-normal), color var(--transition-normal);
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+/* ==========================================================================
+   Header & Navigation
+   ========================================================================== */
+.site-header {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 16px 22px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.brand-section {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.brand-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  background: var(--accent-primary-subtle);
+  border: 1px solid var(--accent-primary-border);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.brand-title-group h1 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.brand-title-group h1 .accent-text {
+  color: var(--accent-primary);
+}
+
+.header-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  font-family: var(--font-mono);
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   Universal Global Search System (Across all briefings)
+   ========================================================================== */
+.global-search-container {
+  position: relative;
+  flex: 1;
+  max-width: 460px;
+  min-width: 260px;
+}
+
+.global-search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.global-search-icon {
+  position: absolute;
+  left: 12px;
+  color: var(--text-muted);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+}
+
+.global-search-input {
+  width: 100%;
+  padding: 8px 34px 8px 36px;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 0.84rem;
+  transition: all var(--transition-fast);
+  outline: none;
+}
+
+.global-search-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 2px var(--accent-primary-subtle);
+  background: var(--bg-surface);
+}
+
+.global-search-input::placeholder {
+  color: var(--text-muted);
+  font-size: 0.8rem;
+}
+
+.global-search-clear {
+  position: absolute;
+  right: 10px;
+  color: var(--text-muted);
+  cursor: pointer;
+  background: none;
+  border: none;
+  font-size: 1.15rem;
+  line-height: 1;
+  padding: 2px 4px;
+}
+
+.global-search-clear:hover {
+  color: var(--text-primary);
+}
+
+/* Search Results Floating Dropdown / Modal */
+.global-search-results {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-elevated);
+  max-height: 480px;
+  overflow-y: auto;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+}
+
+.global-search-header {
+  padding: 8px 14px;
+  background: var(--bg-surface-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.search-result-item {
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  text-decoration: none;
+  color: inherit;
+  transition: background var(--transition-fast);
+}
+
+.search-result-item:last-child {
+  border-bottom: none;
+}
+
+.search-result-item:hover,
+.search-result-item:focus {
+  background: var(--bg-surface-hover);
+  outline: none;
+}
+
+.result-top-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.result-date-badge {
+  font-size: 0.7rem;
+  font-family: var(--font-mono);
+  color: var(--accent-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.result-title {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+}
+
+.result-summary {
+  font-size: 0.78rem;
+  font-family: var(--font-bengali);
+  color: var(--text-secondary);
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.result-tags {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 3px;
+}
+
+.result-tag-cve {
+  font-size: 0.65rem;
+  font-family: var(--font-mono);
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--sev-critical-bg);
+  color: var(--sev-critical-text);
+  border: 1px solid var(--sev-critical-border);
+}
+
+.result-tag-vendor {
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+  border: 1px solid var(--border-subtle);
+}
+
+.search-no-results {
+  padding: 24px 16px;
+  text-align: center;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: var(--radius-sm);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+}
+
+.btn:hover {
+  background: var(--bg-surface-hover);
+  border-color: var(--border-strong);
+}
+
+.btn-primary {
+  background: var(--accent-primary-subtle);
+  border-color: var(--accent-primary-border);
+  color: var(--accent-primary);
+}
+
+.btn-primary:hover {
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  border-color: var(--accent-primary);
+}
+
+.theme-toggle-btn {
+  width: 38px;
+  height: 38px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--text-primary);
+}
+
+/* ==========================================================================
+   Telemetry Cards (Metric KPIs)
+   ========================================================================== */
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+  margin-bottom: 24px;
+}
+
+.telemetry-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 16px 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.telemetry-card:hover {
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.telemetry-card.is-active {
+  border-color: var(--accent-primary);
+  background: var(--accent-primary-subtle);
+}
+
+.telemetry-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.telemetry-label {
+  font-size: 0.76rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.telemetry-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-surface-elevated);
+  color: var(--text-muted);
+}
+
+.telemetry-value {
+  font-size: 1.85rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  line-height: 1.1;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+}
+
+.telemetry-subtext {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+/* Color Accent Variants for Telemetry */
+.telemetry-card.metric-critical .telemetry-value,
+.telemetry-card.metric-critical .telemetry-icon {
+  color: var(--sev-critical);
+}
+.telemetry-card.metric-critical:hover {
+  border-color: var(--sev-critical-border);
+}
+
+.telemetry-card.metric-high .telemetry-value,
+.telemetry-card.metric-high .telemetry-icon {
+  color: var(--sev-high);
+}
+.telemetry-card.metric-high:hover {
+  border-color: var(--sev-high-border);
+}
+
+.telemetry-card.metric-kev .telemetry-value,
+.telemetry-card.metric-kev .telemetry-icon {
+  color: var(--sev-kev);
+}
+.telemetry-card.metric-kev:hover {
+  border-color: var(--sev-kev-border);
+}
+
+/* ==========================================================================
+   Filter Toolbar (Report Page)
+   ========================================================================== */
+.toolbar-section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 12px 18px;
+  margin-bottom: 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.filter-pills {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.filter-pill {
+  font-size: 0.74rem;
+  font-weight: 600;
+  padding: 5px 10px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.filter-pill:hover {
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.filter-pill.is-active {
+  background: var(--accent-primary-subtle);
+  border-color: var(--accent-primary-border);
+  color: var(--accent-primary);
+}
+
+.results-stats {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+/* ==========================================================================
+   Spotlight Section (Top 5 Priority News)
+   ========================================================================== */
+.spotlight-panel {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 20px 22px;
+  margin-bottom: 28px;
+  box-shadow: var(--shadow-sm);
+}
+
+.spotlight-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  border-bottom: 1px solid var(--border-subtle);
+  padding-bottom: 10px;
+}
+
+.spotlight-title {
+  font-size: 0.95rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.spotlight-badge {
+  font-size: 0.68rem;
+  font-family: var(--font-mono);
+  padding: 2px 7px;
+  border-radius: var(--radius-xs);
+  background: var(--sev-high-bg);
+  color: var(--sev-high-text);
+  border: 1px solid var(--sev-high-border);
+  font-weight: 700;
+}
+
+.spotlight-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.spotlight-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 10px 14px;
+  border-radius: var(--radius-md);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  transition: all var(--transition-fast);
+}
+
+.spotlight-row:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-surface-hover);
+  transform: translateX(2px);
+}
+
+.spotlight-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.spotlight-rank {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.spotlight-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.spotlight-link:hover {
+  color: var(--accent-primary);
+}
+
+.spotlight-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Article Cards (Intelligence Feed)
+   ========================================================================== */
+.section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.section-title {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.articles-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.article-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+.article-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow-card);
+}
+
+.article-card.is-hidden {
+  display: none !important;
+}
+
+/* Card Header */
+.article-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 10px;
+}
+
+.article-title-link {
+  font-size: 1.05rem;
+  font-weight: 600;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  transition: color var(--transition-fast);
+  display: inline;
+}
+
+.article-title-link:hover {
+  color: var(--accent-primary);
+}
+
+.article-title-link .external-icon {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 4px;
+  opacity: 0.6;
+  transition: opacity var(--transition-fast);
+}
+
+.article-title-link:hover .external-icon {
+  opacity: 1;
+}
+
+/* Badges */
+.badge-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex-shrink: 0;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  border: 1px solid transparent;
+}
+
+.badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  display: inline-block;
+}
+
+.badge-critical {
+  background: var(--sev-critical-bg);
+  color: var(--sev-critical-text);
+  border-color: var(--sev-critical-border);
+}
+
+.badge-high {
+  background: var(--sev-high-bg);
+  color: var(--sev-high-text);
+  border-color: var(--sev-high-border);
+}
+
+.badge-medium {
+  background: var(--sev-medium-bg);
+  color: var(--sev-medium-text);
+  border-color: var(--sev-medium-border);
+}
+
+.badge-low {
+  background: var(--sev-low-bg);
+  color: var(--sev-low-text);
+  border-color: var(--sev-low-border);
+}
+
+.badge-kev {
+  background: var(--sev-kev-bg);
+  color: var(--sev-kev-text);
+  border-color: var(--sev-kev-border);
+}
+
+/* Metadata Bar */
+.article-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 12px;
+  flex-wrap: wrap;
+}
+
+.meta-tags-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+}
+
+.meta-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  font-family: var(--font-sans);
+}
+
+.meta-pill strong {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.meta-actions-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.72rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-surface-elevated);
+  transition: all var(--transition-fast);
+}
+
+.copy-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--border-default);
+}
+
+.copy-btn.is-copied {
+  color: var(--sev-low);
+  border-color: var(--sev-low-border);
+}
+
+/* Intelligence Summary (Bengali Typography) */
+.article-summary-bn {
+  font-family: var(--font-bengali);
+  font-size: 0.98rem;
+  line-height: 1.82;
+  color: var(--text-primary);
+  background: var(--bg-surface-subtle);
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-primary);
+  margin-bottom: 12px;
+  direction: ltr;
+  text-align: left;
+}
+
+/* Technical Tags (CVEs, CVSS, Vendors) */
+.technical-tags {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.tag-cve {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--sev-critical-bg);
+  color: var(--sev-critical-text);
+  border: 1px solid var(--sev-critical-border);
+  transition: all var(--transition-fast);
+}
+
+.tag-cve:hover {
+  border-color: var(--sev-critical);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.tag-cvss {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  background: var(--bg-surface-elevated);
+  color: var(--text-primary);
+  border: 1px solid var(--border-default);
+}
+
+.tag-vendor {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  font-size: 0.72rem;
+  font-weight: 500;
+  background: var(--bg-surface-elevated);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+}
+
+/* Empty / No Results State */
+.empty-state {
+  text-align: center;
+  padding: 48px 20px;
+  border: 1px dashed var(--border-default);
+  border-radius: var(--radius-md);
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  background: var(--bg-surface-subtle);
+}
+
+/* ==========================================================================
+   Archive Page Specific Styles
+   ========================================================================== */
+.archive-hero {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.archive-hero-title h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.archive-hero-title p {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  margin-top: 3px;
+}
+
+/* Monthly Archive Grouping */
+.archive-month-section {
+  margin-bottom: 32px;
+}
+
+.archive-month-section:last-child {
+  margin-bottom: 0;
+}
+
+.archive-month-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.archive-month-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.archive-month-badge {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  list-style: none;
+}
+
+.archive-card-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  padding: 16px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-default);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+}
+
+.archive-card-link:hover {
+  background: var(--bg-surface-elevated);
+  border-color: var(--border-strong);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.archive-card-left {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.archive-date-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-sm);
+  background: var(--accent-primary-subtle);
+  border: 1px solid var(--accent-primary-border);
+  color: var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.archive-date-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.archive-pretty-date {
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.archive-iso-date {
+  font-size: 0.74rem;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.archive-arrow-icon {
+  color: var(--text-muted);
+  transition: transform var(--transition-fast), color var(--transition-fast);
+}
+
+.archive-card-link:hover .archive-arrow-icon {
+  color: var(--accent-primary);
+  transform: translateX(3px);
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.site-footer {
+  margin-top: 48px;
+  padding: 20px 24px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-default);
+  background: var(--bg-surface);
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+}
+
+.footer-text {
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+}
+
+.footer-text a {
+  color: var(--accent-primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.footer-text a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ==========================================================================
+   Responsive Breakpoints
+   ========================================================================== */
+@media (max-width: 768px) {
+  body {
+    padding: 16px 12px 40px;
+  }
+  
+  .site-header {
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .brand-title-group h1 {
+    font-size: 1.15rem;
+  }
+
+  .global-search-container {
+    order: 3;
+    max-width: 100%;
+    min-width: 100%;
+    margin: 6px 0 0 0;
+  }
+
+  .telemetry-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .telemetry-card {
+    padding: 14px;
+  }
+
+  .telemetry-value {
+    font-size: 1.5rem;
+  }
+
+  .article-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .badge-group {
+    justify-content: flex-start;
+  }
+
+  .spotlight-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .spotlight-left {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .spotlight-link {
+    white-space: normal;
+    overflow: visible;
+    text-overflow: unset;
+    display: inline;
+    word-break: break-word;
+  }
+
+  .spotlight-right {
+    align-self: flex-end;
+  }
+
+  .archive-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .telemetry-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Site Header -->
+        <header class="site-header">
+            <div class="brand-section">
+                <div class="brand-icon-wrapper" aria-hidden="true">
+                    <!-- Shield SVG Icon -->
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        <path d="M12 8v4"/>
+                        <path d="M12 16h.01"/>
+                    </svg>
+                </div>
+                <div class="brand-title-group">
+                    <h1>28 Nov 2026 <span class="accent-text">Threat Briefing</span></h1>
+                    <div class="header-meta">
+                        <span>INTELLIGENCE CYCLE &bull; 2026-11-28</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Universal Global Search Bar (Searches all briefings) -->
+            <div class="global-search-container">
+                <div class="global-search-input-wrapper">
+                    <span class="global-search-icon">
+                        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                        </svg>
+                    </span>
+                    <input type="text" id="global-search-input" class="global-search-input" placeholder="Search all briefings (CVE, vendor, threat, keyword)... [/]" autocomplete="off" aria-label="Global threat search">
+                    <button id="global-search-clear-btn" class="global-search-clear" style="display:none;" title="Clear search">&times;</button>
+                </div>
+                <div id="global-search-results" class="global-search-results" style="display: none;"></div>
+            </div>
+
+            <div class="header-actions">
+                <a href="../index.html" class="btn" title="Back to Archive Index">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <line x1="19" y1="12" x2="5" y2="12"></line>
+                        <polyline points="12 19 5 12 12 5"></polyline>
+                    </svg>
+                    <span>Archive Index</span>
+                </a>
+                
+                <button id="theme-toggle-btn" class="btn theme-toggle-btn" title="Toggle Theme" aria-label="Toggle Theme">
+                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                    <svg class="icon-moon" style="display:none;" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                </button>
+            </div>
+        </header>
+
+        <!-- Interactive Telemetry Grid -->
+        <section class="telemetry-grid" aria-label="Threat Telemetry Statistics">
+            <div class="telemetry-card" data-telemetry-filter="all" title="Click to show all articles">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">Total Articles</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                            <path d="M18 14h-8"/>
+                            <path d="M15 18h-5"/>
+                            <path d="M10 6h8v4h-8V6Z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">22</div>
+                <div class="telemetry-subtext">Aggregated &amp; analyzed</div>
+            </div>
+
+            <div class="telemetry-card metric-critical" data-telemetry-filter="critical" title="Click to filter critical threats">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">Critical Threats</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"/>
+                            <line x1="12" y1="8" x2="12" y2="12"/>
+                            <line x1="12" y1="16" x2="12.01" y2="16"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">10</div>
+                <div class="telemetry-subtext">Immediate action advised</div>
+            </div>
+
+            <div class="telemetry-card metric-high" data-telemetry-filter="high" title="Click to filter high alerts">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">High Alerts</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/>
+                            <line x1="12" y1="9" x2="12" y2="13"/>
+                            <line x1="12" y1="17" x2="12.01" y2="17"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">9</div>
+                <div class="telemetry-subtext">High priority vulnerabilities</div>
+            </div>
+
+            <div class="telemetry-card metric-kev" data-telemetry-filter="kev" title="Click to filter CISA KEV exploited threats">
+                <div class="telemetry-header">
+                    <span class="telemetry-label">CISA KEV Exploited</span>
+                    <div class="telemetry-icon">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/>
+                        </svg>
+                    </div>
+                </div>
+                <div class="telemetry-value">3</div>
+                <div class="telemetry-subtext">Actively exploited in wild</div>
+            </div>
+        </section>
+
+        <!-- Executive Spotlight Section (Top 5 Priority News) -->
+        <section class="spotlight-panel" aria-label="Executive Priority Briefing">
+            <div class="spotlight-header">
+                <div class="spotlight-title">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--sev-high)" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                    <span>Executive Priority Briefing &bull; Top 5 Surfaced Threats</span>
+                </div>
+                <span class="spotlight-badge">TOP IMPACT</span>
+            </div>
+            <div class="spotlight-grid">
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#01</span>    <a href="https://thehackernews.com/2026/11/suspected-vietnam-linked-hackers-target.html" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="Suspected Vietnam-Linked Hackers Target Southeast Asia in South China Sea Espionage Campaign">      Suspected Vietnam-Linked Hackers Target Southeast Asia in South China Sea Espionage Campaign <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>    <span class="badge badge-kev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/></svg> KEV</span>  </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#02</span>    <a href="https://www.bleepingcomputer.com/news/security/new-nfs2root-linux-flaw-can-let-attackers-gain-root-privileges/" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="New NFS2ROOT Linux flaw can let attackers gain root privileges">      New NFS2ROOT Linux flaw can let attackers gain root privileges <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>      </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#03</span>    <a href="https://www.bleepingcomputer.com/news/security/drupal-warns-of-new-access-bypass-flaw-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="Drupal warns of new site takeover flaw exploited in attacks">      Drupal warns of new site takeover flaw exploited in attacks <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>    <span class="badge badge-kev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/></svg> KEV</span>  </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#04</span>    <a href="https://www.cisa.gov/news-events/alerts/2026/11/27/cisa-adds-three-known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="CISA Adds Three Known Exploited Vulnerabilities to Catalog | CISA">      CISA Adds Three Known Exploited Vulnerabilities to Catalog | CISA <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>    <span class="badge badge-kev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/></svg> KEV</span>  </div></div>
+<div class="spotlight-row">  <div class="spotlight-left">    <span class="spotlight-rank">#05</span>    <a href="https://www.bleepingcomputer.com/news/security/pcloud-confirms-password-manager-hack-after-suspicious-login-alerts/" target="_blank" rel="noopener noreferrer" class="spotlight-link" title="pCloud confirms password manager hack after suspicious login alerts">      pCloud confirms password manager hack after suspicious login alerts <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>    </a>  </div>  <div class="spotlight-right">    <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>      </div></div>
+            </div>
+        </section>
+
+        <!-- Dynamic Severity & Category Filter Toolbar -->
+        <section class="toolbar-section">
+            <div class="filter-bar">
+                <div class="filter-pills">
+                    <button class="filter-pill is-active" data-filter="all">All (22)</button>
+                    <button class="filter-pill" data-filter="critical">Critical (10)</button>
+                    <button class="filter-pill" data-filter="high">High (9)</button>
+                    <button class="filter-pill" data-filter="medium">Medium</button>
+                    <button class="filter-pill" data-filter="low">Low</button>
+                    <button class="filter-pill" data-filter="kev">CISA KEV (3)</button>
+                    <button class="filter-pill" data-filter="cve">Has CVEs</button>
+                </div>
+                <div id="results-stats" class="results-stats">Showing 22 of 22 threats</div>
+            </div>
+        </section>
+
+        <!-- Main Intelligence Feed -->
+        <main>
+            <div class="section-heading">
+                <div class="section-title">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                    </svg>
+                    <span>Full Intelligence Triage Feed</span>
+                </div>
+            </div>
+
+            <div class="articles-stack">
+
+            <article class="article-card" id="art-1" data-severity="critical" data-has-kev="true" data-cves-count="1">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/suspected-vietnam-linked-hackers-target.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Suspected Vietnam-Linked Hackers Target Southeast Asia in South China Sea Espionage Campaign
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/></svg> CISA KEV EXPLOITED</span>
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Espionage</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-1" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-1">
+                    ভিয়েতনাম-সংশ্লিষ্ট WeaveLotus নামক একটি Threat Actor গ্রুপ দক্ষিণ চীন সাগরের ভূ-রাজনৈতিক তথ্য সংগ্রহের উদ্দেশ্যে দক্ষিণ-পূর্ব এশিয়ার সামরিক ও সরকারি সংস্থাসমূহের ওপর একটি সাইবার Espionage ক্যাম্পেইন পরিচালনা করছে। এই গ্রুপটি মূলত GeoServer, JasperReports এবং osTicket-এর মতো সফটওয়্যারের Vulnerability এবং default credentials ব্যবহার করে প্রাথমিক অ্যাক্সেস লাভ করে। পরবর্তীতে তারা reverse SSH tunnels এবং lateral movement-এর মাধ্যমে নেটওয়ার্কে Persistence বজায় রাখে এবং সংবেদনশীল নথিপত্র Exfiltration করে। এই ক্যাম্পেইনটি RedOps নামে পরিচিত এবং এতে OSINT ও OCR প্রযুক্তির ব্যবহার লক্ষ্য করা গেছে।
+                </div>
+
+                <div class="technical-tags"><a href="https://nvd.nist.gov/vuln/detail/CVE-2024-36401" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2024-36401 on NIST NVD">CVE-2024-36401 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <span class="tag-cvss">CVSS 9.8</span> <span class="tag-vendor">Vendor: GeoServer</span> <span class="tag-vendor">Vendor: JasperReports</span> <span class="tag-vendor">Vendor: osTicket</span> <span class="tag-vendor">Vendor: Laravel</span> <span class="tag-vendor">Vendor: Directus</span> <span class="tag-vendor">Vendor: Wowza</span> <span class="tag-vendor">Vendor: Microsoft</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-2" data-severity="critical" data-has-kev="false" data-cves-count="1">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/new-nfs2root-linux-flaw-can-let-attackers-gain-root-privileges/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            New NFS2ROOT Linux flaw can let attackers gain root privileges
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-2" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-2">
+                    Linux kernel-এর Network File System (NFS) সার্ভারে একটি ১২ বছরের পুরনো critical Vulnerability (CVE-2026-99362) শনাক্ত করা হয়েছে, যা NFS2ROOT নামে পরিচিত। এই Heap buffer overflow ত্রুটির মাধ্যমে একজন remote Threat Actor কোনো প্রকার User interaction ছাড়াই সার্ভারে Root privileges অর্জন করতে পারে। এটি মূলত Linux kernel-এর nfsd (v4.1 বা v4.2) সার্ভিসের মাধ্যমে TCP port 2049 ব্যবহার করে পরিচালিত হয়। KASLR বাইপাস করে Kernel memory-তে ক্ষতিকারক কোড এক্সিকিউট করার মাধ্যমে এই Privilege escalation সম্ভব। আক্রান্ত সিস্টেমগুলোকে সুরক্ষিত রাখতে দ্রুত Kernel security update ইনস্টল করা এবং NFS সার্ভিস প্রয়োজন না হলে তা বন্ধ রাখার পরামর্শ দেওয়া হয়েছে।
+                </div>
+
+                <div class="technical-tags"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-99362" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-99362 on NIST NVD">CVE-2026-99362 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <span class="tag-cvss">CVSS 9.8</span> <span class="tag-vendor">Vendor: Linux</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-3" data-severity="critical" data-has-kev="true" data-cves-count="2">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/drupal-warns-of-new-access-bypass-flaw-exploited-in-attacks/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Drupal warns of new site takeover flaw exploited in attacks
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        <span class="badge badge-kev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/></svg> CISA KEV EXPLOITED</span>
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-3" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-3">
+                    Drupal সিকিউরিটি টিম একটি নতুন critical Vulnerability শনাক্ত করেছে যা Threat Actor-দের unpatched ওয়েবসাইটগুলোর নিয়ন্ত্রণ নিতে সাহায্য করছে। CVE-2026-132165 এবং CVE-2026-136716 ব্যবহার করে আক্রমণকারীরা Remote Code Execution (RCE) এর মাধ্যমে সাইট হাইজ্যাক করছে। Drupal কর্তৃপক্ষ জানিয়েছে যে, কিছু সাইট যারা সঠিকভাবে ইন্সটলেশন সম্পন্ন করেনি তারা এখনো ঝুঁকিতে রয়েছে এবং এই Vulnerability-গুলো বর্তমানে in the wild সক্রিয়ভাবে Exploited হচ্ছে। ব্যবহারকারীদের দ্রুত লেটেস্ট ভার্সনে আপডেট করার এবং /core/install.php ফাইলটি ব্লক করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+
+                <div class="technical-tags"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-132165" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-132165 on NIST NVD">CVE-2026-132165 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-136716" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-136716 on NIST NVD">CVE-2026-136716 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <span class="tag-cvss">CVSS 9.8</span> <span class="tag-vendor">Vendor: Drupal</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-4" data-severity="high" data-has-kev="true" data-cves-count="3">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.cisa.gov/news-events/alerts/2026/11/27/cisa-adds-three-known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            CISA Adds Three Known Exploited Vulnerabilities to Catalog | CISA
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        <span class="badge badge-kev"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 3.5z"/></svg> CISA KEV EXPLOITED</span>
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>CISA Advisories</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-4" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-4">
+                    CISA তাদের Known Exploited Vulnerabilities (KEV) ক্যাটালগে নতুন তিনটি Vulnerability যুক্ত করেছে, যা বর্তমানে সক্রিয়ভাবে Exploitation করা হচ্ছে। এর মধ্যে OSGeo GeoServer-এর দুটি এবং Drupal Core-এর একটি Vulnerability অন্তর্ভুক্ত রয়েছে। BOD 26-04 নির্দেশিকা অনুযায়ী, Federal Civilian Executive Branch (FCEB) এজেন্সিগুলোকে এই Vulnerability গুলোর দ্রুত Remediation নিশ্চিত করতে বলা হয়েছে। CISA সকল প্রতিষ্ঠানকে এই Vulnerability গুলোর ঝুঁকি বিবেচনায় দ্রুত Patch করার পরামর্শ দিয়েছে।
+                </div>
+
+                <div class="technical-tags"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-120705" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-120705 on NIST NVD">CVE-2026-120705 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129243" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-129243 on NIST NVD">CVE-2026-129243 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-136716" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-136716 on NIST NVD">CVE-2026-136716 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <span class="tag-cvss">CVSS 9.8</span> <span class="tag-vendor">Vendor: OSGeo</span> <span class="tag-vendor">Vendor: Drupal</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-5" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/pcloud-confirms-password-manager-hack-after-suspicious-login-alerts/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            pCloud confirms password manager hack after suspicious login alerts
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-5" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-5">
+                    pCloud Pass নামক পাসওয়ার্ড ম্যানেজারে একটি সাইবার অ্যাটাক সংঘটিত হয়েছে, যার ফলে ব্যবহারকারীদের অ্যাকাউন্টে অননুমোদিত লগইন প্রচেষ্টার নোটিফিকেশন পাওয়া গেছে। যদিও pCloud দাবি করেছে যে তাদের সিস্টেম দ্রুত নিয়ন্ত্রণে আনা হয়েছে এবং ব্যবহারকারীদের এনক্রিপ্টেড ডেটা সুরক্ষিত আছে, তবুও অনেক ব্যবহারকারী 2FA সক্রিয় থাকা সত্ত্বেও এই সমস্যার সম্মুখীন হয়েছেন। এই ঘটনায় কিছু ব্যবহারকারীর ইমেইল অ্যাড্রেস এক্সপোজ হয়েছে এবং সন্দেহজনক লগইন নোটিফিকেশনে QA এনভায়রনমেন্টের লিঙ্ক পাওয়া গেছে, যা নিরাপত্তা ঝুঁকি বাড়িয়ে দিয়েছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: pCloud</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-6" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/your-firewall-isnt-enough-the-hidden-risk-of-unmanaged-vms/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Your Firewall Isn&#x27;t Enough: The Hidden Risk of Unmanaged VMs
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Advisory</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-6" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-6">
+                    এই নিবন্ধটি আধুনিক IT ইনফ্রাস্ট্রাকচারে &#x27;Unmanaged VMs&#x27; এবং দুর্বল রিসোর্স ম্যানেজমেন্টের ফলে সৃষ্ট নিরাপত্তা ঝুঁকি নিয়ে আলোচনা করেছে। যখন ভার্চুয়াল মেশিন বা সার্ভারের লাইফসাইকেল এবং অ্যাক্সেস কন্ট্রোল সঠিকভাবে মনিটর করা হয় না, তখন সেগুলো &#x27;forgotten&#x27; বা পরিত্যক্ত অবস্থায় পড়ে থাকে, যা Threat Actor-দের জন্য নেটওয়ার্কে প্রবেশের সহজ পথ তৈরি করে। নিবন্ধটিতে বলা হয়েছে যে, কার্যকর Security নিশ্চিত করতে হলে ইনফ্রাস্ট্রাকচারের প্রতিটি উপাদানের ওপর পূর্ণ নিয়ন্ত্রণ, সঠিক Provisioning এবং নিয়মিত Lifecycle Management বজায় রাখা অপরিহার্য, যাতে Lateral Movement বা ডেটা ব্রিচের মতো ঝুঁকি কমানো যায়।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Broadcom</span> <span class="tag-vendor">Vendor: VMware</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-7" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/unpatched-cacti-zero-day-with-public-poc-gives-remote-code-execution/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Unpatched Cacti zero-day with public PoC gives remote code execution
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-7" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-7">
+                    Cacti নেটওয়ার্ক মনিটরিং প্ল্যাটফর্মে একটি Zero-Day Vulnerability শনাক্ত করা হয়েছে, যা unauthenticated attackers-দের Remote Code Execution (RCE) করার সুযোগ দেয়। &#x27;4HTTP2SHELL&#x27; নামক এই Exploit-টি মূলত দুর্বল input validation-এর কারণে ঘটে, যা SQL Injection-এর মাধ্যমে সার্ভারে malicious command চালানোর পথ তৈরি করে। যেহেতু Cacti সার্ভারে অনেক সময় সংবেদনশীল credentials সংরক্ষিত থাকে, তাই এই Vulnerability-টি অত্যন্ত ঝুঁকিপূর্ণ। বর্তমানে কোনো Patch উপলব্ধ না থাকায়, নিরাপত্তার খাতিরে administrators-দের Cacti guest account নিষ্ক্রিয় করার পরামর্শ দেওয়া হচ্ছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Cacti</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-8" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/unpatched-cacti-zero-day-enables-rce-in.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Unpatched Cacti Zero-Day Enables RCE in Just Four HTTP Requests via Guest Access
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-8" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-8">
+                    Cacti-এর একটি নতুন Zero-Day Vulnerability শনাক্ত করা হয়েছে, যা unauthenticated ব্যবহারকারীদের মাত্র চারটি HTTP Request-এর মাধ্যমে Remote Code Execution (RCE) করার সুযোগ দেয়। এই ত্রুটিটি Cacti Core 1.2.31 ভার্সনে বিদ্যমান, যেখানে Guest account সক্রিয় থাকলে SQL Injection এবং PHP-এর popen() ফাংশনের অপব্যবহারের মাধ্যমে সার্ভারের নিয়ন্ত্রণ নেওয়া সম্ভব। এটি মূলত একটি চেইনড অ্যাটাক যা ডেটাবেস কনফিগারেশন ম্যানিপুলেশনের মাধ্যমে কার্যকর হয়। ব্যবহারকারীদের নিরাপত্তার স্বার্থে অবিলম্বে Guest account ডিজেবল করার এবং ওয়েব ইন্টারফেসের অ্যাক্সেস সীমাবদ্ধ করার পরামর্শ দেওয়া হয়েছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Cacti</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-9" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/us-air-force-cloud-platform-reportedly-hacked-in-latest-federal-breach/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            US Air Force cloud platform reportedly hacked in latest federal breach
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-9" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-9">
+                    US Air Force-এর Cloud One প্ল্যাটফর্মে একটি বড় ধরনের সাইবার হামলার ঘটনা ঘটেছে, যেখানে হ্যাকাররা একটি unidentified software vulnerability ব্যবহার করে সিস্টেমের অ্যাক্সেস নিয়েছে। এই হামলার ফলে সামরিক অপারেশন এবং লজিস্টিকস সংক্রান্ত সংবেদনশীল তথ্য ঝুঁকির মুখে পড়েছে। এছাড়া, সাম্প্রতিক সময়ে FBI, CIA এবং US Treasury Department-এর মতো গুরুত্বপূর্ণ সরকারি সংস্থাতেও ধারাবাহিক সাইবার হামলার খবর পাওয়া গেছে। এই আক্রমণগুলোতে ARTEX নামক একটি AI-powered penetration testing framework ব্যবহার করা হচ্ছে, যা Threat Actor-দের খুব দ্রুত Vulnerability exploit করতে এবং Privilege escalation করতে সহায়তা করছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Oracle</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-10" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/switzerland-confirms-ai-assisted.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Switzerland Confirms AI-Assisted Cyberattacks Breached Critical Infrastructure Operators
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Threat Actor</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-10" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-10">
+                    সুইজারল্যান্ডের National Cyber Security Centre সম্প্রতি নিশ্চিত করেছে যে, AI-assisted autonomous agents ব্যবহার করে দেশটির critical infrastructure অপারেটরদের ওপর একাধিক সাইবার আক্রমণ চালানো হয়েছে। এই আক্রমণগুলোতে Threat Actor-রা ARTEX, CyberStrikeAI, PentAGI এবং DeepSeek Harness-এর মতো AI টুল ব্যবহার করে Vulnerability, misconfiguration এবং compromised credentials-এর মাধ্যমে সিস্টেমে প্রবেশ করেছে। এই AI agents-গুলো অত্যন্ত দ্রুততার সাথে এবং parallel-ভাবে কাজ করতে সক্ষম, যা প্রথাগত নিরাপত্তা ব্যবস্থার জন্য বড় ধরনের হুমকি তৈরি করেছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: N/A</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-11" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/new-boston-scientific-data-breach-exposes-personal-medical-info/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            New Boston Scientific data breach exposes personal, medical info
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-11" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-11">
+                    মেডিকেল টেকনোলজি কোম্পানি Boston Scientific একটি সাইবার আক্রমণের শিকার হয়েছে, যেখানে Threat Actor-রা Vishing বা Voice Phishing ব্যবহার করে কোম্পানির Cloud Infrastructure-এ অননুমোদিত প্রবেশাধিকার লাভ করেছে। এই Data Breach-এর ফলে প্রায় ১১৭,৭৮৯ জন ব্যক্তির ব্যক্তিগত তথ্য, যেমন SSN, সরকারি আইডি নম্বর এবং Medical Information ফাঁস হয়েছে। যদিও কোম্পানিটি জানিয়েছে যে তাদের Medical Devices বা Remote Monitoring সিস্টেমে কোনো প্রভাব পড়েনি, তবুও এটি তাদের সংবেদনশীল তথ্যের সুরক্ষার ক্ষেত্রে একটি বড় ধরনের Vulnerability প্রকাশ করেছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Boston Scientific</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-12" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/microsoft-store-app-found-delivering.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Microsoft Store App Found Delivering Vinci RAT Capable of Remote System Control
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Malware</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-12" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-12">
+                    সাইবার নিরাপত্তা গবেষকরা একটি নতুন Malware ক্যাম্পেইন শনাক্ত করেছেন যেখানে Threat Actor-রা Microsoft Store-এর মাধ্যমে &#x27;Setup Assistant&#x27; নামক একটি ক্ষতিকারক Electron-based অ্যাপ্লিকেশন বিতরণ করছে। এই অ্যাপ্লিকেশনটি মূলত Vinci RAT নামক একটি শক্তিশালী Remote Access Trojan ইনস্টল করে, যা ভিকটিমের সিস্টেমে Remote Code Execution, ফাইল চুরি এবং AMSI ডিজেবল করার মতো ক্ষমতা রাখে। আক্রমণকারীরা ভুয়া ওয়েবসাইট এবং সার্চ ইঞ্জিন রিডাইরেকশন ব্যবহার করে ব্যবহারকারীদের এই ক্ষতিকারক সফটওয়্যার ডাউনলোডে প্রলুব্ধ করছে, যা পরবর্তীতে C2 সার্ভারের মাধ্যমে PowerShell এবং JavaScript স্ক্রিপ্ট এক্সিকিউট করে সিস্টেমের পূর্ণ নিয়ন্ত্রণ গ্রহণ করে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Microsoft</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-13" data-severity="critical" data-has-kev="false" data-cves-count="4">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.securityweek.com/hex-package-manager-warns-of-potential-data-breach/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Hex Package Manager Warns of Potential Data Breach
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>SecurityWeek</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-13" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-13">
+                    Hex package manager-এর web server-এ একটি গুরুতর Vulnerability-এর মাধ্যমে Unauthorized access-এর ঘটনা ঘটেছে। আক্রমণকারীরা CVE-2026-129514 ব্যবহার করে Remote Code Execution (RCE) সম্পন্ন করেছে, যার ফলে database-এর সংবেদনশীল তথ্য যেমন email, password hashes এবং API keys Exposure-এর ঝুঁকি তৈরি হয়েছে। যদিও Hex দ্রুত ব্যবস্থা নিয়ে server patch করেছে এবং credentials পরিবর্তন করেছে, তবুও ব্যবহারকারীদের নিরাপত্তার স্বার্থে password পরিবর্তন এবং 2FA reset করার পরামর্শ দেওয়া হয়েছে। এছাড়া Ash Framework, db_connection এবং flop লাইব্রেরিতেও একই ধরনের Vulnerability শনাক্ত হয়েছে যা সংশ্লিষ্ট maintainer-রা ইতিমধ্যে patch করেছেন।
+                </div>
+
+                <div class="technical-tags"><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-129514" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-129514 on NIST NVD">CVE-2026-129514 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-124283" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-124283 on NIST NVD">CVE-2026-124283 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-133555" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-133555 on NIST NVD">CVE-2026-133555 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <a href="https://nvd.nist.gov/vuln/detail/CVE-2026-130411" target="_blank" rel="noopener noreferrer" class="tag-cve" title="View CVE-2026-130411 on NIST NVD">CVE-2026-130411 <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg></a> <span class="tag-vendor">Vendor: Hex</span> <span class="tag-vendor">Vendor: Ash Framework</span> <span class="tag-vendor">Vendor: Elixir</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-14" data-severity="critical" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/hackers-trojanize-official-q-dir-and.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Hackers Trojanize Official Q-Dir and DesktopOK Downloads to Deliver Remote Access Malware
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-critical"><span class="badge-dot"></span>CRITICAL (100/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Supply Chain</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-14" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-14">
+                    SoftwareOK-এর অফিসিয়াল ওয়েবসাইট থেকে ডাউনলোড করা Q-Dir এবং DesktopOK সফটওয়্যারের ইন্সটলেশন ফাইলগুলো হ্যাকাররা টেম্পার করে তাতে ক্ষতিকারক Malware যুক্ত করেছে। এই Supply Chain Attack-এর মাধ্যমে ব্যবহারকারীর সিস্টেমে একটি Python-ভিত্তিক Remote Access Trojan (RAT) প্রবেশ করানো হচ্ছে, যা Shell command চালানো, স্ক্রিনশট নেওয়া এবং ফাইল চুরির মতো কাজ করতে সক্ষম। আক্রমণকারীরা Microsoft Edge-এর ছদ্মবেশে Scheduled Task ব্যবহার করে সিস্টেমে Persistence বজায় রাখছে এবং বিভিন্ন Security Product শনাক্ত করে তা এড়িয়ে চলার চেষ্টা করছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: SoftwareOK</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-15" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/sap-confirms-security-incident-after-suspicious-github-activity/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            SAP confirms security incident after suspicious GitHub activity
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-15" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-15">
+                    জার্মান সফটওয়্যার জায়ান্ট SAP সম্প্রতি তাদের GitHub এনভায়রনমেন্টে একটি সাইবার আক্রমণের শিকার হয়েছে, যা অভ্যন্তরীণভাবে &#x27;Project Granite&#x27; নামে পরিচিত। Threat Actor-রা SAP কর্মীদের authentication tokens চুরি করে GitHub-এ থাকা সোর্স কোড কপি এবং মডিফাই করেছে। প্রাথমিক তদন্তে SAP জানিয়েছে যে, এখন পর্যন্ত কোনো গ্রাহকের ডেটা বা সিস্টেম কম্প্রোমাইজ হওয়ার প্রমাণ পাওয়া যায়নি। ধারণা করা হচ্ছে, এই আক্রমণে AI টুলস ব্যবহার করা হয়েছে, যা বর্তমানের ক্রমবর্ধমান AI-driven cyberattacks-এর ঝুঁকির বিষয়টি পুনরায় সামনে নিয়ে এসেছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: SAP</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-16" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.securityweek.com/sap-confirms-cyberattack-source-code-reportedly-compromised/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            SAP Confirms Cyberattack, Source Code Reportedly Compromised
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>SecurityWeek</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-16" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-16">
+                    Enterprise software giant SAP সম্প্রতি একটি সাইবার অ্যাটাকের শিকার হয়েছে, যেখানে Threat Actor-রা কোম্পানির GitHub ডেভেলপমেন্ট ইনফ্রাস্ট্রাকচারকে লক্ষ্যবস্তু করেছে। প্রাথমিক তদন্তে জানা গেছে যে, হ্যাকাররা SAP কর্মীদের authentication tokens চুরি করে সোর্স কোড অ্যাক্সেস এবং পরিবর্তনের চেষ্টা করেছে। যদিও SAP নিশ্চিত করেছে যে কোনো গ্রাহকের ডেটা compromised হয়নি, তবুও নিরাপত্তার খাতিরে তারা signing keys পরিবর্তন করেছে এবং GitHub অ্যাক্সেস সীমিত করেছে। এই ঘটনায় কোনো Vulnerability বা নির্দিষ্ট CVE-এর সরাসরি উল্লেখ নেই, তবে এটি একটি গুরুতর Supply Chain ঝুঁকির ইঙ্গিত দেয়।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: SAP</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-17" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/microsoft/new-out-of-band-oob-emergency-hotpatch-fixes-windows-server-2025-crashes/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Microsoft pushes emergency hotpatch to fix Windows Server crashes
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Advisory</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-17" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-17">
+                    Microsoft একটি জরুরি out-of-band hotpatch (KB5138318) প্রকাশ করেছে যা Windows Server 2025-এ সৃষ্ট একটি গুরুতর সিস্টেম ক্র্যাশ সমস্যা সমাধান করে। নভেম্বর মাসের সিকিউরিটি আপডেটের পর IPv6 রাউট এক্সপায়ার হলে সার্ভারগুলোতে 0x139 (KERNEL_SECURITY_CHECK_FAILURE) স্টপ এরর দেখা দিচ্ছিল। এই নতুন প্যাচটি কোনো রিবুট ছাড়াই স্বয়ংক্রিয়ভাবে ইনস্টল হবে। এছাড়া, Windows 11-এ Office অ্যাপ্লিকেশন এবং Forcepoint DLP Endpoint Agent-এর সাথে সম্পর্কিত কিছু সমস্যার কথাও প্রতিবেদনে উল্লেখ করা হয়েছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Microsoft</span> <span class="tag-vendor">Vendor: Forcepoint</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-18" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.securityweek.com/in-other-news-tanker-cyberattacks-eu-quantum-act-new-virustotal-capabilities/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            In Other News: Tanker Cyberattacks, EU Quantum Act, New VirusTotal Capabilities
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>SecurityWeek</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Vulnerability</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-18" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-18">
+                    এই সপ্তাহে সাইবার নিরাপত্তা জগতে বেশ কিছু গুরুত্বপূর্ণ ঘটনা ঘটেছে। এর মধ্যে উল্লেখযোগ্য হলো ChatGPT Sites-এর মাধ্যমে সংবেদনশীল তথ্য ফাঁস, RansomwareHelp-এর সহ-প্রতিষ্ঠাতার বিরুদ্ধে প্রতারণার অভিযোগ এবং USDA-এর পেমেন্ট সিস্টেমে সাইবার আক্রমণ। এছাড়া SolarWinds এবং Adobe তাদের পণ্যে থাকা Critical Vulnerability-এর জন্য প্যাচ প্রকাশ করেছে। অন্যদিকে, The Container Store একটি সাইবার আক্রমণের শিকার হয়েছে এবং VirusTotal তাদের প্ল্যাটফর্মে Ransomware শনাক্তকরণের জন্য নতুন উন্নত ফিচার যুক্ত করেছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: SolarWinds</span> <span class="tag-vendor">Vendor: Adobe</span> <span class="tag-vendor">Vendor: OpenAI</span> <span class="tag-vendor">Vendor: USDA</span> <span class="tag-vendor">Vendor: The Container Store</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-19" data-severity="high" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.securityweek.com/100000-potentially-impacted-by-colorado-data-breach/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            100,000 Potentially Impacted by Colorado Data Breach
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-high"><span class="badge-dot"></span>HIGH (99/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>SecurityWeek</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Data Breach</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-19" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-19">
+                    Colorado Governor’s Office of Information Technology (OIT) সম্প্রতি একটি Data Breach-এর শিকার হয়েছে, যা তাদের myColorado অ্যাপ্লিকেশনের প্রায় ১,০০,০০০ ব্যবহারকারীর ব্যক্তিগত তথ্যের নিরাপত্তাকে ঝুঁকির মুখে ফেলেছে। Threat Actor-রা AWS এনভায়রনমেন্টে থাকা অ্যাপটির &#x27;myCards and Documents&#x27; সেকশন থেকে সরকারি আইডি, গাড়ির রেজিস্ট্রেশন এবং ইন্স্যুরেন্স কার্ডের মতো সংবেদনশীল ডকুমেন্ট অ্যাক্সেস করেছে। ঘটনার পর OIT অ্যাপ্লিকেশনটিকে অফলাইনে নিয়ে গেছে এবং বর্তমানে একটি তদন্ত চলছে। যদিও কোনো পেমেন্ট ইনফরমেশন Compromise হয়নি, তবে এই Incident-টি ব্যবহারকারীদের ব্যক্তিগত তথ্যের গোপনীয়তার ক্ষেত্রে একটি বড় ধরনের নিরাপত্তা ঝুঁকি তৈরি করেছে।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Colorado Governor’s Office of Information Technology</span> <span class="tag-vendor">Vendor: Amazon Web Services</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-20" data-severity="medium" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/microsoft/microsoft-removes-wsus-server-role-in-windows-server-2028/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Microsoft removes WSUS server role in Windows Server 2028
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-medium"><span class="badge-dot"></span>MEDIUM (90/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Advisory</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-20" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-20">
+                    Microsoft তাদের পরবর্তী অপারেটিং সিস্টেম Windows Server 2028 থেকে WSUS (Windows Server Update Services) সার্ভার রোলটি সম্পূর্ণভাবে অপসারণ করার ঘোষণা দিয়েছে। এর পরিবর্তে প্রতিষ্ঠানগুলোকে Windows Autopatch, Microsoft Intune এবং Azure Update Manager-এর মতো আধুনিক ক্লাউড-ভিত্তিক সমাধান ব্যবহারের পরামর্শ দেওয়া হয়েছে। এছাড়া নিরাপত্তার খাতিরে VBScript, WMIC এবং WINS-এর মতো লিগ্যাসি ফিচারগুলোও এই ভার্সন থেকে সরিয়ে ফেলা হচ্ছে, যা মূলত বিভিন্ন ধরনের Malware এবং সাইবার আক্রমণ প্রতিরোধের একটি কৌশলগত পদক্ষেপ।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Microsoft</span></div>
+            </article>
+            
+
+            <article class="article-card" id="art-21" data-severity="medium" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://thehackernews.com/2026/11/how-to-keep-your-security-picture.html" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            How to Keep Your Security Picture Current When Attackers Move at AI Speed
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-medium"><span class="badge-dot"></span>MEDIUM (90/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>The Hacker News</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Advisory</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-21" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-21">
+                    এই নিবন্ধটি বর্তমান সাইবার সিকিউরিটি রিপোর্টিং পদ্ধতির সীমাবদ্ধতা এবং AI-এর যুগে এর ঝুঁকি নিয়ে আলোচনা করে। প্রথাগত পদ্ধতিতে সিকিউরিটি মেট্রিক্সগুলো ম্যানুয়ালি সংগ্রহ করা হয়, যা সময়সাপেক্ষ এবং রিপোর্ট তৈরির সময় পর্যন্ত ডেটাগুলো পুরনো হয়ে যায়। অন্যদিকে, Threat Actor-রা এখন AI ব্যবহার করে অত্যন্ত দ্রুতগতিতে Reconnaissance এবং Phishing আক্রমণ পরিচালনা করছে। তাই লেখক প্রথাগত রিপোর্টিংয়ের পরিবর্তে রিয়েল-টাইম Visibility এবং অটোমেটেড সিকিউরিটি মনিটরিংয়ের ওপর গুরুত্বারোপ করেছেন, যাতে প্রতিষ্ঠানের সিকিউরিটি পোশ্চার সবসময় আপ-টু-ডেট থাকে।
+                </div>
+
+                
+            </article>
+            
+
+            <article class="article-card" id="art-22" data-severity="low" data-has-kev="false" data-cves-count="0">
+                <div class="article-header">
+                    <h2 style="font-size: 1.05rem; font-weight: 600; line-height: 1.45;">
+                        <a href="https://www.bleepingcomputer.com/news/security/malwarebytes-antivirus-get-50-percent-off-during-black-friday-2026/" target="_blank" rel="noopener noreferrer" class="article-title-link">
+                            Malwarebytes Antivirus: Get 50% off during Black Friday 2026
+                            <svg class="external-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                        </a>
+                    </h2>
+                    <div class="badge-group">
+                        <span class="badge badge-low"><span class="badge-dot"></span>LOW (18/100)</span>
+                        
+                    </div>
+                </div>
+
+                <div class="article-meta">
+                    <div class="meta-tags-left">
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8"/><path d="M15 18h-5"/><path d="M10 6h8v4h-8V6Z"/></svg> <strong>BleepingComputer</strong></span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg> Advisory</span>
+                        <span class="meta-pill"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"></rect><circle cx="12" cy="5" r="2"></circle><path d="M12 7v4"></path><line x1="8" y1="16" x2="8" y2="16"></line><line x1="16" y1="16" x2="16" y2="16"></line></svg> AI: <strong>Gemini</strong></span>
+                    </div>
+                    <div class="meta-actions-right">
+                        <button class="copy-btn" data-copy-target="summary-22" title="Copy Bengali intelligence summary to clipboard">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> <span>Copy Summary</span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="article-summary-bn" id="summary-22">
+                    Malwarebytes তাদের বার্ষিক Black Friday এবং Cyber Monday উপলক্ষে বিভিন্ন সিকিউরিটি সাবস্ক্রিপশন প্ল্যানের ওপর ৫০% পর্যন্ত ছাড় ঘোষণা করেছে। এই অফারের আওতায় Antivirus, VPN, identity theft protection এবং personal data removal সার্ভিসের মতো সেবাগুলো অন্তর্ভুক্ত রয়েছে। এই প্রমোশনটি ৬ ডিসেম্বর, ২০২৬ পর্যন্ত কার্যকর থাকবে এবং এটি ব্যক্তিগত ও ফ্যামিলি উভয় ধরনের ব্যবহারকারীদের জন্য প্রযোজ্য।
+                </div>
+
+                <div class="technical-tags"><span class="tag-vendor">Vendor: Malwarebytes</span></div>
+            </article>
+            
+            </div>
+
+            <!-- Zero Results State -->
+            <div id="no-results-state" class="empty-state" style="display: none;">
+                <p>No threat intelligence items match your active search or filter criteria.</p>
+            </div>
+        </main>
+
+        <!-- Site Footer -->
+        <footer class="site-footer">
+            <div class="footer-text">
+                Daily Threat Intelligence Briefing &bull; Authored &amp; Maintained by <a href="https://noorelahialishibly.com" target="_blank" rel="noopener noreferrer">Noor Elahi Ali Shibly</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Client-Side Search Index & Interactivity -->
+    <script>
+/**
+ * Threat Intelligence Dashboard - Client Interactions
+ * Universal Cross-Briefing Search, In-Page Severity Filtering, Theme Toggle, and Clipboard Actions.
+ */
+
+(function () {
+  'use strict';
+
+  // -------------------------------------------------------------------------
+  // 1. Theme Management (Dark / Light Mode)
+  // -------------------------------------------------------------------------
+  const THEME_STORAGE_KEY = 'threat_briefing_theme';
+
+  function initTheme() {
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const initialTheme = savedTheme || (prefersDark ? 'dark' : 'light');
+
+    applyTheme(initialTheme);
+
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', () => {
+        const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+        const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        applyTheme(nextTheme);
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      });
+    }
+  }
+
+  function applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    const toggleBtn = document.getElementById('theme-toggle-btn');
+    if (toggleBtn) {
+      const isDark = theme === 'dark';
+      toggleBtn.setAttribute('title', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+      toggleBtn.setAttribute('aria-label', isDark ? 'Switch to Light Mode' : 'Switch to Dark Mode');
+
+      const sunIcon = toggleBtn.querySelector('.icon-sun');
+      const moonIcon = toggleBtn.querySelector('.icon-moon');
+      if (sunIcon && moonIcon) {
+        sunIcon.style.display = isDark ? 'block' : 'none';
+        moonIcon.style.display = isDark ? 'none' : 'block';
+      }
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // 2. Universal Global Search System (Across all briefings past & present)
+  // -------------------------------------------------------------------------
+  let searchIndex = [];
+  let indexState = 'idle'; // idle | loading | ready
+  const indexWaiters = [];
+
+  function ensureSearchIndex(onReady) {
+    if (indexState === 'ready') {
+      if (onReady) onReady();
+      return;
+    }
+    if (onReady) indexWaiters.push(onReady);
+    if (indexState === 'loading') return;
+
+    indexState = 'loading';
+    const isReportSubdir = window.location.pathname.includes('/202') || document.querySelector('.articles-stack') !== null;
+    const s = document.createElement('script');
+    s.src = (isReportSubdir ? '../assets/' : './assets/') + 'search_index.js';
+    s.onload = () => {
+      searchIndex = Array.isArray(window.__THREAT_SEARCH_INDEX__) ? window.__THREAT_SEARCH_INDEX__ : [];
+      indexState = 'ready';
+      indexWaiters.splice(0).forEach((fn) => fn());
+    };
+    s.onerror = () => {
+      indexState = 'idle'; // allow retry on next focus/keystroke
+      indexWaiters.length = 0;
+    };
+    document.head.appendChild(s);
+  }
+
+  function initGlobalSearch() {
+    const searchInput = document.getElementById('global-search-input');
+    const clearBtn = document.getElementById('global-search-clear-btn');
+    const resultsContainer = document.getElementById('global-search-results');
+    if (!searchInput || !resultsContainer) return;
+    searchInput.addEventListener('focus', () => ensureSearchIndex());
+
+    let debounceTimer = null;
+
+    searchInput.addEventListener('input', (e) => {
+      clearTimeout(debounceTimer);
+      const query = (e.target.value || '').trim();
+
+      if (clearBtn) {
+        clearBtn.style.display = query ? 'block' : 'none';
+      }
+
+      if (!query) {
+        resultsContainer.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        return;
+      }
+
+      debounceTimer = setTimeout(() => {
+        ensureSearchIndex(() => executeGlobalSearch(query, resultsContainer));
+      }, 120);
+    });
+
+    searchInput.addEventListener('focus', () => {
+      const query = (searchInput.value || '').trim();
+      if (query && resultsContainer.children.length > 0) {
+        resultsContainer.style.display = 'flex';
+      }
+    });
+
+    if (clearBtn) {
+      clearBtn.addEventListener('click', () => {
+        searchInput.value = '';
+        clearBtn.style.display = 'none';
+        resultsContainer.style.display = 'none';
+        resultsContainer.innerHTML = '';
+        searchInput.focus();
+      });
+    }
+
+    // Keyboard Shortcuts: '/' to focus search, 'Escape' to close dropdown
+    document.addEventListener('keydown', (e) => {
+      if (e.key === '/' && document.activeElement !== searchInput && !['INPUT', 'TEXTAREA'].includes(document.activeElement.tagName)) {
+        e.preventDefault();
+        searchInput.focus();
+        searchInput.select();
+      } else if (e.key === 'Escape') {
+        if (resultsContainer.style.display !== 'none') {
+          resultsContainer.style.display = 'none';
+        }
+        if (document.activeElement === searchInput) {
+          searchInput.blur();
+        }
+      }
+    });
+
+    // Close results dropdown on outside click
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('.global-search-container')) {
+        resultsContainer.style.display = 'none';
+      }
+    });
+  }
+
+  function executeGlobalSearch(query, resultsContainer) {
+    if (!searchIndex || searchIndex.length === 0) {
+      // If index not yet ready, try pulling from window again
+      if (Array.isArray(window.__THREAT_SEARCH_INDEX__)) {
+        searchIndex = window.__THREAT_SEARCH_INDEX__;
+      }
+    }
+
+    const tokens = query.toLowerCase().split(/\s+/).filter(Boolean);
+    if (tokens.length === 0) {
+      resultsContainer.style.display = 'none';
+      return;
+    }
+
+    const isReportSubdir = window.location.pathname.includes('/202') || document.querySelector('.articles-stack') !== null;
+    const currentPath = window.location.pathname;
+
+    const matches = searchIndex.filter((item) => {
+      const searchTarget = [
+        item.title || '',
+        item.summary_bn || '',
+        item.source_name || '',
+        item.category || '',
+        item.date || '',
+        item.date_pretty || '',
+        (item.cves || []).join(' '),
+        (item.vendors || []).join(' ')
+      ].join(' ').toLowerCase();
+
+      return tokens.every((token) => searchTarget.includes(token));
+    });
+
+    // Sort by score descending, then date descending
+    matches.sort((a, b) => {
+      const scoreDiff = (b.score || 0) - (a.score || 0);
+      if (scoreDiff !== 0) return scoreDiff;
+      return (b.date || '').localeCompare(a.date || '');
+    });
+
+    const displayMatches = matches.slice(0, 20);
+
+    if (displayMatches.length === 0) {
+      resultsContainer.innerHTML = `
+        <div class="global-search-header">
+          <span>0 RESULTS FOUND ACROSS BRIEFINGS</span>
+          <span>ESC TO CLOSE</span>
+        </div>
+        <div class="search-no-results">
+          No threat intelligence matches "<strong>${escapeHtml(query)}</strong>" in the repository.
+        </div>
+      `;
+      resultsContainer.style.display = 'flex';
+      return;
+    }
+
+    const htmlList = [];
+    htmlList.push(`
+      <div class="global-search-header">
+        <span>FOUND ${matches.length} THREATS ACROSS REPOSITORY</span>
+        <span>ESC TO CLOSE</span>
+      </div>
+    `);
+
+    displayMatches.forEach((item) => {
+      // Determine link target URL
+      let linkHref = '';
+      const isSameDate = isReportSubdir && currentPath.includes(item.date);
+
+      if (isSameDate) {
+        const anchorId = item.id ? item.id.split('_')[1] : '';
+        linkHref = anchorId ? `#${anchorId}` : '#';
+      } else if (isReportSubdir) {
+        linkHref = `../${item.report_url}`;
+      } else {
+        linkHref = `./${item.report_url}`;
+      }
+
+      const sev = (item.severity || 'medium').toLowerCase();
+      const score = item.score || 50;
+      const kevBadge = item.has_kev ? `<span class="badge badge-kev" style="font-size:0.62rem; padding:1px 5px;">🔥 KEV</span>` : '';
+      const dateDisplay = item.date_pretty || item.date || '';
+
+      const cveTags = (item.cves || []).slice(0, 3).map((c) => `<span class="result-tag-cve">${escapeHtml(c)}</span>`).join('');
+      const vendorTags = (item.vendors || []).slice(0, 2).map((v) => `<span class="result-tag-vendor">${escapeHtml(v)}</span>`).join('');
+
+      htmlList.push(`
+        <a href="${linkHref}" class="search-result-item" data-date="${escapeHtml(item.date)}" data-anchor="${escapeHtml(item.id || '')}">
+          <div class="result-top-row">
+            <span class="result-date-badge">📅 ${escapeHtml(dateDisplay)}</span>
+            <div style="display:flex; align-items:center; gap:4px;">
+              <span class="badge badge-${sev}" style="font-size:0.62rem; padding:2px 5px;">${sev.toUpperCase()} (${score})</span>
+              ${kevBadge}
+            </div>
+          </div>
+          <div class="result-title">${escapeHtml(item.title)}</div>
+          <div class="result-summary">${escapeHtml(item.summary_bn || '')}</div>
+          <div class="result-tags">
+            ${cveTags}
+            ${vendorTags}
+            <span class="result-tag-vendor" style="margin-left:auto;">${escapeHtml(item.source_name || '')}</span>
+          </div>
+        </a>
+      `);
+    });
+
+    resultsContainer.innerHTML = htmlList.join('');
+    resultsContainer.style.display = 'flex';
+
+    // Click handler for internal smooth scrolling if navigating within current page
+    resultsContainer.querySelectorAll('.search-result-item').forEach((link) => {
+      link.addEventListener('click', (ev) => {
+        const href = link.getAttribute('href');
+        if (href && href.startsWith('#')) {
+          ev.preventDefault();
+          const targetCard = document.querySelector(href);
+          if (targetCard) {
+            resultsContainer.style.display = 'none';
+            // Reset any filter so target card is visible
+            document.querySelectorAll('.article-card').forEach((c) => c.classList.remove('is-hidden'));
+            targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            targetCard.style.outline = '2px solid var(--accent-primary)';
+            targetCard.style.outlineOffset = '4px';
+            setTimeout(() => {
+              targetCard.style.outline = 'none';
+            }, 2500);
+          }
+        }
+      });
+    });
+  }
+
+  function escapeHtml(text) {
+    if (!text) return '';
+    return String(text)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#39;');
+  }
+
+  // -------------------------------------------------------------------------
+  // 3. Severity & Attribute Filtering (Report Page)
+  // -------------------------------------------------------------------------
+  let currentFilter = 'all';
+
+  function initReportFilterPills() {
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const telemetryCards = document.querySelectorAll('.telemetry-card');
+    if (filterPills.length === 0) return;
+
+    // Filter pill buttons
+    filterPills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        filterPills.forEach((p) => p.classList.remove('is-active'));
+        pill.classList.add('is-active');
+        currentFilter = pill.getAttribute('data-filter') || 'all';
+        syncTelemetryState(currentFilter);
+        applyReportFilters();
+      });
+    });
+
+    // Telemetry metric cards act as interactive filters
+    telemetryCards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const targetFilter = card.getAttribute('data-telemetry-filter');
+        if (!targetFilter) return;
+
+        if (currentFilter === targetFilter && targetFilter !== 'all') {
+          currentFilter = 'all';
+        } else {
+          currentFilter = targetFilter;
+        }
+
+        filterPills.forEach((p) => {
+          if (p.getAttribute('data-filter') === currentFilter) {
+            p.classList.add('is-active');
+          } else {
+            p.classList.remove('is-active');
+          }
+        });
+
+        syncTelemetryState(currentFilter);
+        applyReportFilters();
+      });
+    });
+  }
+
+  function syncTelemetryState(filter) {
+    const telemetryCards = document.querySelectorAll('.telemetry-card');
+    telemetryCards.forEach((card) => {
+      const cardFilter = card.getAttribute('data-telemetry-filter');
+      if (cardFilter && cardFilter === filter && filter !== 'all') {
+        card.classList.add('is-active');
+      } else {
+        card.classList.remove('is-active');
+      }
+    });
+  }
+
+  function applyReportFilters() {
+    const cards = document.querySelectorAll('.article-card');
+    const emptyState = document.getElementById('no-results-state');
+    const statsElem = document.getElementById('results-stats');
+    let visibleCount = 0;
+
+    cards.forEach((card) => {
+      const sev = (card.getAttribute('data-severity') || '').toLowerCase();
+      const hasKev = card.getAttribute('data-has-kev') === 'true';
+      const cvesCount = parseInt(card.getAttribute('data-cves-count') || '0', 10);
+
+      let matchesFilter = true;
+      if (currentFilter === 'critical') {
+        matchesFilter = sev === 'critical';
+      } else if (currentFilter === 'high') {
+        matchesFilter = sev === 'high';
+      } else if (currentFilter === 'medium') {
+        matchesFilter = sev === 'medium';
+      } else if (currentFilter === 'low') {
+        matchesFilter = sev === 'low';
+      } else if (currentFilter === 'kev') {
+        matchesFilter = hasKev;
+      } else if (currentFilter === 'cve') {
+        matchesFilter = cvesCount > 0;
+      }
+
+      if (matchesFilter) {
+        card.classList.remove('is-hidden');
+        visibleCount++;
+      } else {
+        card.classList.add('is-hidden');
+      }
+    });
+
+    if (emptyState) {
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    if (statsElem) {
+      statsElem.textContent = `Showing ${visibleCount} of ${cards.length} threats`;
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // 4. Clipboard Actions (Copy Bengali Summary)
+  // -------------------------------------------------------------------------
+  function initClipboard() {
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.copy-btn');
+      if (!btn) return;
+
+      const targetId = btn.getAttribute('data-copy-target');
+      let textToCopy = '';
+
+      if (targetId) {
+        const targetElem = document.getElementById(targetId);
+        if (targetElem) {
+          textToCopy = targetElem.innerText || targetElem.textContent || '';
+        }
+      } else if (btn.getAttribute('data-copy-text')) {
+        textToCopy = btn.getAttribute('data-copy-text');
+      }
+
+      if (textToCopy) {
+        navigator.clipboard.writeText(textToCopy.trim()).then(() => {
+          const originalText = btn.innerHTML;
+          btn.classList.add('is-copied');
+          btn.innerHTML = `<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!`;
+
+          setTimeout(() => {
+            btn.classList.remove('is-copied');
+            btn.innerHTML = originalText;
+          }, 1800);
+        }).catch((err) => {
+          console.error('Clipboard copy failed:', err);
+        });
+      }
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // DOM Ready Initialization
+  // -------------------------------------------------------------------------
+  function init() {
+    initTheme();
+    initGlobalSearch();
+    initReportFilterPills();
+    initClipboard();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
+})();
+
+    </script>
+</body>
+</html>

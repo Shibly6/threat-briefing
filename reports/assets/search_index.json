@@ -1,5 +1,431 @@
 [
   {
+    "id": "2026-11-28_art-1",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Suspected Vietnam-Linked Hackers Target Southeast Asia in South China Sea Espionage Campaign",
+    "source_url": "https://thehackernews.com/2026/11/suspected-vietnam-linked-hackers-target.html",
+    "report_url": "2026-11-28/index.html#art-1",
+    "source_name": "The Hacker News",
+    "category": "Espionage",
+    "summary_bn": "ভিয়েতনাম-সংশ্লিষ্ট WeaveLotus নামক একটি Threat Actor গ্রুপ দক্ষিণ চীন সাগরের ভূ-রাজনৈতিক তথ্য সংগ্রহের উদ্দেশ্যে দক্ষিণ-পূর্ব এশিয়ার সামরিক ও সরকারি সংস্থাসমূহের ওপর একটি সাইবার Espionage ক্যাম্পেইন পরিচালনা করছে। এই গ্র",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2024-36401"
+    ],
+    "vendors": [
+      "GeoServer",
+      "JasperReports",
+      "osTicket",
+      "Laravel",
+      "Directus",
+      "Wowza",
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-2",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "New NFS2ROOT Linux flaw can let attackers gain root privileges",
+    "source_url": "https://www.bleepingcomputer.com/news/security/new-nfs2root-linux-flaw-can-let-attackers-gain-root-privileges/",
+    "report_url": "2026-11-28/index.html#art-2",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "Linux kernel-এর Network File System (NFS) সার্ভারে একটি ১২ বছরের পুরনো critical Vulnerability (CVE-2026-99362) শনাক্ত করা হয়েছে, যা NFS2ROOT নামে পরিচিত। এই Heap buffer overflow ত্রুটির মাধ্যমে একজন remote Threat Actor ক",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-99362"
+    ],
+    "vendors": [
+      "Linux"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-3",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Drupal warns of new site takeover flaw exploited in attacks",
+    "source_url": "https://www.bleepingcomputer.com/news/security/drupal-warns-of-new-access-bypass-flaw-exploited-in-attacks/",
+    "report_url": "2026-11-28/index.html#art-3",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "Drupal সিকিউরিটি টিম একটি নতুন critical Vulnerability শনাক্ত করেছে যা Threat Actor-দের unpatched ওয়েবসাইটগুলোর নিয়ন্ত্রণ নিতে সাহায্য করছে। CVE-2026-132165 এবং CVE-2026-136716 ব্যবহার করে আক্রমণকারীরা Remote Code Executi",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-132165",
+      "CVE-2026-136716"
+    ],
+    "vendors": [
+      "Drupal"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-4",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "CISA Adds Three Known Exploited Vulnerabilities to Catalog | CISA",
+    "source_url": "https://www.cisa.gov/news-events/alerts/2026/11/27/cisa-adds-three-known-exploited-vulnerabilities-catalog",
+    "report_url": "2026-11-28/index.html#art-4",
+    "source_name": "CISA Advisories",
+    "category": "Vulnerability",
+    "summary_bn": "CISA তাদের Known Exploited Vulnerabilities (KEV) ক্যাটালগে নতুন তিনটি Vulnerability যুক্ত করেছে, যা বর্তমানে সক্রিয়ভাবে Exploitation করা হচ্ছে। এর মধ্যে OSGeo GeoServer-এর দুটি এবং Drupal Core-এর একটি Vulnerability অন্তর",
+    "severity": "high",
+    "score": 100,
+    "has_kev": true,
+    "cves": [
+      "CVE-2026-120705",
+      "CVE-2026-129243",
+      "CVE-2026-136716"
+    ],
+    "vendors": [
+      "OSGeo",
+      "Drupal"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-5",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "pCloud confirms password manager hack after suspicious login alerts",
+    "source_url": "https://www.bleepingcomputer.com/news/security/pcloud-confirms-password-manager-hack-after-suspicious-login-alerts/",
+    "report_url": "2026-11-28/index.html#art-5",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "pCloud Pass নামক পাসওয়ার্ড ম্যানেজারে একটি সাইবার অ্যাটাক সংঘটিত হয়েছে, যার ফলে ব্যবহারকারীদের অ্যাকাউন্টে অননুমোদিত লগইন প্রচেষ্টার নোটিফিকেশন পাওয়া গেছে। যদিও pCloud দাবি করেছে যে তাদের সিস্টেম দ্রুত নিয়ন্ত্রণে আনা হয়ে",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "pCloud"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-6",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Your Firewall Isn't Enough: The Hidden Risk of Unmanaged VMs",
+    "source_url": "https://www.bleepingcomputer.com/news/security/your-firewall-isnt-enough-the-hidden-risk-of-unmanaged-vms/",
+    "report_url": "2026-11-28/index.html#art-6",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "এই নিবন্ধটি আধুনিক IT ইনফ্রাস্ট্রাকচারে 'Unmanaged VMs' এবং দুর্বল রিসোর্স ম্যানেজমেন্টের ফলে সৃষ্ট নিরাপত্তা ঝুঁকি নিয়ে আলোচনা করেছে। যখন ভার্চুয়াল মেশিন বা সার্ভারের লাইফসাইকেল এবং অ্যাক্সেস কন্ট্রোল সঠিকভাবে মনিটর কর",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Broadcom",
+      "VMware"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-7",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Unpatched Cacti zero-day with public PoC gives remote code execution",
+    "source_url": "https://www.bleepingcomputer.com/news/security/unpatched-cacti-zero-day-with-public-poc-gives-remote-code-execution/",
+    "report_url": "2026-11-28/index.html#art-7",
+    "source_name": "BleepingComputer",
+    "category": "Vulnerability",
+    "summary_bn": "Cacti নেটওয়ার্ক মনিটরিং প্ল্যাটফর্মে একটি Zero-Day Vulnerability শনাক্ত করা হয়েছে, যা unauthenticated attackers-দের Remote Code Execution (RCE) করার সুযোগ দেয়। '4HTTP2SHELL' নামক এই Exploit-টি মূলত দুর্বল input validatio",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Cacti"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-8",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Unpatched Cacti Zero-Day Enables RCE in Just Four HTTP Requests via Guest Access",
+    "source_url": "https://thehackernews.com/2026/11/unpatched-cacti-zero-day-enables-rce-in.html",
+    "report_url": "2026-11-28/index.html#art-8",
+    "source_name": "The Hacker News",
+    "category": "Vulnerability",
+    "summary_bn": "Cacti-এর একটি নতুন Zero-Day Vulnerability শনাক্ত করা হয়েছে, যা unauthenticated ব্যবহারকারীদের মাত্র চারটি HTTP Request-এর মাধ্যমে Remote Code Execution (RCE) করার সুযোগ দেয়। এই ত্রুটিটি Cacti Core 1.2.31 ভার্সনে বিদ্যমান",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Cacti"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-9",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "US Air Force cloud platform reportedly hacked in latest federal breach",
+    "source_url": "https://www.bleepingcomputer.com/news/security/us-air-force-cloud-platform-reportedly-hacked-in-latest-federal-breach/",
+    "report_url": "2026-11-28/index.html#art-9",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "US Air Force-এর Cloud One প্ল্যাটফর্মে একটি বড় ধরনের সাইবার হামলার ঘটনা ঘটেছে, যেখানে হ্যাকাররা একটি unidentified software vulnerability ব্যবহার করে সিস্টেমের অ্যাক্সেস নিয়েছে। এই হামলার ফলে সামরিক অপারেশন এবং লজিস্টিকস ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Oracle"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-10",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Switzerland Confirms AI-Assisted Cyberattacks Breached Critical Infrastructure Operators",
+    "source_url": "https://thehackernews.com/2026/11/switzerland-confirms-ai-assisted.html",
+    "report_url": "2026-11-28/index.html#art-10",
+    "source_name": "The Hacker News",
+    "category": "Threat Actor",
+    "summary_bn": "সুইজারল্যান্ডের National Cyber Security Centre সম্প্রতি নিশ্চিত করেছে যে, AI-assisted autonomous agents ব্যবহার করে দেশটির critical infrastructure অপারেটরদের ওপর একাধিক সাইবার আক্রমণ চালানো হয়েছে। এই আক্রমণগুলোতে Threat ",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "N/A"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-11",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "New Boston Scientific data breach exposes personal, medical info",
+    "source_url": "https://www.bleepingcomputer.com/news/security/new-boston-scientific-data-breach-exposes-personal-medical-info/",
+    "report_url": "2026-11-28/index.html#art-11",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "মেডিকেল টেকনোলজি কোম্পানি Boston Scientific একটি সাইবার আক্রমণের শিকার হয়েছে, যেখানে Threat Actor-রা Vishing বা Voice Phishing ব্যবহার করে কোম্পানির Cloud Infrastructure-এ অননুমোদিত প্রবেশাধিকার লাভ করেছে। এই Data Breach",
+    "severity": "high",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Boston Scientific"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-12",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Microsoft Store App Found Delivering Vinci RAT Capable of Remote System Control",
+    "source_url": "https://thehackernews.com/2026/11/microsoft-store-app-found-delivering.html",
+    "report_url": "2026-11-28/index.html#art-12",
+    "source_name": "The Hacker News",
+    "category": "Malware",
+    "summary_bn": "সাইবার নিরাপত্তা গবেষকরা একটি নতুন Malware ক্যাম্পেইন শনাক্ত করেছেন যেখানে Threat Actor-রা Microsoft Store-এর মাধ্যমে 'Setup Assistant' নামক একটি ক্ষতিকারক Electron-based অ্যাপ্লিকেশন বিতরণ করছে। এই অ্যাপ্লিকেশনটি মূলত V",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-13",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Hex Package Manager Warns of Potential Data Breach",
+    "source_url": "https://www.securityweek.com/hex-package-manager-warns-of-potential-data-breach/",
+    "report_url": "2026-11-28/index.html#art-13",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "Hex package manager-এর web server-এ একটি গুরুতর Vulnerability-এর মাধ্যমে Unauthorized access-এর ঘটনা ঘটেছে। আক্রমণকারীরা CVE-2026-129514 ব্যবহার করে Remote Code Execution (RCE) সম্পন্ন করেছে, যার ফলে database-এর সংবেদনশী",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [
+      "CVE-2026-129514",
+      "CVE-2026-124283",
+      "CVE-2026-133555",
+      "CVE-2026-130411"
+    ],
+    "vendors": [
+      "Hex",
+      "Ash Framework",
+      "Elixir"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-14",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Hackers Trojanize Official Q-Dir and DesktopOK Downloads to Deliver Remote Access Malware",
+    "source_url": "https://thehackernews.com/2026/11/hackers-trojanize-official-q-dir-and.html",
+    "report_url": "2026-11-28/index.html#art-14",
+    "source_name": "The Hacker News",
+    "category": "Supply Chain",
+    "summary_bn": "SoftwareOK-এর অফিসিয়াল ওয়েবসাইট থেকে ডাউনলোড করা Q-Dir এবং DesktopOK সফটওয়্যারের ইন্সটলেশন ফাইলগুলো হ্যাকাররা টেম্পার করে তাতে ক্ষতিকারক Malware যুক্ত করেছে। এই Supply Chain Attack-এর মাধ্যমে ব্যবহারকারীর সিস্টেমে একটি P",
+    "severity": "critical",
+    "score": 100,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "SoftwareOK"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-15",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "SAP confirms security incident after suspicious GitHub activity",
+    "source_url": "https://www.bleepingcomputer.com/news/security/sap-confirms-security-incident-after-suspicious-github-activity/",
+    "report_url": "2026-11-28/index.html#art-15",
+    "source_name": "BleepingComputer",
+    "category": "Data Breach",
+    "summary_bn": "জার্মান সফটওয়্যার জায়ান্ট SAP সম্প্রতি তাদের GitHub এনভায়রনমেন্টে একটি সাইবার আক্রমণের শিকার হয়েছে, যা অভ্যন্তরীণভাবে 'Project Granite' নামে পরিচিত। Threat Actor-রা SAP কর্মীদের authentication tokens চুরি করে GitHub-এ থা",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "SAP"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-16",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "SAP Confirms Cyberattack, Source Code Reportedly Compromised",
+    "source_url": "https://www.securityweek.com/sap-confirms-cyberattack-source-code-reportedly-compromised/",
+    "report_url": "2026-11-28/index.html#art-16",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "Enterprise software giant SAP সম্প্রতি একটি সাইবার অ্যাটাকের শিকার হয়েছে, যেখানে Threat Actor-রা কোম্পানির GitHub ডেভেলপমেন্ট ইনফ্রাস্ট্রাকচারকে লক্ষ্যবস্তু করেছে। প্রাথমিক তদন্তে জানা গেছে যে, হ্যাকাররা SAP কর্মীদের aut",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "SAP"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-17",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Microsoft pushes emergency hotpatch to fix Windows Server crashes",
+    "source_url": "https://www.bleepingcomputer.com/news/microsoft/new-out-of-band-oob-emergency-hotpatch-fixes-windows-server-2025-crashes/",
+    "report_url": "2026-11-28/index.html#art-17",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "Microsoft একটি জরুরি out-of-band hotpatch (KB5138318) প্রকাশ করেছে যা Windows Server 2025-এ সৃষ্ট একটি গুরুতর সিস্টেম ক্র্যাশ সমস্যা সমাধান করে। নভেম্বর মাসের সিকিউরিটি আপডেটের পর IPv6 রাউট এক্সপায়ার হলে সার্ভারগুলোতে 0",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft",
+      "Forcepoint"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-18",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "In Other News: Tanker Cyberattacks, EU Quantum Act, New VirusTotal Capabilities",
+    "source_url": "https://www.securityweek.com/in-other-news-tanker-cyberattacks-eu-quantum-act-new-virustotal-capabilities/",
+    "report_url": "2026-11-28/index.html#art-18",
+    "source_name": "SecurityWeek",
+    "category": "Vulnerability",
+    "summary_bn": "এই সপ্তাহে সাইবার নিরাপত্তা জগতে বেশ কিছু গুরুত্বপূর্ণ ঘটনা ঘটেছে। এর মধ্যে উল্লেখযোগ্য হলো ChatGPT Sites-এর মাধ্যমে সংবেদনশীল তথ্য ফাঁস, RansomwareHelp-এর সহ-প্রতিষ্ঠাতার বিরুদ্ধে প্রতারণার অভিযোগ এবং USDA-এর পেমেন্ট সি",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "SolarWinds",
+      "Adobe",
+      "OpenAI",
+      "USDA",
+      "The Container Store"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-19",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "100,000 Potentially Impacted by Colorado Data Breach",
+    "source_url": "https://www.securityweek.com/100000-potentially-impacted-by-colorado-data-breach/",
+    "report_url": "2026-11-28/index.html#art-19",
+    "source_name": "SecurityWeek",
+    "category": "Data Breach",
+    "summary_bn": "Colorado Governor’s Office of Information Technology (OIT) সম্প্রতি একটি Data Breach-এর শিকার হয়েছে, যা তাদের myColorado অ্যাপ্লিকেশনের প্রায় ১,০০,০০০ ব্যবহারকারীর ব্যক্তিগত তথ্যের নিরাপত্তাকে ঝুঁকির মুখে ফেলেছে। Threat ",
+    "severity": "high",
+    "score": 99,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Colorado Governor’s Office of Information Technology",
+      "Amazon Web Services"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-20",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Microsoft removes WSUS server role in Windows Server 2028",
+    "source_url": "https://www.bleepingcomputer.com/news/microsoft/microsoft-removes-wsus-server-role-in-windows-server-2028/",
+    "report_url": "2026-11-28/index.html#art-20",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "Microsoft তাদের পরবর্তী অপারেটিং সিস্টেম Windows Server 2028 থেকে WSUS (Windows Server Update Services) সার্ভার রোলটি সম্পূর্ণভাবে অপসারণ করার ঘোষণা দিয়েছে। এর পরিবর্তে প্রতিষ্ঠানগুলোকে Windows Autopatch, Microsoft Intun",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Microsoft"
+    ]
+  },
+  {
+    "id": "2026-11-28_art-21",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "How to Keep Your Security Picture Current When Attackers Move at AI Speed",
+    "source_url": "https://thehackernews.com/2026/11/how-to-keep-your-security-picture.html",
+    "report_url": "2026-11-28/index.html#art-21",
+    "source_name": "The Hacker News",
+    "category": "Advisory",
+    "summary_bn": "এই নিবন্ধটি বর্তমান সাইবার সিকিউরিটি রিপোর্টিং পদ্ধতির সীমাবদ্ধতা এবং AI-এর যুগে এর ঝুঁকি নিয়ে আলোচনা করে। প্রথাগত পদ্ধতিতে সিকিউরিটি মেট্রিক্সগুলো ম্যানুয়ালি সংগ্রহ করা হয়, যা সময়সাপেক্ষ এবং রিপোর্ট তৈরির সময় পর্যন্ত ডে",
+    "severity": "medium",
+    "score": 90,
+    "has_kev": false,
+    "cves": [],
+    "vendors": []
+  },
+  {
+    "id": "2026-11-28_art-22",
+    "date": "2026-11-28",
+    "date_pretty": "28 Nov 2026",
+    "title": "Malwarebytes Antivirus: Get 50% off during Black Friday 2026",
+    "source_url": "https://www.bleepingcomputer.com/news/security/malwarebytes-antivirus-get-50-percent-off-during-black-friday-2026/",
+    "report_url": "2026-11-28/index.html#art-22",
+    "source_name": "BleepingComputer",
+    "category": "Advisory",
+    "summary_bn": "Malwarebytes তাদের বার্ষিক Black Friday এবং Cyber Monday উপলক্ষে বিভিন্ন সিকিউরিটি সাবস্ক্রিপশন প্ল্যানের ওপর ৫০% পর্যন্ত ছাড় ঘোষণা করেছে। এই অফারের আওতায় Antivirus, VPN, identity theft protection এবং personal data remov",
+    "severity": "low",
+    "score": 18,
+    "has_kev": false,
+    "cves": [],
+    "vendors": [
+      "Malwarebytes"
+    ]
+  },
+  {
     "id": "2026-11-27_art-1",
     "date": "2026-11-27",
     "date_pretty": "27 Nov 2026",
